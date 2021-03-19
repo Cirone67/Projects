@@ -10,5 +10,5 @@ package fr.insa.brenckle.projets;
  * @author brenc
  */
 public class Treillis {
-    
+  int i;
 }
