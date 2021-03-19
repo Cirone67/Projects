@@ -12,4 +12,5 @@ package fr.insa.brenckle.projets;
 public class Treillis {
   int i;
   int j;
+  //coucou loic
 }
