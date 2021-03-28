@@ -14,10 +14,11 @@ public class Barre {
  private Noeuds debut;
  private Noeuds fin;
  private TypeBarre type;
+ public static int nbrBarre = 0;
  
- //Constructeur de la classe Barre
-    Barre(int id, Noeuds debut, Noeuds fin, TypeBarre type){
-        this.id = id;
+ //Constructeur de la classe Barre avec la méthode du compteur
+    Barre(Noeuds debut, Noeuds fin, TypeBarre type){
+        this.id = nbrBarre++;
         this.debut = debut;
         this.fin = fin;
         this.type = type;
