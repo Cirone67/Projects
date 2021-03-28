@@ -14,4 +14,7 @@ public class Treillis {
   int j;
   //coucou loic
   // coucou Robin
+  
+  
+  //méthode angle entre 2 barres ( produit scalaires)
 }
