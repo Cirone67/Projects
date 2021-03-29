@@ -11,13 +11,13 @@ package fr.insa.brenckle.projets;
  */
 public class Barre {
  private int id;
- private Noeuds debut;
- private Noeuds fin;
+ private Noeud debut;
+ private Noeud fin;
  private TypeBarre type;
- public static int nbrBarre = 0;
+ private static int nbrBarre = 0;
  
  //Constructeur de la classe Barre avec la méthode du compteur
-    Barre(Noeuds debut, Noeuds fin, TypeBarre type){
+    Barre(Noeud debut, Noeud fin, TypeBarre type){
         this.id = nbrBarre++;
         this.debut = debut;
         this.fin = fin;
@@ -52,11 +52,13 @@ public class Barre {
  
 
 
-public double longeur(){
-double longueur; 
+public static double longeur(Noeud debut,Noeud fin){
+double longueur = Math.sqrt(Math.pow(fin.x-debut.x,2)+ Math.pow(fin.y-debut.y,2));
 
-return longueur;  
+return longueur;
 }
+
+
 }
 
 
