@@ -51,11 +51,16 @@ public class Barre {
     }
  
 
-
-public static double longeur(Noeud debut,Noeud fin){
-double longueur = Math.sqrt(Math.pow(fin.x-debut.x,2)+ Math.pow(fin.y-debut.y,2));
-
+//Méthode qui calcule la longueur d'un segment
+public double longueur(){
+double longueur = Math.sqrt(Math.pow(this.fin.x-this.debut.x,2)+ Math.pow(this.fin.y-this.debut.y,2));
 return longueur;
+}
+//Méthode qui donne l'angle entre deux segment/Barre
+public double angle(Barre Barre2){
+    //Calcul du produit scalaire
+    double scalaire = ((this.fin.x-this.debut.x)*(Barre2.fin.x-Barre2.debut.x)+(this.fin.y-this.debut.y)*(Barre2.fin.y-Barre2.debut.y));
+    return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(2*Math.PI));   
 }
 
 
