@@ -31,16 +31,16 @@ public class Barre {
     public void setId(int id) {
         this.id = id;
     }
-    public Noeuds getDebut() {
+    public Noeud getDebut() {
         return debut;
     }
-    public void setDebut(Noeuds debut) {
+    public void setDebut(Noeud debut) {
         this.debut = debut;
     }
     public Noeuds getFin() {
         return fin;
     }
-    public void setFin(Noeuds fin) {
+    public void setFin(Noeud fin) {
         this.fin = fin;
     }
     public TypeBarre getType() {
