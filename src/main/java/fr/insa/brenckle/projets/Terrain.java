@@ -16,7 +16,7 @@ public class Terrain {
     private double Xmin; 
     
     
-    //tout les gets pour la superclasse Terrain
+    //tout les get/set pour la superclasse Terrain
     public double getYmax(){
         return Ymax;
     }
@@ -29,8 +29,6 @@ public class Terrain {
     public double getXmin(){
         return Xmin;
     }
-    
-    //tout les sets pour la superclasse Terrain
     public void setYmax(double Ymax){
         this.Ymax = Ymax;
     }

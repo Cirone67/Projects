@@ -12,7 +12,7 @@ package fr.insa.brenckle.projets;
 public class TerrainTriangle extends TerrainSegment{
     private TerrainSegment C1;
     private TerrainSegment C2;
-    private TerrainSegment C3; 
+    private TerrainSegment C3;
     
     public TerrainSegment getC1(){
         return C1;
