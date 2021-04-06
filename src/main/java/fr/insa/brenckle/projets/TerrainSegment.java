@@ -9,6 +9,7 @@ package fr.insa.brenckle.projets;
  *
  * @author MAURY Robin
  */
+
 public  class TerrainSegment extends Terrain{
     
 }
