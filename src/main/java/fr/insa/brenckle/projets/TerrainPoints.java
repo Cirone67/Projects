@@ -10,5 +10,19 @@ package fr.insa.brenckle.projets;
  * @author MAURY Robin
  */
 public class TerrainPoints extends Terrain{
+    private double Py; 
+    private double Px; 
     
+    //get/set des pointterrains
+    public double getPy(){
+        return Py;
+    }
+    public double getPx(){
+        return Px;
+    }
+    public void setPx(double X){
+        this.Px = X;
+    }public void setPy(double Y){
+        this.Py = Y;
+    }
 }
