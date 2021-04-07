@@ -49,6 +49,10 @@ public class Barre {
     public void setType(TypeBarre type) {
         this.type = type;
     }
+    
+    public String toString(){
+      return "La barre n°"+ this.id + " de type "+ this.type + "commence par le Noeud"+ this.debut+ " et fnit par le Noeud"+ this.fin;
+    }
  
 
 //Méthode qui calcule la longueur d'un segment
@@ -82,9 +86,31 @@ TypeBarre(int categorie, double cout, double longmax, double longmin, double res
  this.longmin = longmin;
  this.rescompression = rescompression;
  this.restension = restension;
- 
-    
+  
 }
-//TO DO catologue de barre
 
+    public int getCategorie() {
+        return categorie;
+    }
+
+    public double getCout() {
+        return cout;
+    }
+
+    public double getLongmax() {
+        return longmax;
+    }
+
+    public double getLongmin() {
+        return longmin;
+    }
+
+    public double getRestension() {
+        return restension;
+    }
+
+    public double getRescompression() {
+        return rescompression;
+    }
+// TO DO catalogue
 }
