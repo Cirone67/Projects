@@ -33,11 +33,6 @@ public class TerrainPoints extends Terrain{
         this.Px=Px;
         this.Py=Py;
     }
-    //affichage d'un point
-    
-    public void Affiche(TerrainPoints P){
-        System.out.println("("+this.Px+";"+this.Py+")");
-    }
     //saisie d'un point 
     private static TerrainPoints Saisie(){
         double x,y;
@@ -49,7 +44,7 @@ public class TerrainPoints extends Terrain{
         P = new TerrainPoints(x,y);
         return P;
     }
-    
+    //tostring
     public String toString(){
         
         return ("Le point a pour coordonnee : ("+this.Px+";"+this.Py+")");
