@@ -9,24 +9,10 @@ package fr.insa.brenckle.projets;
  *
  * @author Guillaume R
  */
-public class Noeud {
+public class Appui extends Noeud{
     
-    private int id;
-
-    
-    public Noeud(int id){
-        this.id = id;
-    }
-    public Noeud(){
-        this(0);
-    }
-
-    public int getIdNoeud(){
-        return this.id;
-    }
+    private TerrainTriangle triangleAppui;
+    private int premierPoint;
+    private double posSegment;
     
 }
-
-
-    
-
