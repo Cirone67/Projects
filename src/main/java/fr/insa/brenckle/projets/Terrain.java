@@ -41,6 +41,8 @@ public class Terrain {
     public void setXmin(double Xmin){
         this.Xmin= Xmin;
     }
+    
+   
 }
 
 
