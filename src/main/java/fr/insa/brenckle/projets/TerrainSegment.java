@@ -10,11 +10,9 @@ package fr.insa.brenckle.projets;
  * @author MAURY Robin
  */
 
-public  class TerrainSegment extends TerrainPoints {
+public  class TerrainSegment extends Terrain{
     private TerrainPoints A;
     private TerrainPoints B;
-    
-    
     //get/set du Segment
     public TerrainPoints getA(){
         return A;
@@ -28,5 +26,15 @@ public  class TerrainSegment extends TerrainPoints {
     public void setB(TerrainPoints B){
         this.B=B;
     }
-        
+    
+    public String ToString(){
+        return ("Le segment ["+A+";"+B+"]");
+    }
+    
+    //calcul de longueur du segment
+    public double longueurT(TerrainPoints A, TerrainPoints B){
+        double l,x=4;
+        l= Math.sqrt(Math.pow(Math.abs(A.getPx()-B.getPx()),2)+Math.pow(Math.abs(A.getPy()-B.getPy()),2)); 
+        return l;
+    }
 }

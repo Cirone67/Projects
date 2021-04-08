@@ -46,15 +46,15 @@ public class TerrainPoints extends Terrain{
     }
     //tostring
     public String toString(){
-        
         return ("Le point a pour coordonnee : ("+this.Px+";"+this.Py+")");
     }
-    
     public static void main(String[] args){
-        TerrainPoints TEST;
-        TEST= Saisie();
-        System.out.println(TEST);
+        int i,nbr;
+        System.out.println("Saisir le nombre de point que vous voulez rentrer pour le terrain");
+        nbr = Lire.i();
+        for(i=0;i<nbr;i++){
+            TerrainPoints Ai = Saisie();
+            System.out.println(Ai);
+        }
     }
-    
-    
 }
