@@ -34,7 +34,7 @@ public class TerrainPoints extends Terrain{
         this.Py=Py;
     }
     //saisie d'un point 
-    public static TerrainPoints Saisie(){
+    public static TerrainPoints SaisiePoint(){
         double x,y;
         TerrainPoints P;
         System.out.println("Saisir les points dans l'ordre croissant des abcisses");
@@ -47,7 +47,7 @@ public class TerrainPoints extends Terrain{
     }
     //tostring
     public String toString(){
-        return ("Le point a pour coordonnee : ("+this.Px+";"+this.Py+")");
+        return ("("+this.Px+";"+this.Py+")");
     }
     /*public static void main(String[] args){
         int i,nbr,j;
