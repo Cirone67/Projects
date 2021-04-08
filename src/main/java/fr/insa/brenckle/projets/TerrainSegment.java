@@ -57,7 +57,8 @@ public  class TerrainSegment {
         return ST;
     }
     
-    public static void main(String[] args){
+    
+    /*public static void main(String[] args){
       int nbr;
       Terrain T;
       TerrainPoints PT[];
@@ -69,5 +70,5 @@ public  class TerrainSegment {
       ST = new TerrainSegment[nbr-1];
       PT = TerrainPoints.SaisiePoint(T, nbr);
       ST = TerrainSegment.creationSegment(PT , nbr);
-    }
+    }*/
 }
