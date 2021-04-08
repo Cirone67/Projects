@@ -20,7 +20,7 @@ public class Terrain {
     public double getYmax(){
         return Ymax;
     }
-    public double getYin(){
+    public double getYmin(){
         return Ymin;
     }
     public double getXmax(){
@@ -41,8 +41,26 @@ public class Terrain {
     public void setXmin(double Xmin){
         this.Xmin= Xmin;
     }
+    //constructeur Terrain
+    public Terrain (double xmin, double xmax ,double ymin, double ymax){
+        this.Xmax=xmax;
+        this.Xmin=xmin;
+        this.Ymax=ymax;
+        this.Ymin=ymin;
+    }
     
-   
+    public static Terrain SaisieTerrain(){
+        double xmin,ymin,xmax,ymax;
+        Terrain T;
+        System.out.println("Saisir le xmin de votre Terrain  puis le xmax (abscisse)");
+        xmin=Lire.d();
+        xmax = Lire.d();
+        System.out.println("Saisir le ymin de votre Terrain puis le ymax (ordonnee)");
+        ymin=Lire.d();
+        ymax=Lire.d();
+        T = new Terrain(xmin,xmax,ymin,ymax);
+        return T;
+    }
 }
 
 

@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package fr.insa.brenckle.projets;
-import java.util.Arrays;
-import java.util.Optional;
 /**
  *
  * @author MAURY Robin
  */
-public class TerrainPoints extends Terrain{
+public class TerrainPoints {
     private double Py; 
     private double Px; 
     
@@ -33,34 +31,51 @@ public class TerrainPoints extends Terrain{
         this.Px=Px;
         this.Py=Py;
     }
-    //saisie d'un point 
-    public static TerrainPoints SaisiePoint(){
+    
+    //saisie des points             ( nbr = nombre de point a rentrer )
+    public static TerrainPoints[] SaisiePoint(Terrain T, int nbr){
         double x,y;
-        TerrainPoints P;
+        int i;
+        TerrainPoints P[];
         System.out.println("Saisir les points dans l'ordre croissant des abcisses");
-        System.out.println("Saisir le x de votre point :(abscisse)");
-        x=Lire.d();
-        System.out.println("Saisir le y de votre point :(ordonnee)");
-        y=Lire.d();
-        P = new TerrainPoints(x,y);
+        P = new TerrainPoints[nbr];
+        for(i=0;i<nbr;i++){
+            System.out.println("POINT DU TERRAIN SUIVANT");
+            System.out.println("Saisir le x de votre point :(abscisse)");
+            x=Lire.d();
+            System.out.println("Saisir le y de votre point :(ordonnee)");
+            y=Lire.d();
+            P[i] = new TerrainPoints(x,y);
+                while(false==TerrainPoints.verifiePT(T, P[i])){
+                    System.out.println("Votre point n'appartient pas au terrain, rentrez un nouveau point appartenant au terrain");
+                    System.out.println("Saisir le x de votre point :(abscisse)");
+                    x=Lire.d();
+                    System.out.println("Saisir le y de votre point :(ordonnee)");
+                    y=Lire.d();
+                    P[i] = new TerrainPoints(x,y);
+                }
+            System.out.println("");
+        }
         return P;
     }
+    
+    //verifie que le point appartient au terrain 
+    public static boolean verifiePT(Terrain T,  TerrainPoints A){
+        boolean U;
+        if((A.getPx()>T.getXmax())||(A.getPy()>T.getYmax())||(A.getPx()<T.getXmin())||(A.getPy()<T.getYmin())){
+            U=false;
+        }else{
+            U=true;
+        }
+        return U;
+    } 
+    
     //tostring
     public String toString(){
         return ("("+this.Px+";"+this.Py+")");
-    }
-    /*public static void main(String[] args){
-        int i,nbr,j;
-        TerrainPoints PT[];
-        System.out.println("Saisir le nombre de point que vous voulez rentrer pour le terrain");
-        nbr = Lire.i();
-        PT = new TerrainPoints[nbr];
-        for(i=0;i<(nbr);i++){
-            PT[i] = Saisie();
-        }
-        for(i=0;i<nbr;i++){
-        System.out.println(PT[i]);//PT pour PointTerrain
-    }*/
-        
-    }
+    }    
+    
+    
+}
+
 
