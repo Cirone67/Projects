@@ -14,7 +14,7 @@ public class Barre {
  private Noeud debut;
  private Noeud fin;
  private TypeBarre type;
- private static int nbrBarre = 0;
+ private static int nbrBarre = 1;
  
  //Constructeur de la classe Barre avec la méthode du compteur
     Barre(Noeud debut, Noeud fin, TypeBarre type){
@@ -23,6 +23,12 @@ public class Barre {
         this.fin = fin;
         this.type = type;
     }
+    //Constructeur à supprimer à la fin ----------------------------------------------------------------------------
+       Barre(Noeud debut, Noeud fin){
+        this.id = nbrBarre++;
+        this.debut = debut;
+        this.fin = fin;
+    } 
     
     //Get et Set de la classe Barre
     public int getId() {
@@ -37,7 +43,7 @@ public class Barre {
     public void setDebut(Noeud debut) {
         this.debut = debut;
     }
-    public Noeuds getFin() {
+    public Noeud getFin() {
         return fin;
     }
     public void setFin(Noeud fin) {
@@ -54,7 +60,7 @@ public class Barre {
       return "La barre n°"+ this.id + " de type "+ this.type + "commence par le Noeud"+ this.debut+ " et fnit par le Noeud"+ this.fin;
     }
  
-
+/*
 //Méthode qui calcule la longueur d'un segment
 public double longueur(){
 double longueur = Math.sqrt(Math.pow(this.fin.x-this.debut.x,2)+ Math.pow(this.fin.y-this.debut.y,2));
@@ -64,11 +70,20 @@ return longueur;
 public double angle(Barre Barre2){
     //Calcul du produit scalaire
     double scalaire = ((this.fin.x-this.debut.x)*(Barre2.fin.x-Barre2.debut.x)+(this.fin.y-this.debut.y)*(Barre2.fin.y-Barre2.debut.y));
-    return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(2*Math.PI));   
+    return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(2*Math.PI));  
+}
+
+public static void main(String[] args){
+Barre a = new Barre(new Noeud (1),new Noeud(2));
+Barre b = new Barre(new Noeud (1),new Noeud(2));
+System.out.println(a.id);
+System.out.println(b.id);
+}
+*/    
+    
 }
 
 
-}
 
 
 final class TypeBarre {
