@@ -14,6 +14,7 @@ public class TerrainTriangle extends TerrainSegment{
     private TerrainSegment C2;
     private TerrainSegment C3;
     
+    //get/set Terraintriangle
     public TerrainSegment getC1(){
         return C1;
     }
@@ -31,5 +32,17 @@ public class TerrainTriangle extends TerrainSegment{
     }
     public void setC3(TerrainSegment C3){
         this.C3 = C3;
+    }
+    
+    //construteur terraintriangle
+    public TerrainTriangle(TerrainSegment C1, TerrainSegment C2,TerrainSegment C3){
+        this.C1=C1;
+        this.C2=C2;
+        this.C3=C3;
+    }
+    public static TerrainTriangle Creationtriangle(TerrainSegment C1,TerrainSegment C2,TerrainSegment C3){
+        
+        
+        return TR;
     }
 }

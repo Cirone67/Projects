@@ -44,7 +44,7 @@ public  class TerrainSegment {
         return l;
     }
     
-    //creation des segment a partir dun tableau des points 
+    //creation des segment du terrain a partir dun tableau des points 
     public static TerrainSegment[] creationSegment(TerrainPoints PT[], int nbr){
         int i;
         TerrainSegment ST[];
@@ -57,7 +57,20 @@ public  class TerrainSegment {
         return ST;
     }
     
+    //creation des segments pour completer le triangle 
+    public static TerrainSegment SegmentTriangle( TerrainPoints PT1, Terrain ){
+        //droite non reelle du terrain a coder definir quand le terrain peut etre en triangle 
+    }
     
+   //calcul d'un angle entre deux droites adjacentes
+    public static double angle(TerrainSegment ST1, TerrainSegment ST2 ){
+        double angle;
+        TerrainPoints A = ST1.getA();
+        TerrainsPoints B = ST1.getB();
+        TerrainsPoints C = ST2.getB();
+        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(C.getPy() - B.getPy(), C.getPx() - B.getPx()); 
+        return angle;
+    }
     /*public static void main(String[] args){
       int nbr;
       Terrain T;
