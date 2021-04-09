@@ -40,17 +40,17 @@ public class TerrainPoints {
         System.out.println("Saisir les points dans l'ordre croissant des abcisses");
         P = new TerrainPoints[nbr];
         for(i=0;i<nbr;i++){
-            System.out.println("POINT DU TERRAIN SUIVANT");
-            System.out.println("Saisir le x de votre point :(abscisse)");
+            System.out.println(" NOUVEAU POINT DU TERRAIN ");
+            System.out.println("Saisir le x de votre point numero "+i+":(abscisse)");
             x=Lire.d();
-            System.out.println("Saisir le y de votre point :(ordonnee)");
+            System.out.println("Saisir le y de votre point numero "+i+":(ordonnee)");
             y=Lire.d();
             P[i] = new TerrainPoints(x,y);
                 while(false==TerrainPoints.verifiePT(T, P[i])){
                     System.out.println("Votre point n'appartient pas au terrain, rentrez un nouveau point appartenant au terrain");
-                    System.out.println("Saisir le x de votre point :(abscisse)");
+                    System.out.println("Saisir le x de votre point numero "+i+":(abscisse)");
                     x=Lire.d();
-                    System.out.println("Saisir le y de votre point :(ordonnee)");
+                    System.out.println("Saisir le y de votre point numero "+i+":(ordonnee)");
                     y=Lire.d();
                     P[i] = new TerrainPoints(x,y);
                 }

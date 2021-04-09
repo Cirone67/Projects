@@ -12,6 +12,7 @@ package fr.insa.brenckle.projets;
 public  class TerrainSegment {
     private TerrainPoints A;
     private TerrainPoints B;
+    
     //get/set du Segment
     public TerrainPoints getA(){
         return A;
