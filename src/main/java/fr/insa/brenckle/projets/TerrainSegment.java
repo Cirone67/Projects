@@ -80,7 +80,7 @@ public  class TerrainSegment {
         System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);
         return angle;
     }
-    public static void main(String[] args){
+    /*public static void main(String[] args){
       int nbrP,nbrST;
       double angle;
       Terrain T;
@@ -95,6 +95,6 @@ public  class TerrainSegment {
       if(nbrST>1){
         angle = angle(ST.get(0),ST.get(1));
       }
-    }
+    }*/
     
 }
