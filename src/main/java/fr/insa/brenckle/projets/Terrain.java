@@ -16,6 +16,7 @@ public class Terrain {
     private double Xmin; 
     
     
+    
     //tout les get/set pour la superclasse Terrain
     public double getYmax(){
         return Ymax;
@@ -29,6 +30,7 @@ public class Terrain {
     public double getXmin(){
         return Xmin;
     }
+    
     public void setYmax(double Ymax){
         this.Ymax = Ymax;
     }
@@ -41,12 +43,14 @@ public class Terrain {
     public void setXmin(double Xmin){
         this.Xmin= Xmin;
     }
+    
+    
     //constructeur Terrain
     public Terrain (double xmin, double xmax ,double ymin, double ymax){
         this.Xmax=xmax;
         this.Xmin=xmin;
         this.Ymax=ymax;
-        this.Ymin=ymin;
+        this.Ymin=ymin; 
     }
     
     public static Terrain SaisieTerrain(){

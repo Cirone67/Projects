@@ -8,6 +8,8 @@ package fr.insa.brenckle.projets;
  *
  * @author MAURY Robin
  */
+import java.util.ArrayList;
+import java.util.*;
 
 public  class TerrainSegment {
     private TerrainPoints A;
@@ -46,43 +48,47 @@ public  class TerrainSegment {
     }
     
     //creation des segment du terrain a partir dun tableau des points 
-    public static TerrainSegment[] creationSegment(TerrainPoints PT[], int nbr){
+    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P){
         int i;
-        TerrainSegment ST[];
-        ST = new TerrainSegment [nbr-1];
+        TerrainSegment STtempo;
+        int nbr = P.size();
+        ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
         System.out.println("Il y a "+(nbr-1)+" segment(s) de saisi");
         for(i=0;i<(nbr-1);i++){
-        ST[i]= new TerrainSegment(PT[i],PT[i+1]);
-        //System.out.println(ST[i]);
+            STtempo= new TerrainSegment(P.get(i),P.get(i+1));
+            ST.add(STtempo);
         }
+        System.out.println(ST);
         return ST;
     }
     
     //creation des segments pour completer le triangle 
-    public static TerrainSegment SegmentTriangle( TerrainPoints PT1, Terrain ){
+    public static TerrainSegment SegmentTriangle( TerrainPoints PT1, TerrainPoints PT3 ){
         //droite non reelle du terrain a coder definir quand le terrain peut etre en triangle 
+        TerrainSegment AST;
+        AST= new TerrainSegment(PT1,PT3);
+        return AST;
     }
     
    //calcul d'un angle entre deux droites adjacentes
     public static double angle(TerrainSegment ST1, TerrainSegment ST2 ){
         double angle;
         TerrainPoints A = ST1.getA();
-        TerrainsPoints B = ST1.getB();
-        TerrainsPoints C = ST2.getB();
+        TerrainPoints B = ST1.getB();
+        TerrainPoints C = ST2.getB();
         angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(C.getPy() - B.getPy(), C.getPx() - B.getPx()); 
         return angle;
     }
-    /*public static void main(String[] args){
-      int nbr;
+    public static void main(String[] args){
+      int nbrP,nbrST;
       Terrain T;
-      TerrainPoints PT[];
-      TerrainSegment ST[];
+      ArrayList< TerrainPoints> P = new ArrayList< TerrainPoints>();
+      ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
       T = Terrain.SaisieTerrain();
-      System.out.println("Saisir le niombre de point que vous voulez dans votre terrain, attention aux limites saisi pour votre terrain");
-      nbr = Lire.i();
-      PT = new TerrainPoints[nbr];
-      ST = new TerrainSegment[nbr-1];
-      PT = TerrainPoints.SaisiePoint(T, nbr);
-      ST = TerrainSegment.creationSegment(PT , nbr);
-    }*/
+      P = TerrainPoints.SaisiePoint(T);
+      ST = TerrainSegment.creationSegment(P);
+      nbrP = P.size();
+      nbrST = ST.size();
+      System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
+    }
 }
