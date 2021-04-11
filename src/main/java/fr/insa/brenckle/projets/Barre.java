@@ -60,26 +60,32 @@ public class Barre {
       return "La barre n°"+ this.id + " de type "+ this.type + "commence par le Noeud"+ this.debut+ " et fnit par le Noeud"+ this.fin;
     }
  
-/*
+
 //Méthode qui calcule la longueur d'un segment
 public double longueur(){
-double longueur = Math.sqrt(Math.pow(this.fin.x-this.debut.x,2)+ Math.pow(this.fin.y-this.debut.y,2));
+double longueur = Math.sqrt(Math.pow(this.fin.abs-this.debut.abs,2)+ Math.pow(this.fin.ord-this.debut.ord,2));
 return longueur;
 }
+
+//Calcul du prix de la barre
+public double prix(){
+    return this.longueur()*this.type.getCout();
+}
+
 //Méthode qui donne l'angle entre deux segment/Barre
 public double angle(Barre Barre2){
     //Calcul du produit scalaire
-    double scalaire = ((this.fin.x-this.debut.x)*(Barre2.fin.x-Barre2.debut.x)+(this.fin.y-this.debut.y)*(Barre2.fin.y-Barre2.debut.y));
+    double scalaire = ((this.fin.abs-this.debut.abs)*(Barre2.fin.abs-Barre2.debut.abs)+(this.fin.ord-this.debut.ord)*(Barre2.fin.ord-Barre2.debut.ord));
     return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(2*Math.PI));  
 }
-
+/*
 public static void main(String[] args){
 Barre a = new Barre(new Noeud (1),new Noeud(2));
 Barre b = new Barre(new Noeud (1),new Noeud(2));
 System.out.println(a.id);
 System.out.println(b.id);
 }
-*/    
+ */  
     
 }
 
