@@ -37,7 +37,7 @@ public class TerrainPoints {
     }
     
     //saisie des points             ( nbr = nombre de point a rentrer )
-    public static ArrayList<TerrainPoints> SaisiePoint(Terrain T){
+    public static ArrayList<TerrainPoints> SaisiePoint(){
         double x,y;
         int sortie=0 , i ;
         ArrayList< TerrainPoints> P = new ArrayList< TerrainPoints>();
@@ -51,14 +51,14 @@ public class TerrainPoints {
             System.out.println("Saisir le y de votre point numero "+i+":(ordonnee)");
             y=Lire.d();
             PT = new TerrainPoints(x,y);
-                while(false==TerrainPoints.verifiePT(T, PT)){
-                    System.out.println("Votre point n'appartient pas au terrain, rentrez un nouveau point appartenant au terrain");
-                    System.out.println("Saisir le x de votre point numero "+i+":(abscisse)");
-                    x=Lire.d();
-                    System.out.println("Saisir le y de votre point numero "+i+":(ordonnee)");
-                    y=Lire.d();
-                    PT = new TerrainPoints(x,y);
-                } 
+//                while(false==TerrainPoints.verifiePT(T, PT)){
+//                    System.out.println("Votre point n'appartient pas au terrain, rentrez un nouveau point appartenant au terrain");
+//                    System.out.println("Saisir le x de votre point numero "+i+":(abscisse)");
+//                    x=Lire.d();
+//                    System.out.println("Saisir le y de votre point numero "+i+":(ordonnee)");
+//                    y=Lire.d();
+//                    PT = new TerrainPoints(x,y);
+//                } 
                 P.add(PT);
             System.out.println("Voulez vous rajouter un point ? Taper 0, sinon 1");
             sortie=Lire.i();
@@ -76,6 +76,7 @@ public class TerrainPoints {
         }
         return U;
     } 
+    
     
     //tostring
     public String toString(){

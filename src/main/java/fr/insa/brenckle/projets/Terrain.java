@@ -9,6 +9,9 @@ package fr.insa.brenckle.projets;
  *
  * @author MAURY Robin
  */
+import java.util.ArrayList;
+import java.util.*;
+
 public class Terrain {
     private double Ymax;
     private double Ymin; 
@@ -53,18 +56,47 @@ public class Terrain {
         this.Ymin=ymin; 
     }
     
-    public static Terrain SaisieTerrain(){
-        double xmin,ymin,xmax,ymax;
-        Terrain T;
-        System.out.println("Saisir le xmin de votre Terrain  puis le xmax (abscisse)");
-        xmin=Lire.d();
-        xmax = Lire.d();
-        System.out.println("Saisir le ymin de votre Terrain puis le ymax (ordonnee)");
-        ymin=Lire.d();
-        ymax=Lire.d();
-        T = new Terrain(xmin,xmax,ymin,ymax);
-        return T;
+    public static Terrain SaisieTerrain(ArrayList <TerrainPoints> PT){
+//        double xmin,ymin,xmax,ymax;
+//        Terrain T;
+//        System.out.println("Saisir le xmin de votre Terrain  puis le xmax (abscisse)");
+//        xmin=Lire.d();
+//        xmax = Lire.d();
+//        System.out.println("Saisir le ymin de votre Terrain puis le ymax (ordonnee)");
+//        ymin=Lire.d();
+//        ymax=Lire.d();
+//        T = new Terrain(xmin,xmax,ymin,ymax);
+//        return T;
+//    }
+          double xmin, xmax, ymin, ymax;
+          Terrain T;
+          TerrainPoints PTtempo;
+          int nbr ; 
+          nbr=PT.size();
+          PTtempo=PT.get(0);
+          xmin=PTtempo.getPx();
+          xmax=PTtempo.getPx();
+          ymin=PTtempo.getPy();
+          ymax=PTtempo.getPy();
+          for(int i=1; i<nbr ; i++){
+              PTtempo=PT.get(i);
+              if(xmin>PTtempo.getPx()){
+                  xmin=PTtempo.getPx();
+              }
+              if(xmax<PTtempo.getPx()){
+                  xmax=PTtempo.getPx();
+              }
+              if(ymin>PTtempo.getPy()){
+                  ymin=PTtempo.getPy();
+              }
+              if(ymax<PTtempo.getPy()){
+                  ymax=PTtempo.getPy();
+              }
+          }
+          T= new Terrain(xmin , xmax, ymin ,ymax);
+          return T; 
     }
+          
 }
 
 

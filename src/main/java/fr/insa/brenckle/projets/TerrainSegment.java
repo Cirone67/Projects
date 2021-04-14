@@ -70,8 +70,9 @@ public  class TerrainSegment {
         return AST;
     }
     
-   //calcul d'un angle entre deux droites adjacentes renvoie un nombre positif si l'angle est superieur a pi 
-    public static double angle(TerrainSegment ST1, TerrainSegment ST2 ){
+    
+   //calcul d'un angle entre deux segment adjacents renvoie un nombre positif si l'angle est inferieur a pi 
+    public static double angleSegment(TerrainSegment ST1, TerrainSegment ST2 ){
         double angle;
         TerrainPoints A = ST1.getA();
         TerrainPoints B = ST1.getB();
@@ -80,21 +81,30 @@ public  class TerrainSegment {
         System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);
         return angle;
     }
-    /*public static void main(String[] args){
-      int nbrP,nbrST;
+       
+    //calcul d'un angle entre deux points renvoie un nombre positif si l'angle est inferieur a pi
+    public static double anglepoint(TerrainPoints A, TerrainPoints B){
       double angle;
+        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(C.getPy() - B.getPy(), C.getPx() - B.getPx()); 
+        System.out.println("L'angle entre "+A+" et "+B+" est : "+angle);
+        return angle;  
+    }
+    
+    public static void main(String[] args){
+      int nbrP,nbrST;
+      double angleSegment;
       Terrain T;
-      ArrayList< TerrainPoints> P = new ArrayList< TerrainPoints>();
-      ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
-      T = Terrain.SaisieTerrain();
-      P = TerrainPoints.SaisiePoint(T);
+      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
+      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
+      P = TerrainPoints.SaisiePoint();
       ST = TerrainSegment.creationSegment(P);
+      T = Terrain.SaisieTerrain(P);
       nbrP = P.size();
       nbrST = ST.size();
       System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
       if(nbrST>1){
-        angle = angle(ST.get(0),ST.get(1));
+        angleSegment = angleSegment(ST.get(0),ST.get(1));
       }
-    }*/
+    }
     
 }
