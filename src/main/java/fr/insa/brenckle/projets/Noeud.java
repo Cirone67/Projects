@@ -9,7 +9,7 @@ package fr.insa.brenckle.projets;
  *
  * @author Guillaume R
  */
-public class Noeud {
+public abstract class Noeud {
     
     private int id;
 
@@ -25,6 +25,8 @@ public class Noeud {
         return this.id;
     }
     
+    public abstract double getAbs();
+    public abstract double getOrd();
 }
 
 

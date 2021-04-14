@@ -63,7 +63,7 @@ public class Barre {
 
 //Méthode qui calcule la longueur d'un segment
 public double longueur(){
-double longueur = Math.sqrt(Math.pow(this.fin.abs-this.debut.abs,2)+ Math.pow(this.fin.ord-this.debut.ord,2));
+double longueur = Math.sqrt(Math.pow(this.fin.getAbs()-this.debut.abs,2)+ Math.pow(this.fin.ord-this.debut.ord,2));
 return longueur;
 }
 
@@ -87,51 +87,4 @@ System.out.println(b.id);
 }
  */  
     
-}
-
-
-
-
-final class TypeBarre {
-private int categorie;
-private double cout;
-private double longmax;
-private double longmin;
-private double restension;
-private double rescompression;
-
-TypeBarre(int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
- this.categorie = categorie;
- this.cout = cout;
- this.longmax = longmax;
- this.longmin = longmin;
- this.rescompression = rescompression;
- this.restension = restension;
-  
-}
-
-    public int getCategorie() {
-        return categorie;
-    }
-
-    public double getCout() {
-        return cout;
-    }
-
-    public double getLongmax() {
-        return longmax;
-    }
-
-    public double getLongmin() {
-        return longmin;
-    }
-
-    public double getRestension() {
-        return restension;
-    }
-
-    public double getRescompression() {
-        return rescompression;
-    }
-// TO DO catalogue
 }
