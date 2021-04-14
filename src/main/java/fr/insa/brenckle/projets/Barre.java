@@ -63,7 +63,7 @@ public class Barre {
 
 //Méthode qui calcule la longueur d'un segment
 public double longueur(){
-double longueur = Math.sqrt(Math.pow(this.fin.abs-this.debut.abs,2)+ Math.pow(this.fin.ord-this.debut.ord,2));
+double longueur = Math.sqrt(Math.pow(this.fin.getAbs()-this.debut.abs,2)+ Math.pow(this.fin.ord-this.debut.ord,2));
 return longueur;
 }
 
