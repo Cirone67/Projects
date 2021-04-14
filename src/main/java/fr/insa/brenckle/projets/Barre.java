@@ -63,7 +63,7 @@ public class Barre {
 
 //Méthode qui calcule la longueur d'un segment
 public double longueur(){
-double longueur = Math.sqrt(Math.pow(this.fin.getAbs()-this.debut.abs,2)+ Math.pow(this.fin.ord-this.debut.ord,2));
+double longueur = Math.sqrt(Math.pow(this.fin.getAbs()-this.debut.getAbs(),2)+ Math.pow(this.fin.getOrd()-this.debut.getOrd(),2));
 return longueur;
 }
 
@@ -75,7 +75,7 @@ public double prix(){
 //Méthode qui donne l'angle entre deux segment/Barre
 public double angle(Barre Barre2){
     //Calcul du produit scalaire
-    double scalaire = ((this.fin.abs-this.debut.abs)*(Barre2.fin.abs-Barre2.debut.abs)+(this.fin.ord-this.debut.ord)*(Barre2.fin.ord-Barre2.debut.ord));
+    double scalaire = ((this.fin.getAbs()-this.debut.getAbs())*(Barre2.fin.getAbs()-Barre2.debut.getAbs())+(this.fin.getOrd()-this.debut.getOrd())*(Barre2.fin.getOrd()-Barre2.debut.getOrd()));
     return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(2*Math.PI));  
 }
 /*

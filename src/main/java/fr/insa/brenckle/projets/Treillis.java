@@ -15,12 +15,14 @@ public class Treillis {
 private List<Terrain> terrains;
 private List<Barre> barres;
 private List<Noeud> noeuds;
+private List<TypeBarre> typeBarre;
 //liste de charge ? à la place de l'appliquer à un point ?
 //Hello guillaume tu es vivant ?
 public Treillis(){
     this.barres = new ArrayList<Barre>();
     this.noeuds = new ArrayList<Noeud>();
     this.terrains = new ArrayList<Terrain>();
+    this.typeBarre = new ArrayList<TypeBarre>();
 }
 
 public void supprime(Barre b){
@@ -40,5 +42,11 @@ public void supprime(Terrain t){
 }
 public void ajoute(Terrain t){
  this.terrains.add(t);
+}
+public void supprime(TypeBarre tb){
+ this.typeBarre.remove(tb);   
+}
+public void ajoute(TypeBarre tb){
+ this.typeBarre.add(tb);
 }
 }

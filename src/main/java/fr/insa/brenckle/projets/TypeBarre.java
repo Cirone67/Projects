@@ -24,7 +24,7 @@ TypeBarre(int categorie, double cout, double longmax, double longmin, double res
  this.longmin = longmin;
  this.rescompression = rescompression;
  this.restension = restension;
-  
+
 }
 
     public int getCategorie() {
@@ -51,4 +51,4 @@ TypeBarre(int categorie, double cout, double longmax, double longmin, double res
         return rescompression;
     }
 // TO DO catalogue
-}    
+}
