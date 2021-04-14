@@ -48,19 +48,52 @@ public  class TerrainSegment {
     }
     
     //creation des segment du terrain a partir dun tableau des points 
-    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P){
+    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, Terrain T){
         int i;
         TerrainSegment STtempo;
+        double yminPT;
+        double xminPT;
+        double xmaxPT;
+        yminPT = P.get(0).getPy();
+        xminPT = P.get(0).getPx();
+        xmaxPT = P.get(0).getPx();
         int nbr = P.size();
         ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
-        System.out.println("Il y a "+(nbr-1)+" segment(s) de saisi");
+        for(i=1;i<nbr;i++){
+            if(yminPT>(P.get(i).getPy())){
+                yminPT=P.get(i).getPy();
+            }
+            if(xminPT>(P.get(i).getPy())){
+                xminPT=P.get(i).getPy();
+            }
+            if(xmaxPT<(P.get(i).getPx())){
+                xmaxPT=P.get(i).getPx();
+            }
+        }
+            TerrainPoints PTa, PTb, PTc;
+            PTa= new TerrainPoints(xmaxPT,yminPT);
+            P.add(PTa);
+            PTb = new TerrainPoints(xminPT,yminPT);
+            P.add(PTb);
+//            if(P.get(0).getPy()!=yminPT){
+//                PTc = new TerrainPoints(xminPT,P.get(1).getPy());
+//                P.add(0,PTc);
+//            }
+        nbr=P.size();
+        System.out.println(P);
+        System.out.println("Il y a "+(nbr)+" segment(s) du terrain");
         for(i=0;i<(nbr-1);i++){
             STtempo= new TerrainSegment(P.get(i),P.get(i+1));
+            ST.add(STtempo);
+        }
+        if(P.get(0).getPy()!=yminPT){
+            STtempo = new TerrainSegment(P.get(nbr-1),P.get(0));
             ST.add(STtempo);
         }
         System.out.println(ST);
         return ST;
     }
+    
     
     //creation des segments pour completer le triangle 
     public static TerrainSegment SegmentTriangle( TerrainPoints PT1, TerrainPoints PT3 ){
@@ -69,6 +102,7 @@ public  class TerrainSegment {
         AST= new TerrainSegment(PT1,PT3);
         return AST;
     }
+    
     
    //calcul d'un angle entre deux segment adjacents renvoie un nombre positif si l'angle est inferieur a pi 
     public static double angleSegment(TerrainSegment ST1, TerrainSegment ST2 ){
@@ -89,22 +123,18 @@ public  class TerrainSegment {
         return angle;  
     }
     
-//    public static void main(String[] args){
-//      int nbrP,nbrST;
-//      double angleSegment;
-//      Terrain T;
-//      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
-//      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
-//      P = TerrainPoints.SaisiePoint();
-//      ST = TerrainSegment.creationSegment(P);
-//      T = Terrain.SaisieTerrain(P);
-//      System.out.println(T);
+    public static void main(String[] args){
+      int nbrP,nbrST;
+      double angleSegment;
+      Terrain T;
+      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
+      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
+      T = Terrain.SaisieTerrain();
+      P = TerrainPoints.SaisiePoint(T);
+      ST = TerrainSegment.creationSegment(P,T);
 //      nbrP = P.size();
 //      nbrST = ST.size();
-//      System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
-//      if(nbrST>1){
-//        angleSegment = angleSegment(ST.get(0),ST.get(1));
-//      }
-//    }
+//    System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
+    }
     
 }
