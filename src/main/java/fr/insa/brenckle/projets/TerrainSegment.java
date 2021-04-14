@@ -70,7 +70,6 @@ public  class TerrainSegment {
         return AST;
     }
     
-    
    //calcul d'un angle entre deux segment adjacents renvoie un nombre positif si l'angle est inferieur a pi 
     public static double angleSegment(TerrainSegment ST1, TerrainSegment ST2 ){
         double angle;
@@ -90,21 +89,22 @@ public  class TerrainSegment {
         return angle;  
     }
     
-    public static void main(String[] args){
-      int nbrP,nbrST;
-      double angleSegment;
-      Terrain T;
-      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
-      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
-      P = TerrainPoints.SaisiePoint();
-      ST = TerrainSegment.creationSegment(P);
-      T = Terrain.SaisieTerrain(P);
-      nbrP = P.size();
-      nbrST = ST.size();
-      System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
-      if(nbrST>1){
-        angleSegment = angleSegment(ST.get(0),ST.get(1));
-      }
-    }
+//    public static void main(String[] args){
+//      int nbrP,nbrST;
+//      double angleSegment;
+//      Terrain T;
+//      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
+//      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
+//      P = TerrainPoints.SaisiePoint();
+//      ST = TerrainSegment.creationSegment(P);
+//      T = Terrain.SaisieTerrain(P);
+//      System.out.println(T);
+//      nbrP = P.size();
+//      nbrST = ST.size();
+//      System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
+//      if(nbrST>1){
+//        angleSegment = angleSegment(ST.get(0),ST.get(1));
+//      }
+//    }
     
 }

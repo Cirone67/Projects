@@ -54,6 +54,8 @@ public class TerrainTriangle {
         this.idT = nbrTriangle++;
     }
     
+    
+    //creation des triangles du terrain;
     public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegment> ST){
         int nbrST= ST.size();
         ArrayList <TerrainTriangle> TT = new ArrayList<TerrainTriangle>();

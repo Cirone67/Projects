@@ -51,6 +51,7 @@ public class TerrainPoints {
             System.out.println("Saisir le y de votre point numero "+i+":(ordonnee)");
             y=Lire.d();
             PT = new TerrainPoints(x,y);
+            //plus utile car le prgramme complete le terrain lui meme.
 //                while(false==TerrainPoints.verifiePT(T, PT)){
 //                    System.out.println("Votre point n'appartient pas au terrain, rentrez un nouveau point appartenant au terrain");
 //                    System.out.println("Saisir le x de votre point numero "+i+":(abscisse)");

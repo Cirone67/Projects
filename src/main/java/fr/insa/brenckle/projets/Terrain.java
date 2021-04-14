@@ -56,6 +56,11 @@ public class Terrain {
         this.Ymin=ymin; 
     }
     
+    public String toString(){
+        return ("Le terrain a pour Xmin :"+getXmin()+", Xmax : "+getXmax()+" ,Ymin : "+getYmin()+" ,Ymax : "+ getYmax());
+    }
+    
+    //creer un terrain avec une liste de point de terrain
     public static Terrain SaisieTerrain(ArrayList <TerrainPoints> PT){
 //        double xmin,ymin,xmax,ymax;
 //        Terrain T;
