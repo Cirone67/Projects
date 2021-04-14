@@ -277,7 +277,7 @@ return MconcN;
     }   
 //__________________Méthode du pivot de Gauss________________________________
 //Class ResGauss pour renvoier le résultat de la descente de Gauss
-
+/*
     public ResGauss descenteGauss(){
         int sig =1;
         int i;
@@ -301,6 +301,7 @@ return MconcN;
         }
  return new ResGauss(i,sig); // ???? i pas sur à 100% ????
 }
+ */   
     public Matrice Gauss(){
         int sig =1;
         int i;
@@ -407,8 +408,18 @@ public Matrice solution(){
     }
     return res;
 }
-//Méthode principale main
 
+
+//Méthode pour résoudre les systèmes linéaires
+public Matrice resoudreSyst(Matrice vecteur){ // Systèmesousformedematrice.resoudreSyst(vecteurdelautrecotedel'égalité);
+    Matrice res = this.concatCol(vecteur);
+    res =res.Gauss().solution();
+    res.String();
+    
+return res;    
+}
+/*
+//Méthode principale main
 public static void main(String[] args){
     int nl, nc;
     System.out.println("Nombre de ligne");
@@ -430,25 +441,6 @@ public static void main(String[] args){
     System.out.println("Nombre de colonne/ligne");
     int n;
     n = Lire.i();
-    /*
-    m = identite(n);
-    m.String();
-    m = matAleaZeroUnDeux(nl,nc);
-    m.String();
-    m1 = matAleaZeroUnDeux(nl,nc);
-    m1.String(); 
-    m2= m1;
-    m1 = m.concatLig(m1);
-    m1.String();
-    m2 = m.concatCol(m2);
-    m2.String();
-    m2 = transposition(m2);
-    m2.String();
-    m2 = subLignes(2,4,m2);
-    m2.String();
-    m2 = subCols(2,3,m2);
-    m2.String();
-    */
     m1 = matTest1(n);
     m2 = matTest2(n);
     double vecteur [];
@@ -457,12 +449,15 @@ public static void main(String[] args){
         vecteur[i]=i+1;
     }
     //m1 = m1.concatCol(creeVecteur(vecteur));
-    m2 = m2.concatCol(creeVecteur(vecteur));
+    
     //m1.descenteGauss();
-    System.out.println(m2.descenteGauss().toString());
-     m2=m2.Gauss().solution();
-     m2.String();
+    //System.out.println(m2.descenteGauss().toString());
+    m2 = m2.concatCol(creeVecteur(vecteur));
+    Matrice res =m2.Gauss().solution();
+    res.String();
 }
+*/
+
 }
 class ResGauss{
     public int rang;
