@@ -1,0 +1,4 @@
+loiuytcklvm
+TypeBarre;1;100.0;1.0;5.0;1000.0;2000.0
+TypeBarre;2;100.0;1.0;5.0;1420.0;740.0
+lkiuyt5463
