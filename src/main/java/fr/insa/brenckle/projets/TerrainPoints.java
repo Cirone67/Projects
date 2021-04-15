@@ -64,11 +64,10 @@ public class TerrainPoints {
             System.out.println("Voulez vous rajouter un point ? Taper 0, sinon 1");
             sortie=Lire.i();
         }
-        P= TerrainPoints.CompletePoint(P);
         return P;
     }
    
-    //completer la liste de point en vue des segments si necessaire
+    //completer la liste de point en vue des segments si necessaire(fermer le terrain pour former un polygone spéciale)
     public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P){
         int i;
         double yminPT, xminPT, xmaxPT;
@@ -87,8 +86,8 @@ public class TerrainPoints {
                 xmaxPT=P.get(i).getPx();
             }
         }
-        TerrainPoints PTa, PTb, PTc;
-        if(P.get(nbr-1).getPy()==P.get(0).getPy()){ 
+        TerrainPoints PTa, PTb;
+        if((P.get(nbr-1).getPy()==P.get(0).getPy())&&(yminPT==P.get(nbr-1).getPy())){ 
             }else{
                 if(P.get(nbr-1).getPy()!= yminPT){
                 PTa= new TerrainPoints(P.get(nbr-1).getPx(),yminPT);
@@ -123,10 +122,9 @@ public class TerrainPoints {
     }
     
     //creer des points pour le decoupage en triangle
-    public static ArrayList<TerrainPoints> TrianglePoint(ArrayList<TerrainPoints> P){
+    public static ArrayList<TerrainPoints> TrianglePoint(ArrayList<TerrainPoints> P , boolean verifie){
         int i,nbr,j;
         double yminPT;
-        boolean verifie;
         nbr=P.size();
         ArrayList< TerrainPoints> Pr = new ArrayList< TerrainPoints>();
         TerrainPoints Ptempo;
@@ -136,7 +134,6 @@ public class TerrainPoints {
                 yminPT=P.get(i).getPy();
             }
         }
-        verifie= TerrainPoints.verifieForme(P);
         if(verifie=true){
             j=0;
             i=0;
@@ -144,13 +141,21 @@ public class TerrainPoints {
                 j=j+1;
                 i=i+1;
             }
-            for(i=j;i<nbr-2;i++){
-                    if(P.get(i).getPx()==P.get(i+1).getPx()){
-                    }else{
-                      Ptempo = new TerrainPoints(P.get(i).getPx(), yminPT);
-                      Pr.add(Ptempo);
+            for(i=j;i<nbr-1;i++){
+                if(P.get(i).getPx()==P.get(i+1).getPx()){
+                }else{
+                    Ptempo = new TerrainPoints(P.get(i).getPx(), yminPT);
+                    Pr.add(Ptempo);
+                }
+            }
+            for(i=0;i<nbr;i++){
+                for(j=1;j<Pr.size();j++){
+                    if((P.get(i).getPx()==Pr.get(j).getPx())&&(P.get(i).getPy()==Pr.get(j).getPy())){
+                        Pr.remove(j);
                     }
                 }
+            }
+            System.out.println("Point creer : "+Pr);
         }
         return Pr;
     }
