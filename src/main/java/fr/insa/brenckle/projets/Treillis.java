@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * @author brenc
  */
 public class Treillis {
-private List<Terrain> terrains;
-private List<Barre> barres;
-private List<Noeud> noeuds;
-private List<TypeBarre> typeBarre;
-//liste de charge ? à la place de l'appliquer à un point ?
+public ArrayList<Terrain> terrains;
+public ArrayList<Barre> barres;
+public ArrayList<Noeud> noeuds;
+public ArrayList<TypeBarre> typeBarre;
+//liste de charge ? à la place de l'appliquer à un point ? Attribut en public ????
 //Hello guillaume tu es vivant ?
 public Treillis(){
     this.barres = new ArrayList<Barre>();
