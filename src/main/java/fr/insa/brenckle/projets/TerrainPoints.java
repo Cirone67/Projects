@@ -36,13 +36,13 @@ public class TerrainPoints {
         this.Py=Py;
     }
     
-    //saisie des points             ( nbr = nombre de point a rentrer )
+    //saisie des points + complete si necessaire en vue de la creation en segment
     public static ArrayList<TerrainPoints> SaisiePoint(Terrain T){
         double x,y;
         int sortie=0 , i ;
         ArrayList< TerrainPoints> P = new ArrayList< TerrainPoints>();
         TerrainPoints PT; 
-        System.out.println("Saisir les points dans l'ordre croissant des abcisses");
+        System.out.println("Saisir les points dans l'ordre croissant des abcisses pour avoir un terrain ''special'' sinon polygone");
         while(sortie==0){
             i=P.size();
             System.out.println(" NOUVEAU POINT DU TERRAIN ");
@@ -64,10 +64,98 @@ public class TerrainPoints {
             System.out.println("Voulez vous rajouter un point ? Taper 0, sinon 1");
             sortie=Lire.i();
         }
+        P= TerrainPoints.CompletePoint(P);
         return P;
     }
+   
+    //completer la liste de point en vue des segments si necessaire
+    public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P){
+        int i;
+        double yminPT, xminPT, xmaxPT;
+        yminPT = P.get(0).getPy();
+        xminPT = P.get(0).getPx();
+        xmaxPT = P.get(0).getPx();
+        int nbr = P.size();
+        for(i=1;i<nbr;i++){
+            if(yminPT>(P.get(i).getPy())){
+                yminPT=P.get(i).getPy();
+            }
+            if(xminPT>(P.get(i).getPy())){
+                xminPT=P.get(i).getPy();
+            }
+            if(xmaxPT<(P.get(i).getPx())){
+                xmaxPT=P.get(i).getPx();
+            }
+        }
+        TerrainPoints PTa, PTb, PTc;
+        if(P.get(nbr-1).getPy()==P.get(0).getPy()){ 
+            }else{
+                if(P.get(nbr-1).getPy()!= yminPT){
+                PTa= new TerrainPoints(P.get(nbr-1).getPx(),yminPT);
+                P.add(PTa);
+                }
+                if(P.get(0).getPy()!=yminPT){
+                PTb = new TerrainPoints(xminPT,yminPT);
+                P.add(0,PTb);
+                }
+            }
+            return P;
+    }
     
-    //verifie que le point appartient au terrain 
+    //verifie la forme saisie 
+    public static boolean verifieForme(ArrayList <TerrainPoints> P){
+        boolean verifie = false;
+        int nbr=P.size(),i;
+        for(i=0;i<nbr-1;i++){
+            if(P.get(i).getPx()<=P.get(i+1).getPx()){
+                verifie=true;
+            }else{
+                i=nbr-2;
+                verifie=false;
+                }
+        }
+        if(verifie==true){
+            System.out.println("Vous avez rentre une forme ''special''");
+        }else{
+            System.out.println("Vous avez rentre une forme polygonale classique");
+        }
+            return verifie;
+    }
+    
+    //creer des points pour le decoupage en triangle
+    public static ArrayList<TerrainPoints> TrianglePoint(ArrayList<TerrainPoints> P){
+        int i,nbr,j;
+        double yminPT;
+        boolean verifie;
+        nbr=P.size();
+        ArrayList< TerrainPoints> Pr = new ArrayList< TerrainPoints>();
+        TerrainPoints Ptempo;
+        yminPT=P.get(0).getPy();
+        for(i=1;i<nbr;i++){
+            if(yminPT>(P.get(i).getPy())){
+                yminPT=P.get(i).getPy();
+            }
+        }
+        verifie= TerrainPoints.verifieForme(P);
+        if(verifie=true){
+            j=0;
+            i=0;
+            while(P.get(i).getPx()==P.get(i+1).getPx()){
+                j=j+1;
+                i=i+1;
+            }
+            for(i=j;i<nbr-2;i++){
+                    if(P.get(i).getPx()==P.get(i+1).getPx()){
+                    }else{
+                      Ptempo = new TerrainPoints(P.get(i).getPx(), yminPT);
+                      Pr.add(Ptempo);
+                    }
+                }
+        }
+        return Pr;
+    }
+            
+    // verifie que le point appartient au terrain 
     public static boolean verifiePT(Terrain T,  TerrainPoints A){
         boolean U;
         if((A.getPx()>T.getXmax())||(A.getPy()>T.getYmax())||(A.getPx()<T.getXmin())||(A.getPy()<T.getYmin())){
