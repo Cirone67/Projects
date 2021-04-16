@@ -79,7 +79,7 @@ public class TerrainTriangle {
                TT.add(TTtempo);
                j=j+1;
             }
-            TTtempo = new TerrainPoints(ST.get(nbrST-2),ST.get(nbrST-1),STr.get(nbr-1));
+            TTtempo = new TerrainTriangle(ST.get(nbrST-2),ST.get(nbrST-1),STr.get(nbrSTr-1));
             TT.add(TTtempo);
          
     }
