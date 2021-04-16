@@ -48,22 +48,23 @@ public  class TerrainSegment {
     }
     
     //creation des segment du terrain a partir des points saisie par l'utilsateur + completer en forme poylgonale si necessaire 
-    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, Terrain T){
-        int i,nbr;
+    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, Terrain T){
+        int i,nbr,nbrPr;
         TerrainSegment STtempo;
         ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
-        nbr=P.size();
+        ArrayList<TerrainPoints> Pa = new ArrayList<TerrainPoints>();
+        Pa.addAll(P);
+        nbrPr=Pr.size();
+        for(i=nbrPr-1;i>0;i--){
+        Pa.add(Pr.get(i));
+        }
+        Pa.add(Pr.get(0));
+        nbr=Pa.size();
         System.out.println(P);
 //        System.out.println("Il y a "+(nbr)+" segment(s) du terrain");
         for(i=0;i<(nbr-1);i++){
-            STtempo= new TerrainSegment(P.get(i),P.get(i+1));
+            STtempo= new TerrainSegment(Pa.get(i),Pa.get(i+1));
             ST.add(STtempo);
-        }
-        if(nbr>2){
-            if(P.get(nbr-1).getPy()<= P.get(0).getPy()){ 
-                STtempo = new TerrainSegment(P.get(nbr-1),P.get(0));
-                ST.add(STtempo);
-            }
         }
         System.out.println(ST);
         return ST;
@@ -72,63 +73,59 @@ public  class TerrainSegment {
     
     //creation des segments pour completer le terrain en vue des triangles
     public static ArrayList<TerrainSegment> creationSegmentTriangle(ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, boolean verifie){
-        int nbrP, nbrPr, i, j,k ,sortie , nbrSTr;
+        int nbrP, nbrPr, i, j,k ,sortie , nbrSTr,l;
         nbrP= P.size();
         nbrPr = Pr.size();
         ArrayList<TerrainSegment> STr = new ArrayList<TerrainSegment>();
         TerrainSegment STtempo;
         if(verifie==true){
+            //creation des segments verticaux a rajouter
             for(i=0;i<nbrP-1;i++){
-                for(j=1;j<nbrPr;j++){
+                if(Pr.get(0).getPy()==P.get(0).getPy()){
+                    l=1;
+                }else{
+                    l=0;
+                }
+                for(j=l;j<nbrPr;j++){
                     if((P.get(i).getPx()==Pr.get(j).getPx())&&(P.get(i).getPy()!=Pr.get(j).getPy())){
-                        STtempo = new TerrainSegment(P.get(i),Pr.get(j));
+                        STtempo = new TerrainSegment(Pr.get(j),P.get(i));
                         STr.add(STtempo);
                     }
                 }
             }
             nbrSTr = STr.size();
-            for(i=0;i<nbrSTr-1;i++){
-                System.out.println(i);
-                if(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx()){
-                    if(STr.get(i).getA().getPy()<STr.get(i+1).getA().getPy()){
-                        STr.remove(i+1);
-                        nbrSTr=STr.size();
-                    }else{
-                        STr.remove(i);
-                        nbrSTr=STr.size();
-                    }
-                }
-            }
-            j=0;
-            i=2;
-            if(nbrPr!=0){
-            sortie=0;
-            while((P.get(j).getPy()!=P.get(j+1).getPy()|| sortie == 1)){
-                j=j+1;    
-                if(j==nbrPr){
-                System.out.println("Votre terrain saisie presente une erreur, veuillez en saisir un autre : saissez au moins un poylgone");
-                sortie= 1;
-                }
-            }
-                while(i!=(nbrP-1)){
-                     STtempo = new TerrainSegment(Pr.get(j),P.get(i));
-                     STr.add(STtempo);
-                     if(j==(nbrPr-1)){
-                     i=nbrP-1;
-                     }else{
-                         j=j+1;
-                         i=i+1;
-                     }
-                }
-//                for(i=2;i<nbrP;i++){
-//                    STtempo = new TerrainSegment(Pr.get(j),P.get(i));
-//                    STr.add(STtempo);
-//                        if(j!=nbrPr){
-//                            j=j+1; 
-//                        }
+//            for(i=0;i<nbrSTr-1;i++){
+//                if(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx()){
+//                    if(STr.get(i).getB().getPy()<STr.get(i+1).getB().getPy()){
+//                        STr.remove(i+1);
+//                        nbrSTr=STr.size();
+//                        //System.out.println("test i+1"+i);
+//                    }else{
+//                        STr.remove(i);
+//                        nbrSTr=STr.size();
+//                        //System.out.println("test i"+i);
+//                    }
 //                }
-                
+//            }
+            sortie=j=i=0;
+            k=1;
+            //creation des segments diagonaux
+            while(sortie ==0){
+                if(P.get(i).getPx()==P.get(i+1).getPx()){
+                    k=k+1;
+                    i=i+1;
+                }
+                if(j==nbrPr-1){
+                    sortie=1;
+                }else{
+                STtempo = new TerrainSegment(Pr.get(j),P.get(j+k));
+                STr.add(STtempo);
+                    i=i+1;
+                    j=j+1;
+                }
             }
+          
+            
         }
         if(verifie==false){
             i=nbrP-1;
@@ -148,10 +145,23 @@ public  class TerrainSegment {
                 STr.add(STtempo);
             }
         }
-        System.out.println(STr);
+//        System.out.println(STr);
         return STr;
     }
-    //creaction des segments trinagles pures pour la fonction 
+    
+    //supprime les doublons de segement dans les deux listes
+    public static ArrayList<TerrainSegment> Suppsegmendouble(ArrayList<TerrainSegment> ST , ArrayList<TerrainSegment> STr){
+        int nbrSTr = STr.size(),i, j, nbrST = ST.size();
+        for(j=0;j<nbrSTr;j++){
+            for(i=0;i<nbrST;i++){
+                if(STr.get(j).getA().getPx()==(ST.get(i).getA().getPx())&&(STr.get(j).getB().getPx()==ST.get(i).getB().getPx())&&(STr.get(j).getA().getPy()==ST.get(i).getA().getPy())&&(STr.get(j).getB().getPy()==ST.get(i).getB().getPy())){
+                       STr.remove(j);
+                       nbrSTr=STr.size();
+                   }
+            }       
+        }
+        return STr;
+    }
     
    //calcul d'un angle entre deux segment adjacents renvoie un nombre positif si l'angle est inferieur a pi 
     public static double angleSegment(TerrainSegment ST1, TerrainSegment ST2 ){
@@ -185,10 +195,14 @@ public  class TerrainSegment {
       P = TerrainPoints.SaisiePoint(T);
       verifieforme=TerrainPoints.verifieForme(P);
       P = TerrainPoints.CompletePoint(P);
-      ST = TerrainSegment.creationSegment(P,T);
+      if(verifieforme==true){
+      Pr = TerrainPoints.TrianglePoint(P , verifieforme);
+      }
+      ST = TerrainSegment.creationSegment(P,Pr ,T);
       if(P.size()>3){//déja un triangle pas necessaire de creer de nouveau points et segments
-        Pr = TerrainPoints.TrianglePoint(P , verifieforme);
         STr= TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);
+        STr= TerrainSegment.Suppsegmendouble(ST, STr);
+        System.out.println(STr);
       }
 //      nbrP = P.size();
 //      nbrST = ST.size();

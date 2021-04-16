@@ -93,10 +93,10 @@ public class TerrainPoints {
                 PTa= new TerrainPoints(P.get(nbr-1).getPx(),yminPT);
                 P.add(PTa);
                 }
-                if(P.get(0).getPy()!=yminPT){
-                PTb = new TerrainPoints(xminPT,yminPT);
-                P.add(0,PTb);
-                }
+//                if(P.get(0).getPy()!=yminPT){
+//                PTb = new TerrainPoints(xminPT,yminPT);
+//                P.add(0,PTb);
+//                }
             }
             return P;
     }
