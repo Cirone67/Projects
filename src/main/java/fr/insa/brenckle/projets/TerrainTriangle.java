@@ -36,7 +36,7 @@ public class TerrainTriangle {
     public void setC1(TerrainSegment C1){
         this.C1 = C1;
     }
-    public void setC2(TerrainSegment CC){
+    public void setC2(TerrainSegment C2){
         this.C2 = C2;
     }
     public void setC3(TerrainSegment C3){
@@ -54,12 +54,35 @@ public class TerrainTriangle {
         this.idT = nbrTriangle++;
     }
     
+    public String toString(){
+        return ("[["+C1+";"+C2+";"+C3+"]]");
+    }
     
     //creation des triangles du terrain;
-    public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegment> ST){
+    public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegment> ST, ArrayList<TerrainSegment> STr, ArrayList<TerrainPoints> P , ArrayList<TerrainPoints> PTr , boolean verifie){
         int nbrST= ST.size();
+        int nbrSTr = STr.size();
+        int nbrP = P.size();
+        int nbrPTr = PTr.size();
+        int i, j ,k ,sortie; 
+        TerrainTriangle TTtempo;
         ArrayList <TerrainTriangle> TT = new ArrayList<TerrainTriangle>();
-        
-        return TT;
+        if(verifie == true){
+            
+        }
+        if(verifie == false){
+            TTtempo = new TerrainTriangle (ST.get(0),ST.get(1),STr.get(0));
+            TT.add(TTtempo);
+            j=0;
+            for(i=2;i<nbrST-2;i++){
+               TTtempo= new TerrainTriangle( STr.get(j),ST.get(i),STr.get(j+1));
+               TT.add(TTtempo);
+               j=j+1;
+            }
+            TTtempo = new TerrainPoints(ST.get(nbrST-2),ST.get(nbrST-1),STr.get(nbr-1));
+            TT.add(TTtempo);
+         
     }
+        return TT;
+}
 }

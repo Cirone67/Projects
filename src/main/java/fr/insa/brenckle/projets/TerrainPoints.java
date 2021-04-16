@@ -68,7 +68,7 @@ public class TerrainPoints {
     }
    
     //completer la liste de point en vue des segments si necessaire(fermer le terrain pour former un polygone spéciale)
-    public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P){
+    public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P , boolean verifie){
         int i;
         double yminPT, xminPT, xmaxPT;
         yminPT = P.get(0).getPy();
@@ -93,10 +93,10 @@ public class TerrainPoints {
                 PTa= new TerrainPoints(P.get(nbr-1).getPx(),yminPT);
                 P.add(PTa);
                 }
-//                if(P.get(0).getPy()!=yminPT){
-//                PTb = new TerrainPoints(xminPT,yminPT);
-//                P.add(0,PTb);
-//                }
+                if((P.get(0).getPy()!=yminPT)&&(verifie == false)){
+                PTb = new TerrainPoints(P.get(0).getPx(),yminPT);
+                P.add(0,PTb);
+                }
             }
             return P;
     }

@@ -48,17 +48,19 @@ public  class TerrainSegment {
     }
     
     //creation des segment du terrain a partir des points saisie par l'utilsateur + completer en forme poylgonale si necessaire 
-    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, Terrain T){
+    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, Terrain T , boolean verifie){
         int i,nbr,nbrPr;
         TerrainSegment STtempo;
         ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
         ArrayList<TerrainPoints> Pa = new ArrayList<TerrainPoints>();
         Pa.addAll(P);
         nbrPr=Pr.size();
+        if(verifie == true){
         for(i=nbrPr-1;i>0;i--){
         Pa.add(Pr.get(i));
         }
         Pa.add(Pr.get(0));
+        }
         nbr=Pa.size();
         System.out.println(P);
 //        System.out.println("Il y a "+(nbr)+" segment(s) du terrain");
@@ -182,31 +184,32 @@ public  class TerrainSegment {
         return angle;  
     }
     
-    public static void main(String[] args){
-      int nbrP,nbrST;
-      double angleSegment;
-      boolean verifieforme;
-      Terrain T; 
-      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
-      ArrayList <TerrainPoints> Pr = new ArrayList <TerrainPoints>();
-      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
-      ArrayList <TerrainSegment> STr = new ArrayList <TerrainSegment>();
-      T = Terrain.SaisieTerrain();
-      P = TerrainPoints.SaisiePoint(T);
-      verifieforme=TerrainPoints.verifieForme(P);
-      P = TerrainPoints.CompletePoint(P);
-      if(verifieforme==true){
-      Pr = TerrainPoints.TrianglePoint(P , verifieforme);
-      }
-      ST = TerrainSegment.creationSegment(P,Pr ,T);
-      if(P.size()>3){//déja un triangle pas necessaire de creer de nouveau points et segments
-        STr= TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);
-        STr= TerrainSegment.Suppsegmendouble(ST, STr);
-        System.out.println(STr);
-      }
-//      nbrP = P.size();
-//      nbrST = ST.size();
-//    System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
-    }
+//    public static void main(String[] args){
+//      int nbrP,nbrST;
+//      double angleSegment;
+//      boolean verifieforme;
+//      Terrain T; 
+//      ArrayList <TerrainPoints> P = new ArrayList <TerrainPoints>();
+//      ArrayList <TerrainPoints> Pr = new ArrayList <TerrainPoints>();
+//      ArrayList <TerrainSegment> ST = new ArrayList <TerrainSegment>();
+//      ArrayList <TerrainSegment> STr = new ArrayList <TerrainSegment>();
+//      T = Terrain.SaisieTerrain();// saisie du terrain
+//      P = TerrainPoints.SaisiePoint(T);//saisie des points terrains
+//      verifieforme=TerrainPoints.verifieForme(P);//verifie la forme saisi , speciale , ou polygnoale classique
+//      P = TerrainPoints.CompletePoint(P , verifieforme);//rajoute des points si necessaires pour fermer la forme
+//      if(verifieforme==true){
+//      Pr = TerrainPoints.TrianglePoint(P , verifieforme);//rajoute des points pour le decoupage en triangle
+//      }
+//      ST = TerrainSegment.creationSegment(P,Pr ,T , verifieforme);
+//      if(P.size()>3){//déja un triangle pas necessaire de creer de nouveau points et segments
+//        STr= TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);//rajouter des segments pour le decoupage en triangle
+//        STr= TerrainSegment.Suppsegmendouble(ST, STr);//supprime les doublons avec la liste de segment deja existante
+//        System.out.println(STr);
+//      }
+//      
+////      nbrP = P.size();
+////      nbrST = ST.size();
+////    System.out.println("vous avez saisi "+nbrP+" point(s) pour le terrain, et donc "+nbrST+ " Segment(s)");
+//    }
     
 }

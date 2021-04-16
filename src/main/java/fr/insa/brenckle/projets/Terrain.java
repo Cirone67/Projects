@@ -101,6 +101,34 @@ public class Terrain {
 //          T= new Terrain(xmin , xmax, ymin ,ymax);
 //          return T; 
 //    }
+    public static void main(String[] args) {
+        int nbrP, nbrST;
+        double angleSegment;
+        boolean verifieforme;
+        Terrain T;
+        ArrayList<TerrainPoints> P = new ArrayList<TerrainPoints>();
+        ArrayList<TerrainPoints> Pr = new ArrayList<TerrainPoints>();
+        ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
+        ArrayList<TerrainSegment> STr = new ArrayList<TerrainSegment>();
+        ArrayList<TerrainTriangle> TT = new ArrayList<TerrainTriangle>();
+        T = Terrain.SaisieTerrain();// saisie du terrain
+        P = TerrainPoints.SaisiePoint(T);//saisie des points terrains
+        verifieforme = TerrainPoints.verifieForme(P);//verifie la forme saisi , speciale , ou polygnoale classique
+        P = TerrainPoints.CompletePoint(P, verifieforme);//rajoute des points si necessaires pour fermer la forme
+        if (verifieforme == true) {
+            Pr = TerrainPoints.TrianglePoint(P, verifieforme);//rajoute des points pour le decoupage en triangle
+        }
+        ST = TerrainSegment.creationSegment(P, Pr, T, verifieforme);
+        if (P.size() > 3) {//déja un triangle pas necessaire de creer de nouveau points et segments
+            STr = TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);//rajouter des segments pour le decoupage en triangle
+            STr = TerrainSegment.Suppsegmendouble(ST, STr);//supprime les doublons avec la liste de segment deja existante
+            System.out.println(STr);
+        }
+        //creer les triangles
+        TT = TerrainTriangle.Creationtriangle(ST, STr, P, Pr, verifieforme);
+        System.out.println(TT);
+
+    }
           
 }
 
