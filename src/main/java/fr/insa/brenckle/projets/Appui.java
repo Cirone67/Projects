@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package fr.insa.brenckle.projets;
-
+import java.util.ArrayList;
 /**
  *
  * @author Guillaume R
@@ -14,7 +14,26 @@ public class Appui extends Noeud{
     private TerrainTriangle triangleAppui;
     private int premierPoint;
     private double posSegment;
-    private TerrainSegment segmentAppui;
+    
+    public Appui(int id,TerrainTriangle triangleAppui,int premierPoint ,double posSegment){
+    super(id);
+    this.triangleAppui = triangleAppui;
+    this.posSegment = posSegment;
+    this.premierPoint = premierPoint;
+    nbrNoeud++;
+    }
+    //Méthode pour le téléchargement
+    public Appui(int id,int idtriangleAppui,int premierPoint ,double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
+    super(id);
+    for(int i=0; i<= terrainTriangle.size();i++){
+        if(terrainTriangle.get(i).getidT()== idtriangleAppui){
+           this.triangleAppui = terrainTriangle.get(i);
+        }
+    }
+    this.posSegment = posSegment;
+    this.premierPoint = premierPoint;
+    nbrNoeud++;
+    }
     
     public double getOrd(){
       return  segmentAppui.getA().getPy()*posSegment+segmentAppui.getB().getPy()*(1-posSegment);

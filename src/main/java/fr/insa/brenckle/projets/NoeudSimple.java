@@ -15,14 +15,22 @@ public class NoeudSimple extends Noeud{
     private double ord;
     
     public NoeudSimple(double abs, double ord){
-        super(0);
+        super(1);
         this.abs = abs;
         this.ord = ord;
+        nbrNoeud++;
+    }
+        public NoeudSimple(int id, double abs, double ord){
+        super(id);
+        this.abs = abs;
+        this.ord = ord;
+        nbrNoeud++;
     }
     public NoeudSimple(){
         super(0);
         this.abs = 0;
         this.ord = 0;
+        nbrNoeud++;
     }
        
     public double getAbs(){

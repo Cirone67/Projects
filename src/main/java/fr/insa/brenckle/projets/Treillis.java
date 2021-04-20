@@ -12,19 +12,54 @@ import java.util.ArrayList;
  * @author brenc
  */
 public class Treillis {
-public ArrayList<Terrain> terrains;
-public ArrayList<Barre> barres;
-public ArrayList<Noeud> noeuds;
-public ArrayList<TypeBarre> typeBarre;
-//liste de charge ? à la place de l'appliquer à un point ? Attribut en public ????
-//Hello guillaume tu es vivant ?
-public Treillis(){
-    this.barres = new ArrayList<Barre>();
-    this.noeuds = new ArrayList<Noeud>();
-    this.terrains = new ArrayList<Terrain>();
-    this.typeBarre = new ArrayList<TypeBarre>();
-}
+private ArrayList<TerrainTriangle> terrainTriangles;
+private ArrayList<Barre> barres;
+private ArrayList<Noeud> noeuds;
+private ArrayList<TypeBarre> typeBarre;
 
+private double TYmax;
+private double TYmin;
+private double TXmax; 
+private double TXmin;
+ 
+//liste de charge ? à la place de l'appliquer à un point ? Attribut en public ????
+
+//Méthode qui détermine la zone constructible du Treillis
+//TO DO :Programme calculant Tmin,Tmax,ect.....
+
+    public Treillis() {
+        this.barres = new ArrayList<Barre>();
+        this.noeuds = new ArrayList<Noeud>();
+        this.terrainTriangles = new ArrayList<TerrainTriangle>();
+        this.typeBarre = new ArrayList<TypeBarre>();
+    }
+
+    public ArrayList<TerrainTriangle> getTerrainTriangles() {
+        return terrainTriangles;
+    }
+
+    public ArrayList<Noeud> getNoeuds() {
+        return noeuds;
+    }
+
+    public ArrayList<TypeBarre> getTypeBarre() {
+        return typeBarre;
+    }
+
+    public ArrayList<Barre> getBarres() {
+        return barres;
+    }
+
+    public void setBarres(ArrayList<Barre> barres) {
+        this.barres = barres;
+    }
+    
+public void supprime(TerrainTriangle tri){
+    this.terrainTriangles.remove(tri);
+}
+public void ajoute(TerrainTriangle tri){
+    this.terrainTriangles.add(tri);
+}
 public void supprime(Barre b){
  this.barres.remove(b);   
 }
@@ -37,16 +72,32 @@ public void supprime(Noeud n){
 public void ajoute(Noeud n){
  this.noeuds.add(n);
 }
-public void supprime(Terrain t){
- this.terrains.remove(t);   
-}
-public void ajoute(Terrain t){
- this.terrains.add(t);
-}
 public void supprime(TypeBarre tb){
  this.typeBarre.remove(tb);   
 }
 public void ajoute(TypeBarre tb){
  this.typeBarre.add(tb);
+}  
+public void setTYmax(double TYmax) {
+        this.TYmax = TYmax;
+    }
+ public double getTYmin() {
+   return TYmin;
 }
+ public void setTYmin(double TYmin) {
+    this.TYmin = TYmin;
+}
+ public double getTXmax() {
+    return TXmax;
+}
+public void setTXmax(double TXmax) {
+    this.TXmax = TXmax;
+}
+ public double getTXmin() {
+    return TXmin;
+}
+public void setTXmin(double TXmin){
+    this.TXmin=TXmin;
+}
+
 }
