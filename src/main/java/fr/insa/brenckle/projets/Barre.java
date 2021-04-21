@@ -30,20 +30,20 @@ public class Barre {
     Barre(int id, int idTypeBarre, int idNoeudDebut, int idNoeudFin,ArrayList<Noeud> noeud,ArrayList<TypeBarre> typeBarre){ 
         this.id = id;
         //Attribut le noeud de début et de fin
-        for(int i=0; i<= noeud.size();i++){
+        for(int i=0; i< noeud.size();i++){
             if(idNoeudDebut == noeud.get(i).getIdNoeud()){
              this.debut = noeud.get(i);   
             }
            
         }
-        for(int i=0; i<= noeud.size();i++){
+        for(int i=0; i< noeud.size();i++){
             if(idNoeudFin == noeud.get(i).getIdNoeud()){
              this.fin = noeud.get(i);   
             }
            
         }
         
-        for(int i=0; i<= typeBarre.size();i++){
+        for(int i=0; i< typeBarre.size();i++){
             if(idTypeBarre == typeBarre.get(i).getCategorie()){
              this.type = typeBarre.get(i);   
             }

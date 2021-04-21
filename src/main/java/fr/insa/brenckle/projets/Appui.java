@@ -25,7 +25,7 @@ public class Appui extends Noeud{
     //Méthode pour le téléchargement
     public Appui(int id,int idtriangleAppui,int premierPoint ,double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
     super(id);
-    for(int i=0; i<= terrainTriangle.size();i++){
+    for(int i=0; i< terrainTriangle.size();i++){
         if(terrainTriangle.get(i).getidT()== idtriangleAppui){
            this.triangleAppui = terrainTriangle.get(i);
         }

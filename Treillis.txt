@@ -1,6 +1,6 @@
 //--- fichier treillis pour exemple portique du sujet
 ZoneConstructible;0.5;4.0;-5.0;1.0
-Triangle;(0.0,-6.0);(0.0,2.0);(-3.0,2.0)
+Triangle;1;(0.0,-6.0);(0.0,2.0);(-3.0,2.0)
 FINTRIANGLE
 TypeBarre;1;100.0;1.0;5.0;1000.0;2000.0
 TypeBarre;2;100.0;1.0;5.0;1420.0;740.0

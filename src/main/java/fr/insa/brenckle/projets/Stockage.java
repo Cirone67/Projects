@@ -14,8 +14,8 @@ public class Stockage {
     //Méthode de lecture des coordonnées
     public static double coordonnee(String texte, int emplacement){
     String contenu[];    
-        texte.replaceAll("(","");
-    contenu = texte.split(",");
+        String res = texte.substring(texte.indexOf("(")+1,texte.indexOf(")"));
+    contenu = res.split(",");
      return Double.parseDouble(contenu[emplacement]);
      
     }
@@ -50,7 +50,7 @@ String lignelue;
               treillis.ajoute(compteurAppui);  
               }else{
               
-                NoeudSimple compteurNoeudSimple   = new NoeudSimple( Integer.valueOf(contenu[1]),coordonnee(contenu[1],0),coordonnee(contenu[1],1));  
+                NoeudSimple compteurNoeudSimple   = new NoeudSimple( Integer.valueOf(contenu[1]),coordonnee(contenu[2],0),coordonnee(contenu[2],1));  
               treillis.ajoute(compteurNoeudSimple);
             }
        }
