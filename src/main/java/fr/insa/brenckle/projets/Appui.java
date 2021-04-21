@@ -36,11 +36,36 @@ public class Appui extends Noeud{
     }
     
     public double getOrd(){
-      return  segmentAppui.getA().getPy()*posSegment+segmentAppui.getB().getPy()*(1-posSegment);
+      
+      return  conv(premierPoint,triangleAppui).getA().getPy()*posSegment+conv(premierPoint,triangleAppui).getB().getPy()*(1-posSegment);         
     }
     
     public double getAbs(){
-      return segmentAppui.getA().getPx()*posSegment+segmentAppui.getB().getPx()*(1-posSegment); 
+      return conv(premierPoint,triangleAppui).getA().getPx()*posSegment+conv(premierPoint,triangleAppui).getB().getPx()*(1-posSegment); 
     }
+    /*
+    public void setOrd(double ord){
+        
+     //TODO   
+    }
+    
+    public void setAbs(double abs){
+        
+    //TODO    
+    }
+    */
+    //Méthode qui convertie les nbr en coté du triangle pour methode getOrd/get Abs;
+    public static TerrainSegment conv(int premierPoint, TerrainTriangle terraintriangle){
+        if(premierPoint == 0){
+            return terraintriangle.getC1();
+        }    
+        if(premierPoint == 1){
+        return terraintriangle.getC2();
+    }
+        else{
+            return terraintriangle.getC3();
+        }
+    }
+    
     
 }

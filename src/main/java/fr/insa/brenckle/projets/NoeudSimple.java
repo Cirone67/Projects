@@ -40,5 +40,12 @@ public class NoeudSimple extends Noeud{
     public double getOrd(){
         return this.ord;
     }
-    
+
+    public void setAbs(double abs) {
+        this.abs = abs;
+    }
+
+    public void setOrd(double ord) {
+        this.ord = ord;
+    }
 }
