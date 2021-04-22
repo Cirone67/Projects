@@ -12,13 +12,10 @@ package fr.insa.brenckle.projets;
 public abstract class Noeud {
     
     private int id;
-
+    protected static int nbrNoeud =1; 
     
     public Noeud(int id){
         this.id = id;
-    }
-    public Noeud(){
-        this(0);
     }
 
     public int getIdNoeud(){
@@ -27,6 +24,10 @@ public abstract class Noeud {
     
     public abstract double getAbs();
     public abstract double getOrd();
+    /*
+    public abstract void setAbs(double abs);
+    public abstract void setOrd(double ord);
+*/
 }
 
 

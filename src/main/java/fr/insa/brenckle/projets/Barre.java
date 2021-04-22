@@ -5,6 +5,8 @@
  */
 package fr.insa.brenckle.projets;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author brenc
@@ -16,19 +18,49 @@ public class Barre {
  private TypeBarre type;
  private static int nbrBarre = 1;
  
- //Constructeur de la classe Barre avec la méthode du compteur
-    Barre(Noeud debut, Noeud fin, TypeBarre type){
+    //Constructeur de la classe Barre avec la méthode du compteur
+    Barre( TypeBarre type, Noeud debut, Noeud fin){
         this.id = nbrBarre++;
         this.debut = debut;
         this.fin = fin;
         this.type = type;
     }
+    
+    //Méthode spéciale import stockage
+    Barre(int id, int idTypeBarre, int idNoeudDebut, int idNoeudFin,ArrayList<Noeud> noeud,ArrayList<TypeBarre> typeBarre){ 
+        this.id = id;
+        //Attribut le noeud de début et de fin
+        for(int i=0; i< noeud.size();i++){
+            if(idNoeudDebut == noeud.get(i).getIdNoeud()){
+             this.debut = noeud.get(i);   
+            }
+           
+        }
+        for(int i=0; i< noeud.size();i++){
+            if(idNoeudFin == noeud.get(i).getIdNoeud()){
+             this.fin = noeud.get(i);   
+            }
+           
+        }
+        
+        for(int i=0; i< typeBarre.size();i++){
+            if(idTypeBarre == typeBarre.get(i).getCategorie()){
+             this.type = typeBarre.get(i);   
+            }
+           
+        } 
+        nbrBarre++;
+    }
+        
+        
+        
+        
     //Constructeur à supprimer à la fin ----------------------------------------------------------------------------
        Barre(Noeud debut, Noeud fin){
         this.id = nbrBarre++;
         this.debut = debut;
         this.fin = fin;
-    } 
+    } //---------------------------------------------------------------
     
     //Get et Set de la classe Barre
     public int getId() {

@@ -54,6 +54,22 @@ public class TerrainTriangle {
         this.idT = nbrTriangle++;
     }
     
+    //constructeur pour le téléchargement
+    public TerrainTriangle(int id,double P1x,double P1y,double P2x,double P2y, double P3x,double P3y){
+        TerrainPoints P1 = new TerrainPoints(P1x,P1y);
+        TerrainPoints P2 = new TerrainPoints(P2x,P2y);
+        TerrainPoints P3 = new TerrainPoints(P3x,P3y);
+        TerrainSegment C1 = new TerrainSegment(P1,P2);
+        TerrainSegment C2 = new TerrainSegment(P2,P3);
+        TerrainSegment C3 = new TerrainSegment(P3,P1);
+        this.C1=C1;
+        this.C2=C2;
+        this.C3=C3;
+        this.idT = id;
+        nbrTriangle++;
+    
+    }
+    
     public String toString(){
         return ("[["+C1+";"+C2+";"+C3+"]]");
     }
