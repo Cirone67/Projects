@@ -21,11 +21,11 @@ public class Stockage {
     }
     
  //Méthode qui récupère le type de barre
-public static Treillis telechargement(){
+public static Treillis telechargement(int idfichier){
     String contenu[];
     Treillis treillis = new Treillis();
 try {
-    BufferedReader flux=new BufferedReader(new FileReader("Treillis.txt"));
+    BufferedReader flux=new BufferedReader(new FileReader("Treillis"+idfichier+".txt"));
 String lignelue;
    while((lignelue=flux.readLine())!=null){
     contenu = lignelue.split(";");
@@ -70,12 +70,13 @@ System.out.println("Erreur :\n"+err);}
 
 return treillis;
 }
-/*
+
 public static void main(String[] args){
 Treillis premier;
-premier = telechargement();
-System.out.println(premier.getTypeBarre().get(1).getCout()); 
+premier = telechargement(1);
+System.out.println(premier.getTypeBarre().get(1).getCout());
+System.out.println(premier.getNoeuds().get(0).getOrd());
 
 }
-*/
+
 }

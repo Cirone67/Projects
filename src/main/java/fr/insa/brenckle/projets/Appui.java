@@ -43,17 +43,15 @@ public class Appui extends Noeud{
     public double getAbs(){
       return conv(premierPoint,triangleAppui).getA().getPx()*posSegment+conv(premierPoint,triangleAppui).getB().getPx()*(1-posSegment); 
     }
-    /*
+    
     public void setOrd(double ord){
-        
-     //TODO   
+           
     }
     
     public void setAbs(double abs){
         
-    //TODO    
     }
-    */
+    
     //Méthode qui convertie les nbr en coté du triangle pour methode getOrd/get Abs;
     public static TerrainSegment conv(int premierPoint, TerrainTriangle terraintriangle){
         if(premierPoint == 0){
@@ -65,6 +63,30 @@ public class Appui extends Noeud{
         else{
             return terraintriangle.getC3();
         }
+    }
+
+    public TerrainTriangle getTriangleAppui() {
+        return triangleAppui;
+    }
+
+    public void setTriangleAppui(TerrainTriangle triangleAppui) {
+        this.triangleAppui = triangleAppui;
+    }
+
+    public int getPremierPoint() {
+        return premierPoint;
+    }
+
+    public void setPremierPoint(int premierPoint) {
+        this.premierPoint = premierPoint;
+    }
+
+    public double getPosSegment() {
+        return posSegment;
+    }
+
+    public void setPosSegment(double posSegment) {
+        this.posSegment = posSegment;
     }
     
     
