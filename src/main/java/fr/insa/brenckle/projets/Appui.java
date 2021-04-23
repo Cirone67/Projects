@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author Guillaume R
  */
-public class Appui extends Noeud{
+public abstract class Appui extends Noeud{
     
     private TerrainTriangle triangleAppui;
     private int premierPoint;

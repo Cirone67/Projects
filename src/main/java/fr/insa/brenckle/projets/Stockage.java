@@ -44,16 +44,18 @@ String lignelue;
               TypeBarre compteurTypeBarre   = new TypeBarre( Integer.valueOf(contenu[1]),Double.parseDouble(contenu[2]),Double.parseDouble(contenu[3]),Double.parseDouble(contenu[4]),Double.parseDouble(contenu[5]),Double.parseDouble(contenu[6]));  
               treillis.ajoute(compteurTypeBarre);      
        }
-       if(contenu[0].equals("AppuiSimple")||contenu[0].equals("AppuiDouble")||contenu[0].equals("NoeudSimple")){
-              if(contenu[0].equals("AppuiSimple")||contenu[0].equals("AppuiDouble")){
-               Appui compteurAppui   = new Appui( Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Double.parseDouble(contenu[4]),treillis.getTerrainTriangles());  
-              treillis.ajoute(compteurAppui);  
-              }else{
-              
+              if(contenu[0].equals("AppuiSimple")){
+               Appui compteurAppui   = new AppuiSimple( Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Double.parseDouble(contenu[4]),treillis.getTerrainTriangles());  
+              treillis.ajoute(compteurAppui);
+              }
+              if(contenu[0].equals("AppuiDouble")){
+              Appui compteurAppui   = new AppuiDouble( Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Double.parseDouble(contenu[4]),treillis.getTerrainTriangles());  
+              treillis.ajoute(compteurAppui);    
+              if(contenu[0].equals("NoeudSimple")){
                 NoeudSimple compteurNoeudSimple   = new NoeudSimple( Integer.valueOf(contenu[1]),coordonnee(contenu[2],0),coordonnee(contenu[2],1));  
               treillis.ajoute(compteurNoeudSimple);
             }
-       }
+            }
        if(contenu[0].equals("Barre")){
          Barre compteurBarre   = new Barre (Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Integer.valueOf(contenu[4]),treillis.getNoeuds(),treillis.getTypeBarre());
               treillis.ajoute(compteurBarre);  
@@ -71,6 +73,22 @@ System.out.println("Erreur :\n"+err);}
 return treillis;
 }
 
+public void enregistrer(){
+try
+{
+    
+BufferedWriter curseur=new BufferedWriter(new FileWriter("Etudiants.txt",true));
+curseur.write("3 Daniel LEGROS Lille");
+curseur.newLine();
+curseur.write("12 Catherine GENTILLE Paris");
+curseur.newLine();
+curseur.close();
+}
+catch (IOException err)
+{System.out.println("Erreur :\n"+err);}
+}
+
+/*
 public static void main(String[] args){
 Treillis premier;
 premier = telechargement(1);
@@ -78,5 +96,5 @@ System.out.println(premier.getTypeBarre().get(1).getCout());
 System.out.println(premier.getNoeuds().get(0).getOrd());
 
 }
-
+*/
 }
