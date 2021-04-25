@@ -20,7 +20,11 @@ public class Stockage {
      
     }
     
- //Méthode qui récupère le type de barre
+    public static String recoordonnee(double abs, double ord){
+        return "("+abs+","+ord+")";
+    }
+    
+ //Méthode qui télécharge le treillis
 public static Treillis telechargement(int idfichier){
     String contenu[];
     Treillis treillis = new Treillis();
@@ -46,16 +50,17 @@ String lignelue;
        }
               if(contenu[0].equals("AppuiSimple")){
                Appui compteurAppui   = new AppuiSimple( Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Double.parseDouble(contenu[4]),treillis.getTerrainTriangles());  
-              treillis.ajoute(compteurAppui);
+              treillis.ajouteN(compteurAppui);
               }
               if(contenu[0].equals("AppuiDouble")){
               Appui compteurAppui   = new AppuiDouble( Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Double.parseDouble(contenu[4]),treillis.getTerrainTriangles());  
-              treillis.ajoute(compteurAppui);    
+              treillis.ajouteN(compteurAppui);
+              }
               if(contenu[0].equals("NoeudSimple")){
                 NoeudSimple compteurNoeudSimple   = new NoeudSimple( Integer.valueOf(contenu[1]),coordonnee(contenu[2],0),coordonnee(contenu[2],1));  
-              treillis.ajoute(compteurNoeudSimple);
+              treillis.ajouteN(compteurNoeudSimple);
             }
-            }
+
        if(contenu[0].equals("Barre")){
          Barre compteurBarre   = new Barre (Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Integer.valueOf(contenu[4]),treillis.getNoeuds(),treillis.getTypeBarre());
               treillis.ajoute(compteurBarre);  
@@ -73,15 +78,78 @@ System.out.println("Erreur :\n"+err);}
 return treillis;
 }
 
-public void enregistrer(){
+public static void enregistrer(Treillis treillis, int nbr){
 try
 {
     
-BufferedWriter curseur=new BufferedWriter(new FileWriter("Etudiants.txt",true));
-curseur.write("3 Daniel LEGROS Lille");
+BufferedWriter curseur=new BufferedWriter(new FileWriter("Treillis"+nbr+".txt",true));
+//La zone constructible
+curseur.write("ZoneConstructible;"+treillis.getTXmin()+";"+treillis.getTXmax()+";"+treillis.getTYmin()+";"+treillis.getTYmax());
 curseur.newLine();
-curseur.write("12 Catherine GENTILLE Paris");
+//Les triangles
+for(int i=0; i<treillis.getTerrainTriangles().size();i++){
+curseur.write("Triangle;");
+curseur.write(treillis.getTerrainTriangles().get(i).getidT()+";");
+curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC1().getA().getPx(),treillis.getTerrainTriangles().get(i).getC1().getA().getPy())+";");
+curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC1().getB().getPx(),treillis.getTerrainTriangles().get(i).getC1().getB().getPy())+";");
+curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC2().getB().getPx(),treillis.getTerrainTriangles().get(i).getC1().getB().getPy())+"");
 curseur.newLine();
+}
+curseur.write("FINTRIANGLES");
+curseur.newLine();
+//les types de barres
+
+for(int i=0;i<treillis.getTypeBarre().size();i++){
+curseur.write("TypeBarre;");
+curseur.write(treillis.getTypeBarre().get(i).getCategorie()+";");
+curseur.write(treillis.getTypeBarre().get(i).getCout()+";");
+curseur.write(treillis.getTypeBarre().get(i).getLongmin()+";");
+curseur.write(treillis.getTypeBarre().get(i).getLongmax()+";");
+curseur.write(treillis.getTypeBarre().get(i).getRestension()+";");
+curseur.write(treillis.getTypeBarre().get(i).getRescompression()+"");
+curseur.newLine();
+}
+curseur.write("FINCATALOGUE");
+curseur.newLine();
+//les noeuds
+for(int i=0; i<treillis.getNoeuds().size();i++){
+    if(treillis.getNoeuds().get(i) instanceof AppuiDouble ||treillis.getNoeuds().get(i) instanceof AppuiSimple){
+        if(treillis.getNoeuds().get(i) instanceof AppuiDouble){
+            curseur.write("AppuiDouble;");
+        }
+        if(treillis.getNoeuds().get(i) instanceof AppuiSimple){
+            curseur.write("AppuiSimple;");
+        }
+        
+    curseur.write(treillis.getNoeuds().get(i).getIdNoeud()+";");
+    curseur.write(((Appui)treillis.getNoeuds().get(i)).getTriangleAppui().getidT()+";");// cast : permet d'accéder au méthode dans Appui car ici on est sur que ce sont des appuis
+    curseur.write(((Appui)treillis.getNoeuds().get(i)).getPremierPoint()+";");
+    curseur.write(((Appui)treillis.getNoeuds().get(i)).getPosSegment()+"");
+}
+    if(treillis.getNoeuds().get(i) instanceof NoeudSimple){
+        curseur.write("NoeudSimple;");
+        curseur.write(treillis.getNoeuds().get(i).getIdNoeud()+";");
+        curseur.write(recoordonnee(treillis.getNoeuds().get(i).getAbs(),treillis.getNoeuds().get(i).getOrd())+"");       
+    }
+    curseur.newLine();
+}
+
+curseur.write("FINNOEUDS");
+curseur.newLine();
+
+//les barres
+for(int i=0; i<treillis.getBarres().size();i++){
+curseur.write("Barre;");
+curseur.write(treillis.getBarres().get(i).getId()+";");
+curseur.write(treillis.getBarres().get(i).getType().getCategorie()+";");
+curseur.write(treillis.getBarres().get(i).getDebut().getIdNoeud()+";");
+curseur.write(treillis.getBarres().get(i).getFin().getIdNoeud()+"");
+curseur.newLine();
+}
+
+curseur.write("FINBARRES");
+curseur.newLine();
+
 curseur.close();
 }
 catch (IOException err)
@@ -92,9 +160,10 @@ catch (IOException err)
 public static void main(String[] args){
 Treillis premier;
 premier = telechargement(1);
-System.out.println(premier.getTypeBarre().get(1).getCout());
-System.out.println(premier.getNoeuds().get(0).getOrd());
-
+//System.out.println(premier.getTypeBarre().get(1).getCout());
+//System.out.println(premier.getNoeuds().get(0).getOrd());
+//System.out.println(premier.getBarres().get(0).getFin().getIdNoeud());
+enregistrer(premier,2);
 }
 */
 }

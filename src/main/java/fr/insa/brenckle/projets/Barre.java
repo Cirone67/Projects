@@ -36,9 +36,9 @@ public class Barre {
             }
            
         }
-        for(int i=0; i< noeud.size();i++){
-            if(idNoeudFin == noeud.get(i).getIdNoeud()){
-             this.fin = noeud.get(i);   
+        for(int j=0; j< noeud.size();j++){
+            if(idNoeudFin == noeud.get(j).getIdNoeud()){
+             this.fin = noeud.get(j);
             }
            
         }

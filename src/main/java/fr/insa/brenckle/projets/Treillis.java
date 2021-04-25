@@ -66,10 +66,10 @@ public void supprime(Barre b){
 public void ajoute(Barre b){
  this.barres.add(b);
 }
-public void supprime(Noeud n){
+public void supprimeN(Noeud n){
  this.noeuds.remove(n);   
 }
-public void ajoute(Noeud n){
+public void ajouteN(Noeud n){
  this.noeuds.add(n);
 }
 public void supprime(TypeBarre tb){
@@ -99,5 +99,9 @@ public void setTXmax(double TXmax) {
 public void setTXmin(double TXmin){
     this.TXmin=TXmin;
 }
+
+    public double getTYmax() {
+        return TYmax;
+    }
 
 }

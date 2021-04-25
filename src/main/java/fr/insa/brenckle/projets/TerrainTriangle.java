@@ -16,7 +16,7 @@ public class TerrainTriangle {
     private TerrainSegment C1;
     private TerrainSegment C2;
     private TerrainSegment C3;
-    private double idT;
+    private int idT;
     private static int nbrTriangle = 1;
     
     //get/set Terraintriangle
@@ -29,7 +29,7 @@ public class TerrainTriangle {
     public TerrainSegment getC3(){
         return C3;
     }
-    public double getidT(){
+    public int getidT(){
         return idT;
     }
     
@@ -42,7 +42,7 @@ public class TerrainTriangle {
     public void setC3(TerrainSegment C3){
         this.C3 = C3;
     }
-    public void setidT(double idT){
+    public void setidT(int idT){
         this.idT = idT;
     }
     
