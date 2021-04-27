@@ -10,6 +10,8 @@ package fr.insa.brenckle.projets;
  */
 import java.util.ArrayList;
 import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
 
 public  class TerrainSegment {
     private TerrainPoints A;
@@ -71,11 +73,19 @@ public  class TerrainSegment {
         System.out.println(ST);
         return ST;
     }
+    //comparator pour trier en fonction de A
+    public static Comparator<TerrainSegment> ComparatorA = new Comparator<TerrainSegment>() {
+            @Override
+        public int compare(TerrainSegment S1, TerrainSegment S2) {
+            return (int) (S1.getA().getPx()-S2.getA().getPx());
+        }
+    };
     
-    
-    //creation des segments pour completer le terrain en vue des triangles
+       //creation des segments pour completer le terrain en vue des triangles
     public static ArrayList<TerrainSegment> creationSegmentTriangle(ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, boolean verifie){
-        int nbrP, nbrPr, i, j,k ,sortie , nbrSTr,l;
+        int nbrP, nbrPr, i, j,k ,sortie , nbrSTr,l ;
+        boolean tri;
+        double PXmin;
         nbrP= P.size();
         nbrPr = Pr.size();
         ArrayList<TerrainSegment> STr = new ArrayList<TerrainSegment>();
@@ -96,19 +106,6 @@ public  class TerrainSegment {
                 }
             }
             nbrSTr = STr.size();
-//            for(i=0;i<nbrSTr-1;i++){
-//                if(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx()){
-//                    if(STr.get(i).getB().getPy()<STr.get(i+1).getB().getPy()){
-//                        STr.remove(i+1);
-//                        nbrSTr=STr.size();
-//                        //System.out.println("test i+1"+i);
-//                    }else{
-//                        STr.remove(i);
-//                        nbrSTr=STr.size();
-//                        //System.out.println("test i"+i);
-//                    }
-//                }
-//            }
             sortie=j=i=0;
             k=1;
             //creation des segments diagonaux
@@ -126,8 +123,9 @@ public  class TerrainSegment {
                     j=j+1;
                 }
             }
-          
-            
+            nbrSTr = STr.size();
+          //trie les segments rajouter dans l'ordre croissant de leur point A
+          Collections.sort(STr , TerrainSegment.ComparatorA);
         }
         if(verifie==false){
             i=nbrP-1;
