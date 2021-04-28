@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package fr.insa.brenckle.projets;
+import static fr.insa.brenckle.projets.Calcul.miseSousSystem;
 import java.io.*;
 /**
  *
@@ -156,14 +157,20 @@ catch (IOException err)
 {System.out.println("Erreur :\n"+err);}
 }
 
-/*
+
 public static void main(String[] args){
 Treillis premier;
 premier = telechargement(1);
+Matrice prems = new Matrice(1,1);
 //System.out.println(premier.getTypeBarre().get(1).getCout());
 //System.out.println(premier.getNoeuds().get(0).getOrd());
 //System.out.println(premier.getBarres().get(0).getFin().getIdNoeud());
-enregistrer(premier,2);
+for(int i =0; i< premier.getNoeuds().size();i++){
+    System.out.println(premier.getNoeuds().get(i).getOrd());
 }
-*/
+prems = miseSousSystem(premier);
+prems.String();
+//enregistrer(premier,2);
+}
+
 }

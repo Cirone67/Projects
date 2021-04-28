@@ -35,13 +35,13 @@ public abstract class Appui extends Noeud{
     nbrNoeud++;
     }
     
-    public double getOrd(){
-      
-      return  conv(premierPoint,triangleAppui).getA().getPy()*posSegment+conv(premierPoint,triangleAppui).getB().getPy()*(1-posSegment);         
+    public double getOrd(){// problème de sens !!!!!!!!!!!!!!!!!
+        
+      return  conv(premierPoint,triangleAppui).getA().getPy()*(1-posSegment)+conv(premierPoint,triangleAppui).getB().getPy()*posSegment;         
     }
     
     public double getAbs(){
-      return conv(premierPoint,triangleAppui).getA().getPx()*posSegment+conv(premierPoint,triangleAppui).getB().getPx()*(1-posSegment); 
+      return conv(premierPoint,triangleAppui).getA().getPx()*(1-posSegment)+conv(premierPoint,triangleAppui).getB().getPx()*posSegment; 
     }
     
     public void setOrd(double ord){

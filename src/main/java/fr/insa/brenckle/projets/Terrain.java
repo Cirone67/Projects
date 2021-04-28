@@ -125,7 +125,7 @@ public class Terrain {
             System.out.println(STr);
         }
         //creer les triangles
-        TT = TerrainTriangle.Creationtriangle(ST, STr, P, Pr, verifieforme);
+        TT = TerrainTriangle.Creationtriangle(ST, STr, verifieforme);
         System.out.println(TT);
 
     }

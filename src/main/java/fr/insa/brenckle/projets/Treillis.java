@@ -16,6 +16,7 @@ private ArrayList<TerrainTriangle> terrainTriangles;
 private ArrayList<Barre> barres;
 private ArrayList<Noeud> noeuds;
 private ArrayList<TypeBarre> typeBarre;
+private ArrayList<Charge> charge;
 
 private double TYmax;
 private double TYmin;
@@ -32,6 +33,7 @@ private double TXmin;
         this.noeuds = new ArrayList<Noeud>();
         this.terrainTriangles = new ArrayList<TerrainTriangle>();
         this.typeBarre = new ArrayList<TypeBarre>();
+        this.charge = new ArrayList<Charge>();
     }
 
     public ArrayList<TerrainTriangle> getTerrainTriangles() {
@@ -53,7 +55,21 @@ private double TXmin;
     public void setBarres(ArrayList<Barre> barres) {
         this.barres = barres;
     }
-    
+
+    public ArrayList<Charge> getCharge() {
+        return charge;
+    }
+
+    public void setCharge(ArrayList<Charge> charge) {
+        this.charge = charge;
+    }
+
+public void supprime(Charge ch){
+    this.charge.remove(ch);
+}
+public void ajoute(Charge ch){
+    this.charge.add(ch);
+}    
 public void supprime(TerrainTriangle tri){
     this.terrainTriangles.remove(tri);
 }

@@ -14,6 +14,8 @@ public class Charge {
    private int id ;
    private int noeud ;
    private double norme;
+   private double angle;
+   protected static int nbrCharge =1;
    
    Charge(int id, int noeud, double norme){
        this.id = id;
@@ -44,10 +46,13 @@ public class Charge {
     public void setNorme(double norme) {
         this.norme = norme;
     }
-   
-   
-  // public decompose(){
-    //   return;
-  // }
+
+    public double getAngle() {
+        return angle;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
          
 }

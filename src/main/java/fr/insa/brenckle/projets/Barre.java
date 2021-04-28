@@ -108,7 +108,7 @@ public double prix(){
 public double angle(Barre Barre2){
     //Calcul du produit scalaire
     double scalaire = ((this.fin.getAbs()-this.debut.getAbs())*(Barre2.fin.getAbs()-Barre2.debut.getAbs())+(this.fin.getOrd()-this.debut.getOrd())*(Barre2.fin.getOrd()-Barre2.debut.getOrd()));
-    return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(2*Math.PI));  
+    return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(Math.PI));  
 }
 /*
 public static void main(String[] args){
