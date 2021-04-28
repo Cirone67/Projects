@@ -66,6 +66,32 @@ public class TerrainPoints {
         }
         return P;
     }
+    //ajoute point dans une liste
+    public static ArrayList<TerrainPoints> AjoutPoint(ArrayList <TerrainPoints> P, Terrain T){
+        double x ,y;
+        TerrainPoints Pt;
+        int c,j;
+        System.out.println("Voulez vous rentre un nouveau point dans la liste ? OUi = 1");
+        c=Lire.i();
+        if(c==1){
+            System.out.println("Saisissez la position :");
+            j=Lire.i();
+            System.out.println("Saissiez le point , d'abord x puis y ");
+            x=Lire.d();
+            y=Lire.d();
+            Pt = new TerrainPoints (x ,y );
+            while(false==TerrainPoints.verifiePT(T, Pt)){
+                    System.out.println("Votre point n'appartient pas au terrain, rentrez un nouveau point appartenant au terrain");
+                    System.out.println("Saisir le x de votre point numero "+j+":(abscisse)");
+                    x=Lire.d();
+                    System.out.println("Saisir le y de votre point numero "+j+":(ordonnee)");
+                    y=Lire.d();
+                    Pt = new TerrainPoints(x,y);
+                }
+            P.add(j, Pt);
+        }
+        return P;
+    }
    
     //completer la liste de point en vue des segments si necessaire(fermer le terrain pour former un polygone spéciale)
     public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P , boolean verifie){
