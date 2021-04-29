@@ -69,25 +69,25 @@ public class Terrain {
              PX=TT.get(i).getC1().getA().getPx();
              PY=TT.get(i).getC1().getA().getPy();
              angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
-             j=j+1;
              if(angle>0){
-                 PX=TT.get(i).getC2().getA().getPx();
+                j=j+1;
+                PX=TT.get(i).getC2().getA().getPx();
                 PY=TT.get(i).getC2().getA().getPy();
                 angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
-                j=j+1;
-             }
-             if(angle>0){
-                PX=TT.get(i).getC3().getA().getPx();
-                PY=TT.get(i).getC3().getA().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
-                j=j+1;
-             }
-             if(j==3){
-                 app = true;
-                 //System.out.println("le point appartient au triangle "+i);
-                 i=nbrTT;
-             }else{
-                 j=0;
+                    if(angle>0){
+                        j=j+1;
+                        PX=TT.get(i).getC3().getA().getPx();
+                        PY=TT.get(i).getC3().getA().getPy();
+                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX);
+                            if(angle>0){
+                               j=j+1;
+                               app = true;
+                               //System.out.println("le point appartient au triangle "+i);
+                               i=nbrTT;
+                            }else{
+                                j=0;
+                            }
+                    }
              }
          }
          return app;
