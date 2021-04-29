@@ -59,7 +59,40 @@ public class Terrain {
     public String toString(){
         return ("Le terrain a pour Xmin :"+getXmin()+", Xmax : "+getXmax()+" ,Ymin : "+getYmin()+" ,Ymax : "+ getYmax());
     }
-    
+    //regarde si un noeud simple est dans le terrain 
+     public static boolean  noeudTerrain(ArrayList<TerrainTriangle> TT , NoeudSimple N){
+         int i, j=0, nbrTT;
+         nbrTT = TT.size();
+         double PX, PY,angle;
+         boolean app=false;
+         for(i=0;i<nbrTT;i++){
+             PX=TT.get(i).getC1().getA().getPx();
+             PY=TT.get(i).getC1().getA().getPy();
+             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+             j=j+1;
+             if(angle>0){
+                 PX=TT.get(i).getC2().getA().getPx();
+                PY=TT.get(i).getC2().getA().getPy();
+                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+                j=j+1;
+             }
+             if(angle>0){
+                PX=TT.get(i).getC3().getA().getPx();
+                PY=TT.get(i).getC3().getA().getPy();
+                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+                j=j+1;
+             }
+             if(j==3){
+                 app = true;
+                 //System.out.println("le point appartient au triangle "+i);
+                 i=nbrTT;
+             }else{
+                 j=0;
+             }
+         }
+         return app;
+     }
+
     //creer un terrain avec une liste de point de terrain
     public static Terrain SaisieTerrain(){
         double xmin,ymin,xmax,ymax;
