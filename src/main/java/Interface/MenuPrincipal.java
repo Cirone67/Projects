@@ -41,15 +41,15 @@ public class MenuPrincipal extends VBox{
         this.edition = new Button ("Edition"); this.edition.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
         this.creation = new Button ("Création"); this.creation.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
         
-        this.creeNoeud = new Button ("Nouveau"); 
-        this.creeBarre = new Button ("Nouveau");
-        this.creePTerrain = new Button ("Nouveau");
-        this.creeSegTerrain = new Button ("Nouveau");
+        this.creeNoeud = new Button ("Nouveau"); this.creeNoeud.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.creeBarre = new Button ("Nouveau"); this.creeBarre.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.creePTerrain = new Button ("Nouveau"); this.creePTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.creeSegTerrain = new Button ("Nouveau"); this.creeSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
        
-        this.supNoeud = new Button ("Supprimer"); 
-        this.supBarre = new Button ("Supprimer");
-        this.actPTerrain = new Button ("Actualiser");
-        this.supSegTerrain = new Button ("Supprimer");  
+        this.supNoeud = new Button ("Supprimer"); this.supNoeud.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.supBarre = new Button ("Supprimer"); this.supBarre.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.actPTerrain = new Button ("Actualiser"); this.actPTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.supSegTerrain = new Button ("Supprimer"); this.supSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         
         this.couleur = new ColorPicker();
         
@@ -66,12 +66,12 @@ public class MenuPrincipal extends VBox{
           
           SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.creeNoeud, this.supNoeud, 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
           SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.supBarre, 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
-          SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), noeuds, barres, 0, 10, 0, 5, 145, 5, 0, 0, 0, true);
+          SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), noeuds, barres, 0, 10, 0, 5, 160, 5, 0, 0, 0, true);
           
           Separator sv1 = new Separator (Orientation.VERTICAL);
           Separator sv2 = new Separator (Orientation.VERTICAL);
           Separator sh = new Separator (Orientation.HORIZONTAL);
-          HBox menuCreation = new HBox(30, terrain, sv1, treillis, sv2, this.couleur); menuCreation.setStyle("-fx-background-color: #ededed");
+          HBox menuCreation = new HBox(30, terrain, sv1, treillis, sv2, this.couleur); menuCreation.setStyle("-fx-background-color: #e5e5e5");
           HBox.setMargin(couleur, new Insets(20, 10, 5, 20));
           
           Button en = new Button ("Enregistrer");
