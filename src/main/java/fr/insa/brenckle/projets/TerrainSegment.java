@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.*;
 import java.util.Collections;
 import java.util.Comparator;
+import javafx.scene.canvas.GraphicsContext;
+import javax.naming.Context;
 
-public  class TerrainSegment {
+public  class TerrainSegment extends Objet{
     private TerrainPoints A;
     private TerrainPoints B;
     
@@ -181,5 +183,9 @@ public  class TerrainSegment {
         System.out.println("L'angle entre "+A+" et "+B+" est : "+angle);
         return angle;  
     }
+    
+    public void draw(GraphicsContext context){
+        //TO DO
+    }    
     
 }

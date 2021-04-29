@@ -6,12 +6,13 @@
 package fr.insa.brenckle.projets;
 
 import java.util.ArrayList;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
  * @author brenc
  */
-public class Barre {
+public class Barre extends Objet {
  private int id;
  private Noeud debut;
  private Noeud fin;
@@ -110,6 +111,10 @@ public double angle(Barre Barre2){
     double scalaire = ((this.fin.getAbs()-this.debut.getAbs())*(Barre2.fin.getAbs()-Barre2.debut.getAbs())+(this.fin.getOrd()-this.debut.getOrd())*(Barre2.fin.getOrd()-Barre2.debut.getOrd()));
     return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(Math.PI));  
 }
+
+    public void draw(GraphicsContext context){
+        //TO DO
+    }
 /*
 public static void main(String[] args){
 Barre a = new Barre(new Noeud (1),new Noeud(2));

@@ -11,8 +11,10 @@ package fr.insa.brenckle.projets;
 
 import java.util.ArrayList;
 import java.util.*;
+import javafx.scene.canvas.GraphicsContext;
 
-public class TerrainPoints {
+
+public class TerrainPoints extends Objet{
     private double Py; 
     private double Px; 
     
@@ -203,6 +205,9 @@ public class TerrainPoints {
         return ("("+this.Px+";"+this.Py+")");
     }    
     
+    public void draw(GraphicsContext context){
+        //TO DO
+    }
     
 }
 

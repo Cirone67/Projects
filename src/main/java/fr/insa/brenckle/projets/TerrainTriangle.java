@@ -12,7 +12,7 @@ package fr.insa.brenckle.projets;
 import java.util.ArrayList;
 import java.util.*;
 
-public class TerrainTriangle {
+public class TerrainTriangle extends Objet{
     private TerrainSegment C1;
     private TerrainSegment C2;
     private TerrainSegment C3;
