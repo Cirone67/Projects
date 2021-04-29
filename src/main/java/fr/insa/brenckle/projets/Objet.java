@@ -31,4 +31,5 @@ public abstract class Objet {
         this.couleur = couleur;
     }
     
+    public abstract double distancePoint(double abs, double ord);
 }

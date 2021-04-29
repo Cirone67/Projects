@@ -186,6 +186,23 @@ public  class TerrainSegment extends Objet{
     
     public void draw(GraphicsContext context){
         //TO DO
+    }
+
+    public double distancePoint(double abs, double ord) {
+        double Ax = this.A.getPx(); 
+        double Ay = this.A.getPy();
+        double Bx = this.B.getPx();
+        double By = this.B.getPy();
+        double Cx = abs; double Cy = ord;
+        double r = ((Cx-Ax)*(Bx-Ax)+(Cy-Ay)*(By-Ay))/(Math.pow(Math.sqrt((Bx-Ax)*(Bx-Ax)+(By-Ay)*(By-Ay)), 2));
+        if (r<0){
+            return this.A.distancePoint(abs, ord);
+        } else if (r>1){
+            return this.B.distancePoint(abs, ord);
+        } else {
+            TerrainPoints t = new TerrainPoints(Ax + r*(Bx-Ax), Ay + r*(By-Ay)); 
+            return t.distancePoint(abs, ord);
+        }
     }    
     
 }

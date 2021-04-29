@@ -149,4 +149,9 @@ public class TerrainTriangle extends Objet{
     }
         return TT;
 }
+
+    @Override
+    public double distancePoint(double abs, double ord) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

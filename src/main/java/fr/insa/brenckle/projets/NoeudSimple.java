@@ -48,4 +48,5 @@ public class NoeudSimple extends Noeud{
     public void setOrd(double ord) {
         this.ord = ord;
     }
+
 }

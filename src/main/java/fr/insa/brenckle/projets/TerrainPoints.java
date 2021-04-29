@@ -208,6 +208,13 @@ public class TerrainPoints extends Objet{
     public void draw(GraphicsContext context){
         //TO DO
     }
+
+    @Override
+    public double distancePoint(double abs, double ord) {
+        double x = this.getPx() - abs;
+        double y = this.getPy() - ord;
+        return Math.sqrt(x*x+y*y);
+    }
     
 }
 

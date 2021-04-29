@@ -27,9 +27,19 @@ public abstract class Noeud extends Objet {
     public abstract double getAbs();
     public abstract double getOrd();
     
-    public void draw(GraphicsContext context){
-        //TO DO
+    @Override
+    public double distancePoint(double abs, double ord) {
+        double x = this.getAbs() - abs;
+        double y = this.getOrd() - ord;
+        return Math.sqrt(x*x+y*y);
+    }    
+    
+    public void draw(GraphicsContext gc){  //TO DO différencier noeuds simples et appuis
+        int r = 3;
+        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
+        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
     }
+    
     
     /*
     
