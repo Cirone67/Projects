@@ -104,12 +104,12 @@ public class TerrainTriangle {
                         k=k-1;
                     }
                     if((r==0)&&(cond==0)){
-                        TTtempo= new TerrainTriangle(STr.get(i),ST.get(j),STr.get(i+1));
+                        TTtempo= new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(j));
                         TT.add(TTtempo);
                         j=j+1;
                     }
                     if((r!=0)&&(cond==1)){
-                        TTtempo = new TerrainTriangle(STr.get(i),ST.get(j),STr.get(i+1));
+                        TTtempo = new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(j));
                         TT.add(TTtempo);
                         j=j+1;
                     }
@@ -123,10 +123,10 @@ public class TerrainTriangle {
                             j=j+1;
                             i=i+1;
                             cond=0;
-                            System.out.println("switch de 1 à 0");
+                            //System.out.println("switch de 1 à 0");
                         }else{
                             cond=1;
-                            System.out.println("switch au 1");
+                            //System.out.println("switch au 1");
                         }
                     }
                 }
