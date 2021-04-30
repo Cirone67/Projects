@@ -68,17 +68,17 @@ public class Terrain {
          
              PX=TT.get(0).getC1().getA().getPx();
              PY=TT.get(0).getC1().getA().getPy();
-             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
              if(angle>0){
                 j=j+1;
                 PX=TT.get(0).getC2().getA().getPx();
                 PY=TT.get(0).getC2().getA().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
                     if(angle>0){
                         j=j+1;
                         PX=TT.get(0).getC3().getB().getPx();
                         PY=TT.get(0).getC3().getB().getPy();
-                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX);
+                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX);
                             if(angle>0){
                                j=j+1;
                                app = true;
@@ -93,17 +93,17 @@ public class Terrain {
              j=0;
              PX=TT.get(i).getC1().getA().getPx();
              PY=TT.get(i).getC1().getA().getPy();
-             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
              if(angle>0){
                 j=j+1;
                 PX=TT.get(i).getC2().getB().getPx();
                 PY=TT.get(i).getC2().getB().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
                     if(angle>0){
                         j=j+1;
                         PX=TT.get(i).getC3().getA().getPx();
                         PY=TT.get(i).getC3().getA().getPy();
-                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX);
+                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX);
                             if(angle>0){
                                j=j+1;
                                app = true;
@@ -117,17 +117,17 @@ public class Terrain {
       if(j!=3){
          PX=TT.get(nbrTT-1).getC1().getA().getPx();
              PY=TT.get(nbrTT-1).getC1().getA().getPy();
-             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
              if(angle>0){
                 j=j+1;
                 PX=TT.get(nbrTT-1).getC2().getA().getPx();
                 PY=TT.get(nbrTT-1).getC2().getA().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX); 
+                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
                     if(angle>0){
                         j=j+1;
                         PX=TT.get(nbrTT-1).getC3().getA().getPx();
                         PY=TT.get(nbrTT-1).getC3().getA().getPy();
-                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getOrd() - PX);
+                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX);
                             if(angle>0){
                                app = true;
                                //System.out.println("le point appartient au triangle "+i);
