@@ -63,7 +63,7 @@ public class Calcul {
            System.out.println(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2);
            System.out.println(fictif.getAbs());
            System.out.println(fictif.getOrd());
-           if(noeudTerrain(triangle,new NoeudSimple(-1,0,-2))==true){ //Renvoie vrai si dedans
+           if((noeudTerrain(triangle,new NoeudSimple(-1,0,-2))==true)){ //Renvoie vrai si dedans
             System.out.println("dans");
                 if(Math.PI==Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2){
                     return 0;
