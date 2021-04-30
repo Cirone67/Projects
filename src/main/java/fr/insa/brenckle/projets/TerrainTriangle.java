@@ -97,7 +97,7 @@ public class TerrainTriangle extends Objet{
             }
             k=nbrST-1;
                 for(i=0;i<nbrSTr-1;i++){
-                    System.out.println("TEST DEBUG");
+                    //System.out.println("TEST DEBUG");
                     r = i%2;
                     if((r!=0)&&(cond==0)){
                         TTtempo = new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(k));

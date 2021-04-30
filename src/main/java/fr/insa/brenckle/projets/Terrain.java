@@ -72,11 +72,12 @@ public class Terrain {
     }
     
     //regarde si un noeud simple est dans le terrain  renvoie true si le point est dans le terrain
-      public static boolean  noeudTerrain(ArrayList<TerrainTriangle> TT , NoeudSimple N){
+      public static boolean  noeudTerrain(ArrayList<TerrainTriangle> TT , NoeudSimple N, boolean tele){
          int i, j=0, nbrTT;
          nbrTT = TT.size();
          double angle;
          boolean app=false;
+         if(tele==false){//pour des triangles saisies
              angle=Terrain.angleNoeud(N, TT.get(0).getC1());
              if(0<angle){
                 if(angle<=Math.PI){
@@ -144,6 +145,28 @@ public class Terrain {
         if(j!=3){
             System.out.println("Le noeud n'appartient a aucun triangle du terrain.");
         }
+    }if(tele==true){//pour des triangles télécharger 
+        angle=Terrain.angleNoeud(N, TT.get(0).getC1());
+             if(0<angle){
+                if(angle<=Math.PI){
+                    j=j+1;
+                    angle=Terrain.angleNoeud(N, TT.get(0).getC2());
+                    if(angle<=Math.PI){
+                        if(0<angle){
+                        j=j+1;
+                            angle=Terrain.angleNoeud(N, TT.get(0).getC3());
+                            if(0<angle){
+                               if(angle<=Math.PI){
+                               j=j+1;
+                               app = true;
+                               //System.out.println("le point appartient au triangle 0");
+                               }
+                            }
+                    }
+                    }
+                }
+            }
+    }
        return app;
      }
 
