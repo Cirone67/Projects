@@ -52,7 +52,7 @@ public class NeuCanvas extends Pane {
         ArrayList<TerrainPoints> pT = new ArrayList<TerrainPoints>();
         ArrayList<TerrainSegment> sT = new ArrayList<TerrainSegment>();
         
-        ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.I.getMenuPrincipal().getSaisiePointTerrain().getP());
+        ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.I.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
             for (TerrainPoints TP: listPT){   //redessine les premiers points
                 TP.draw(context);
             }        
