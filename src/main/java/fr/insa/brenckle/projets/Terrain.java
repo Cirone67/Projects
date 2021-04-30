@@ -71,7 +71,7 @@ public class Terrain {
         return angle;
     }
     
-    //regarde si un noeud simple est dans le terrain 
+    //regarde si un noeud simple est dans le terrain  renvoie true si le point est dans le terrain
       public static boolean  noeudTerrain(ArrayList<TerrainTriangle> TT , NoeudSimple N){
          int i, j=0, nbrTT;
          nbrTT = TT.size();
