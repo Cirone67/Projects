@@ -59,27 +59,31 @@ public class Terrain {
     public String toString(){
         return ("Le terrain a pour Xmin :"+getXmin()+", Xmax : "+getXmax()+" ,Ymin : "+getYmin()+" ,Ymax : "+ getYmax());
     }
+    //ange entre un noeud et un segment
+    public static double angleNoeud(NoeudSimple N,TerrainSegment ST1){
+        double angle,NY,NX;
+        TerrainPoints A = ST1.getA();
+        TerrainPoints B = ST1.getB();
+        NX = N.getAbs();
+        NY= N.getOrd();
+        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(NY - B.getPy(), NX - B.getPx()); 
+        return angle;
+    }
+    
     //regarde si un noeud simple est dans le terrain 
      public static boolean  noeudTerrain(ArrayList<TerrainTriangle> TT , NoeudSimple N){
          int i, j=0, nbrTT;
          nbrTT = TT.size();
-         double PX, PY,angle;
+         double angle;
          boolean app=false;
-         
-             PX=TT.get(0).getC1().getA().getPx();
-             PY=TT.get(0).getC1().getA().getPy();
-             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
+             angle=Terrain.angleNoeud(N, TT.get(0).getC1());
              if(angle>0){
                 j=j+1;
-                PX=TT.get(0).getC2().getA().getPx();
-                PY=TT.get(0).getC2().getA().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
+                    angle=Terrain.angleNoeud(N, TT.get(0).getC2());
                     if(angle>0){
                         j=j+1;
-                        PX=TT.get(0).getC3().getB().getPx();
-                        PY=TT.get(0).getC3().getB().getPy();
-                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX);
-                            if(angle>0){
+                            angle=Terrain.angleNoeud(N, TT.get(0).getC3());
+                            if(angle<0){
                                j=j+1;
                                app = true;
                                //System.out.println("le point appartient au triangle 0");
@@ -88,58 +92,47 @@ public class Terrain {
                             }
                     }
              }
-       if(j!=3){
+        if(j!=3){
          for(i=1;i<nbrTT-1;i++){
              j=0;
-             PX=TT.get(i).getC1().getA().getPx();
-             PY=TT.get(i).getC1().getA().getPy();
-             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
+             angle=Terrain.angleNoeud(N, TT.get(i).getC1());
              if(angle>0){
                 j=j+1;
-                PX=TT.get(i).getC2().getB().getPx();
-                PY=TT.get(i).getC2().getB().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
-                    if(angle>0){
+                angle=Terrain.angleNoeud(N, TT.get(i).getC2());
+                    if(angle<0){
                         j=j+1;
-                        PX=TT.get(i).getC3().getA().getPx();
-                        PY=TT.get(i).getC3().getA().getPy();
-                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX);
+                        angle=Terrain.angleNoeud(N, TT.get(i).getC3());
                             if(angle>0){
                                j=j+1;
                                app = true;
                                //System.out.println("le point appartient au triangle "+i);
                                i=nbrTT-1;
-                            }
                     }
              }
         }
       }
       if(j!=3){
-         PX=TT.get(nbrTT-1).getC1().getA().getPx();
-             PY=TT.get(nbrTT-1).getC1().getA().getPy();
-             angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
-             if(angle>0){
+         angle=Terrain.angleNoeud(N, TT.get(nbrTT-1).getC1());
+            if(angle>0){
                 j=j+1;
-                PX=TT.get(nbrTT-1).getC2().getA().getPx();
-                PY=TT.get(nbrTT-1).getC2().getA().getPy();
-                angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX); 
+                angle=Terrain.angleNoeud(N, TT.get(nbrTT-1).getC2());
                     if(angle>0){
                         j=j+1;
-                        PX=TT.get(nbrTT-1).getC3().getA().getPx();
-                        PY=TT.get(nbrTT-1).getC3().getA().getPy();
-                        angle =Math.atan2(N.getOrd() - PY, N.getAbs() - PX) - Math.atan2(N.getOrd() - PY, N.getAbs() - PX);
+                        angle=Terrain.angleNoeud(N, TT.get(nbrTT-1).getC3());
                             if(angle>0){
                                app = true;
-                               //System.out.println("le point appartient au triangle "+i);
+                               //System.out.println("le point appartient au triangle "+nbrSTT-1);
                             }else{
-                                j=0;
+                                if(j!=3){
+                                    //System.out.println("Le noeud n'appartient a aucun triangle du terrain.");
+                                }
                             }
                     }
-             } 
-      }
-      return app;
+            } 
+        }
+    }
+       return app;
      }
-     
 
     //creer un terrain avec une liste de point de terrain
     public static Terrain SaisieTerrain(){
