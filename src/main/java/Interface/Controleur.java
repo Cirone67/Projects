@@ -7,6 +7,9 @@ package Interface;
 
 import fr.insa.brenckle.projets.Objet;
 import fr.insa.brenckle.projets.TerrainPoints;
+import static fr.insa.brenckle.projets.TerrainPoints.CompletePoint;
+import static fr.insa.brenckle.projets.TerrainPoints.TrianglePoint;
+import static fr.insa.brenckle.projets.TerrainPoints.verifieForme;
 import fr.insa.brenckle.projets.TerrainTriangle;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,18 +33,22 @@ public class Controleur {
     public void changeEtat (int etat){
         this.etat = etat;
         if (this.etat == 20){
-            this.vue.getMenuPrincipal().getSaisiePointTerrain().show();
+            this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().show();
         }
         else if (this.etat == 21){
-            ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getSaisiePointTerrain().getP());
+            ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
             for (TerrainPoints TP: listPT){
                 GraphicsContext context = this.vue.getGraph().getGraphicsContext2D();
                 TP.draw(context);
             }
-            this.vue.getMenuPrincipal().getSaisiePointTerrain().close();
+            this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().close();
         }
         else if (this.etat == 30){
-            //TO DO génération terrain
+            ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
+            boolean b = verifieForme(listPT);
+            listPT = CompletePoint(listPT, b);
+            ArrayList<TerrainPoints> listPTr = new ArrayList<TerrainPoints>(TrianglePoint(listPT, b));
+            
         }
     }
     

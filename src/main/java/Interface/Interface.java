@@ -40,9 +40,6 @@ public class Interface extends BorderPane{
         
         this.setTop(this.menuPrincipal);
         
-//        this.menuPrincipal.getSaisiePointTerrain().getQuitter().setOnMouseClicked((t) -> {
-//            this.controleur.changeEtat(21);
-//        });
 
         
            
