@@ -5,11 +5,13 @@
  */
 package fr.insa.brenckle.projets;
 
+import javafx.scene.canvas.GraphicsContext;
+
 /**
  *
  * @author Guillaume R
  */
-public abstract class Noeud {
+public abstract class Noeud extends Objet {
     
     private int id;
     protected static int nbrNoeud =1; 
@@ -24,7 +26,24 @@ public abstract class Noeud {
     
     public abstract double getAbs();
     public abstract double getOrd();
+    
+    @Override
+    public double distancePoint(double abs, double ord) {
+        double x = this.getAbs() - abs;
+        double y = this.getOrd() - ord;
+        return Math.sqrt(x*x+y*y);
+    }    
+    
+    public void draw(GraphicsContext gc){  //TO DO différencier noeuds simples et appuis
+        int r = 3;
+        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
+        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
+    }
+    
+    
     /*
+    
+    
     public abstract void setAbs(double abs);
     public abstract void setOrd(double ord);
 */

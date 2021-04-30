@@ -6,12 +6,13 @@
 package fr.insa.brenckle.projets;
 
 import java.util.ArrayList;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
  * @author brenc
  */
-public class Barre {
+public class Barre extends Objet {
  private int id;
  private Noeud debut;
  private Noeud fin;
@@ -110,6 +111,10 @@ public double angle(Barre Barre2){
     double scalaire = ((this.fin.getAbs()-this.debut.getAbs())*(Barre2.fin.getAbs()-Barre2.debut.getAbs())+(this.fin.getOrd()-this.debut.getOrd())*(Barre2.fin.getOrd()-Barre2.debut.getOrd()));
     return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(Math.PI));  
 }
+
+    public void draw(GraphicsContext context){
+        //TO DO
+    }
 /*
 public static void main(String[] args){
 Barre a = new Barre(new Noeud (1),new Noeud(2));
@@ -118,5 +123,22 @@ System.out.println(a.id);
 System.out.println(b.id);
 }
  */  
+
+    public double distancePoint(double abs, double ord) {
+        double Ax = this.debut.getAbs();
+        double Ay = this.debut.getOrd();
+        double Bx = this.fin.getAbs();
+        double By = this.fin.getOrd();
+        double Cx = abs; double Cy = ord;
+        double r = ((Cx-Ax)*(Bx-Ax)+(Cy-Ay)*(By-Ay))/(Math.pow(Math.sqrt((Bx-Ax)*(Bx-Ax)+(By-Ay)*(By-Ay)), 2));
+        if (r<0){
+            return this.debut.distancePoint(abs, ord);
+        } else if (r>1){
+            return this.fin.distancePoint(abs, ord);
+        } else {
+            Noeud n = new NoeudSimple(Ax + r*(Bx-Ax), Ay + r*(By-Ay)); 
+            return n.distancePoint(abs, ord);
+        }
+    }
     
 }
