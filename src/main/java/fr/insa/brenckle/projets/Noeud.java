@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author Guillaume R
  */
-public abstract class Noeud extends Objet {
+public abstract class Noeud extends Objet{
     
     private int id;
     protected static int nbrNoeud =1; 

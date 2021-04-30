@@ -5,13 +5,14 @@
  */
 package fr.insa.brenckle.projets;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
  *
  * @author Guillaume R
  */
-public abstract class Objet {
+public abstract class Objet{
     
     private Color couleur;
     
@@ -31,5 +32,8 @@ public abstract class Objet {
         this.couleur = couleur;
     }
     
-    public abstract double distancePoint(double abs, double ord);
+    public abstract void draw(GraphicsContext context);
+    
+    public abstract double distancePoint(double abs, double ord);     
+    
 }

@@ -20,8 +20,9 @@ import javafx.scene.layout.VBox;
  */
 public class MenuPrincipal extends VBox{
     
-    private Button edition;
+    private Interface I;
     
+    private Button edition;
     private Button creation;
     private Button creeNoeud;
     private Button creePTerrain;
@@ -30,13 +31,20 @@ public class MenuPrincipal extends VBox{
     private Button supNoeud;
     private Button actPTerrain;
     private Button supBarre;
-    private Button supSegTerrain;    
+    private Button supSegTerrain;  
+    private Button genererTerrain;
     private ColorPicker couleur;
+    
+    private SaisiePointTerrain saisiePointTerrain;
     
     private int etat;
 
     
-    public MenuPrincipal (){
+    public MenuPrincipal (Interface I){
+        
+        this.I = I;
+        
+        this.genererTerrain = new Button ("Générer"); this.genererTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 1 10 1 10; -fx-font-size: 9pt");
         
         this.edition = new Button ("Edition"); this.edition.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
         this.creation = new Button ("Création"); this.creation.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
@@ -53,16 +61,15 @@ public class MenuPrincipal extends VBox{
         
         this.couleur = new ColorPicker();
         
-          HBox menu = new HBox(this.edition, this.creation); menu.setStyle("-fx-background-color: #ccc");
+        this.saisiePointTerrain = new SaisiePointTerrain(I.getFenetre());
+        saisiePointTerrain.setResizable(false);
         
-//        HBox HBpTerrain = new HBox(this.creePTerrain, this.supPTerrain);
-//        VBox VBpTerrain = new VBox (new Label ("Points terrain"), HBpTerrain); 
-//        BorderPane pTerrain = new BorderPane();
-//        pTerrain.setTop(VBpTerrain); pTerrain.setBottom(VBpTerrain);
-
+          HBox menu = new HBox(this.edition, this.creation); menu.setStyle("-fx-background-color: #ccc");
+          HBox titreTerrain = new HBox(15, new Label("Terrain"), this.genererTerrain);
+          
           SousMenuPpl pTerrain = new SousMenuPpl(new Label ("Points Terrain"), this.creePTerrain, this.actPTerrain, 5, 5, 10, 5, 50, 5, 10, 5, 20, false);   //espace entre ssTitre, marge T haut, marge T doite, marge T bas, marge T gauche, marge ST haut, ...
           SousMenuPpl segTerrain = new SousMenuPpl (new Label ("Segments Terrain"), this.creeSegTerrain, this.supSegTerrain, 5, 5, 10, 5, 30, 5, 10, 5, 10, false);
-          SousMenuPpl terrain = new SousMenuPpl (new Label ("Terrain"), pTerrain, segTerrain, 0, 10, 0, 5, 150, 5, 0, 0, 0, true);
+          SousMenuPpl terrain = new SousMenuPpl (titreTerrain, pTerrain, segTerrain, 0, 10, 0, 5, 160, 5, 0, 0, 0, true);
           
           SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.creeNoeud, this.supNoeud, 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
           SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.supBarre, 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
@@ -95,6 +102,13 @@ public class MenuPrincipal extends VBox{
                   this.getChildren().addAll(menuCreation, sh);
                   etat = 1;
               }
+          });
+          
+          this.creePTerrain.setOnAction((t) -> {
+              I.getControleur().changeEtat(20);
+          });
+          this.getSaisiePointTerrain().getQuitter().setOnAction((t) -> {
+              I.getControleur().changeEtat(21);
           });
 
           
@@ -176,6 +190,13 @@ public class MenuPrincipal extends VBox{
      */
     public ColorPicker getCouleur() {
         return couleur;
+    }
+
+    /**
+     * @return the saisiePointTerrain
+     */
+    public SaisiePointTerrain getSaisiePointTerrain() {
+        return saisiePointTerrain;
     }
     
 }

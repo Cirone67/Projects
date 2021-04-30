@@ -11,6 +11,7 @@ package fr.insa.brenckle.projets;
  */
 import java.util.ArrayList;
 import java.util.*;
+import javafx.scene.canvas.GraphicsContext;
 
 public class TerrainTriangle extends Objet{
     private TerrainSegment C1;
@@ -153,5 +154,10 @@ public class TerrainTriangle extends Objet{
     @Override
     public double distancePoint(double abs, double ord) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void draw(GraphicsContext context) {
+        //TO DO
     }
 }

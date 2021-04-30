@@ -33,12 +33,17 @@ public class NeuCanvas extends Pane {
         this.canvas.heightProperty().bind(this.heightProperty());
         this.canvas.widthProperty().bind(this.widthProperty());
         
-        this.heightProperty().addListener((o) -> {
+        this.canvas.heightProperty().addListener((o) -> {
            this.redraw(); 
         });
-        this.widthProperty().addListener((o) -> {
+        this.canvas.widthProperty().addListener((o) -> {
             this.redraw();
         });     
+        
+    }
+    
+    public GraphicsContext getGraphicsContext2D(){
+        return this.canvas.getGraphicsContext2D();
     }
     
     public void redraw(){
@@ -47,9 +52,14 @@ public class NeuCanvas extends Pane {
         ArrayList<TerrainPoints> pT = new ArrayList<TerrainPoints>();
         ArrayList<TerrainSegment> sT = new ArrayList<TerrainSegment>();
         
+        ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.I.getMenuPrincipal().getSaisiePointTerrain().getP());
+            for (TerrainPoints TP: listPT){   //redessine les premiers points
+                TP.draw(context);
+            }        
+        
         for (TerrainTriangle TT: modele.getTerrainTriangles()){  //dessine tous les points et segments terrain
             
-            if (pT.contains(TT.getC1().getA()) == false){    //1er point du triangle --> vérifie s'il n'a pas déjà été dessiné
+            if (pT.contains(TT.getC1().getA()) == false){    //1er point du triangle --> vérifie s'il n'a pas déjà été dessiné (vérification nécessaire?)
                 TT.getC1().getA().draw(context); //le dessine
                 pT.add(TT.getC1().getA());
             }

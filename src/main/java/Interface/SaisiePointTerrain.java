@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -34,12 +35,10 @@ import javafx.stage.Modality;
  */
 public class SaisiePointTerrain extends Stage{
     
-    private Stage sParent;
-    private int etat;
     private Label abs;
     private Label ord;
     private Button ok;
-    private Button annuler;
+    private Button quitter;
     private Button clear;
     private TextField tabs;
     private TextField tord;
@@ -50,15 +49,14 @@ public class SaisiePointTerrain extends Stage{
     }
     
     public SaisiePointTerrain(Stage sp){
-    this.etat = 1;    
+        
     this.setTitle("Saisie des points terrain");
-    this.sParent = sp;
-    this.initOwner(this.sParent);
+    this.initOwner(sp);
     this.initModality(Modality.WINDOW_MODAL);
     this.abs = new Label ("Abscisse");
     this.ord = new Label ("Ordonée");
     this.ok = new Button ("Valider");
-    this.annuler = new Button ("Sauvegarder et quitter");
+    this.quitter = new Button ("Sauvegarder et quitter");
     this.clear = new Button ("Réinitialiser");
     this.tabs = new TextField();
     this.tord = new TextField();
@@ -72,7 +70,7 @@ public class SaisiePointTerrain extends Stage{
     VBox text = new VBox(espace,this.tabs,this.tord);
     text.setLayoutX(100); text.setLayoutY(100);
     Group g = new Group(boutons, text);
-    HBox valid = new HBox (espace,this.clear, this.annuler, this.ok);
+    HBox valid = new HBox (espace, this.getClear(), this.getQuitter(), this.getOk());
     valid.setLayoutX(50); valid.setLayoutY(300);
     
 
@@ -92,28 +90,62 @@ public class SaisiePointTerrain extends Stage{
     });
     
     this.ok.setOnAction((t) -> {
-        
-        TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
-        this.p.add(pT);
-        this.tabs.clear(); this.tord.clear();
-    });
-    
-    this.annuler.setOnAction((e) -> {
-        Alert f = new Alert(AlertType.INFORMATION);
-        f.setHeaderText("Information");
-        this.close();
-        boolean b = verifieForme(p);
-        if (b == true){
-            f.setContentText("Vous avez rentré une forme 'spéciale'");
-            f.showAndWait();
-        }else{
-         f.setContentText("Vous avez rentré une forme polygonale classique");
-         f.showAndWait();            
+        if ((this.tabs.getText() != "")&&(this.tord.getText() != "")){
+            TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
+            this.p.add(pT);
+            this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();
         }
-        this.p = CompletePoint(this.p, b);
+
     });
     
+    s.setOnKeyPressed((t) -> {
+        if (t.getCode().getName() == "Enter"){
+            if ((this.tabs.focusedProperty().get() == true) && (this.tabs.getText() != "")){
+                this.tord.requestFocus();
+            } else if ((this.tord.focusedProperty().get() == true) && (this.tabs.getText() != "")){
+                 TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
+                 this.p.add(pT);
+                 this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();
+            }
+        }
+    });
     
+//  this.quitter.setOnAction((e) -> {
+//        Alert f = new Alert(AlertType.INFORMATION);
+//        f.setHeaderText("Information");
+//        boolean b = verifieForme(p);
+//        if (b == true){
+//            f.setContentText("Vous avez rentré une forme 'spéciale'");
+//            f.showAndWait();
+//        }else{
+//         f.setContentText("Vous avez rentré une forme polygonale classique");
+//         f.showAndWait();            
+//        }
+//        this.p = CompletePoint(this.p, b);
+//   });
+    
+    
+    }
+
+    /**
+     * @return the ok
+     */
+    public Button getOk() {
+        return ok;
+    }
+
+    /**
+     * @return the quitter
+     */
+    public Button getQuitter() {
+        return quitter;
+    }
+
+    /**
+     * @return the clear
+     */
+    public Button getClear() {
+        return clear;
     }
     
 }

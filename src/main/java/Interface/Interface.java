@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  * @author Guillaume R
  */
 public class Interface extends BorderPane{
+    
     private Stage fenetre;
     private MenuPrincipal menuPrincipal;
     private NeuCanvas graph;
@@ -26,46 +27,22 @@ public class Interface extends BorderPane{
     
     public Interface (Stage stage){
         
-        SaisiePointTerrain sP = new SaisiePointTerrain(this.fenetre);
-        sP.setResizable(false);
-        
         this.treillis = new Treillis();
         this.fenetre = stage;
-       
-//        Menu edition = new Menu ("Edition");        
-//        Menu creation = new Menu ("Création");   
-//        MenuItem pT = new MenuItem ("Points Terrain");    
-//        MenuItem n = new MenuItem ("Noeuds");  
-//        MenuItem act = new MenuItem ("Actualiser");
-//        creation.getItems().addAll(n,pT,act);
-//        this.choix = new MenuBar(edition, creation);
-//        this.choix.prefWidthProperty().bind(this.widthProperty());   
+        this.controleur = new Controleur(this);
         
-        this.menuPrincipal = new MenuPrincipal();
+        
+        this.menuPrincipal = new MenuPrincipal(this);
         
         this.graph = new NeuCanvas(this);
-        this.graph.setManaged(false);
+        //this.graph.setManaged(false);
+        this.setCenter(this.graph);    
         
-        this.setCenter(this.graph);
         this.setTop(this.menuPrincipal);
         
-        this.menuPrincipal.getCreePTerrain().setOnMouseClicked((t) -> {
-            sP.show();
-        });
-        
-        this.menuPrincipal.getActPTerrain().setOnMouseClicked((t) -> {
-           ArrayList<TerrainTriangle> listTT = new ArrayList<TerrainTriangle>(getTreillis().getTerrainTriangles()); 
-           for (TerrainTriangle T : listTT){
-               T.getC1().getA().getPx();
-           }
-//           GraphicsContext gc = this.graph.getGraphicsContext2D();
-//           gc.translate(this.getWidth()*0.5,this.getHeight()*0.5);
-           int r = 3;
-           for (int i = 0; i<listTT.size(); i++){
-            //   gc.strokeOval(listP.get(i).getPx() - r, listP.get(i).getPy() - r, r, r);
-            //   gc.fillOval(listP.get(i).getPx() - r, listP.get(i).getPy() - r, r, r);
-           }
-        });
+//        this.menuPrincipal.getSaisiePointTerrain().getQuitter().setOnMouseClicked((t) -> {
+//            this.controleur.changeEtat(21);
+//        });
 
         
            
@@ -83,6 +60,27 @@ public class Interface extends BorderPane{
      */
     public Controleur getControleur() {
         return controleur;
+    }
+
+    /**
+     * @return the fenetre
+     */
+    public Stage getFenetre() {
+        return fenetre;
+    }
+
+    /**
+     * @return the menuPrincipal
+     */
+    public MenuPrincipal getMenuPrincipal() {
+        return menuPrincipal;
+    }
+
+    /**
+     * @return the graph
+     */
+    public NeuCanvas getGraph() {
+        return graph;
     }
     
 }

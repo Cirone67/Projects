@@ -6,7 +6,10 @@
 package Interface;
 
 import fr.insa.brenckle.projets.Objet;
+import fr.insa.brenckle.projets.TerrainPoints;
+import fr.insa.brenckle.projets.TerrainTriangle;
 import java.util.ArrayList;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -19,13 +22,27 @@ public class Controleur {
     private Interface vue;
     private ArrayList<Objet> selection;
     
-    public Controleur(int etat, Interface vue){
-        this.etat = etat;
+    public Controleur(Interface vue){
+        this.etat = 10;
         this.vue = vue;       
     }
     
     public void changeEtat (int etat){
         this.etat = etat;
+        if (this.etat == 20){
+            this.vue.getMenuPrincipal().getSaisiePointTerrain().show();
+        }
+        else if (this.etat == 21){
+            ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getSaisiePointTerrain().getP());
+            for (TerrainPoints TP: listPT){
+                GraphicsContext context = this.vue.getGraph().getGraphicsContext2D();
+                TP.draw(context);
+            }
+            this.vue.getMenuPrincipal().getSaisiePointTerrain().close();
+        }
+        else if (this.etat == 30){
+            //TO DO génération terrain
+        }
     }
     
     void clicDansInterface (MouseEvent t){

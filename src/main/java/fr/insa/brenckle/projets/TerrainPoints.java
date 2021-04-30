@@ -205,8 +205,10 @@ public class TerrainPoints extends Objet{
         return ("("+this.Px+";"+this.Py+")");
     }    
     
-    public void draw(GraphicsContext context){
-        //TO DO
+    public void draw(GraphicsContext gc){
+        int r = 3;
+        gc.strokeOval(this.getPx()- r, this.getPy() - r, r, r);
+        gc.fillOval(this.getPx() - r, this.getPy() - r, r, r);
     }
 
     @Override
