@@ -79,5 +79,12 @@ public class Interface extends BorderPane{
     public NeuCanvas getGraph() {
         return graph;
     }
+
+    /**
+     * @param treillis the treillis to set
+     */
+    public void setTreillis(Treillis treillis) {
+        this.treillis = treillis;
+    }
     
 }

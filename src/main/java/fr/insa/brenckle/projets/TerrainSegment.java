@@ -9,11 +9,9 @@ package fr.insa.brenckle.projets;
  * @author MAURY Robin
  */
 import java.util.ArrayList;
-import java.util.*;
 import java.util.Collections;
 import java.util.Comparator;
 import javafx.scene.canvas.GraphicsContext;
-import javax.naming.Context;
 
 public  class TerrainSegment extends Objet{
     private TerrainPoints A;
@@ -185,7 +183,7 @@ public  class TerrainSegment extends Objet{
     }
     
     public void draw(GraphicsContext context){
-        //TO DO
+        context.strokeLine(this.getA().getPx(), this.getA().getPy(), this.getB().getPx(), this.getB().getPy());
     }
 
     public double distancePoint(double abs, double ord) {

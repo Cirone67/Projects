@@ -195,5 +195,12 @@ public class MenuCreation extends HBox{
     public SaisiePointTerrain getSaisiePointTerrain() {
         return saisiePointTerrain;
     }
+
+    /**
+     * @return the delimite
+     */
+    public DelimiterTerrain getDelimite() {
+        return delimite;
+    }
     
 }

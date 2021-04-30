@@ -103,20 +103,6 @@ public class SaisiePointTerrain extends Stage{
         }
     });
     
-//  this.quitter.setOnAction((e) -> {
-//        Alert f = new Alert(AlertType.INFORMATION);
-//        f.setHeaderText("Information");
-//        boolean b = verifieForme(p);
-//        if (b == true){
-//            f.setContentText("Vous avez rentré une forme 'spéciale'");
-//            f.showAndWait();
-//        }else{
-//         f.setContentText("Vous avez rentré une forme polygonale classique");
-//         f.showAndWait();            
-//        }
-//        this.p = CompletePoint(this.p, b);
-//   });
-    
     
     }
 

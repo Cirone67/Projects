@@ -6,11 +6,18 @@
 package Interface;
 
 import fr.insa.brenckle.projets.Objet;
+import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.TerrainPoints;
 import static fr.insa.brenckle.projets.TerrainPoints.CompletePoint;
 import static fr.insa.brenckle.projets.TerrainPoints.TrianglePoint;
 import static fr.insa.brenckle.projets.TerrainPoints.verifieForme;
+import fr.insa.brenckle.projets.TerrainSegment;
+import static fr.insa.brenckle.projets.TerrainSegment.Suppsegmendouble;
+import static fr.insa.brenckle.projets.TerrainSegment.creationSegment;
+import static fr.insa.brenckle.projets.TerrainSegment.creationSegmentTriangle;
 import fr.insa.brenckle.projets.TerrainTriangle;
+import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
+import fr.insa.brenckle.projets.Treillis;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -32,7 +39,10 @@ public class Controleur {
     
     public void changeEtat (int etat){
         this.etat = etat;
-        if (this.etat == 20){
+        if (this.etat == 19){
+            this.vue.getMenuPrincipal().getMenuCreation().getCreePTerrain().setDisable(false);
+        }
+        else if (this.etat == 20){
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().show();
         }
         else if (this.etat == 21){
@@ -44,11 +54,23 @@ public class Controleur {
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().close();
         }
         else if (this.etat == 30){
-            ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
+            
+            ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP()); //Points rentrés par l'utilisateur
             boolean b = verifieForme(listPT);
             listPT = CompletePoint(listPT, b);
-            ArrayList<TerrainPoints> listPTr = new ArrayList<TerrainPoints>(TrianglePoint(listPT, b));
+            ArrayList<TerrainPoints> listPTr = new ArrayList<TerrainPoints>(TrianglePoint(listPT, b)); //Points complétant ceux de l'utilisateur 
+           
+            double [] coord = this.vue.getMenuPrincipal().getMenuCreation().getDelimite().getCoordonnees();
+            Terrain terrain = new Terrain (coord[0], coord[1], coord[2], coord[3]);
+            ArrayList<TerrainSegment> listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, terrain, b)); //1ère liste de segments
+            ArrayList<TerrainSegment> listSTr = new ArrayList<TerrainSegment>(creationSegmentTriangle(listPT, listPTr, b)); //2ème liste de segments pour trianguler
+            listSTr = Suppsegmendouble(listST, listSTr); //Supprime les doublons de segments
             
+            ArrayList<TerrainTriangle> listTT = new ArrayList<TerrainTriangle>(Creationtriangle(listST, listSTr, b)); //Génère les rectangles
+            
+            Treillis treillis = new Treillis(listTT);
+            this.vue.setTreillis(treillis);
+            this.vue.getGraph().redraw();
         }
     }
     

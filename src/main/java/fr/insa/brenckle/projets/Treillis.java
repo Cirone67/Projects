@@ -35,6 +35,14 @@ private double TXmin;
         this.typeBarre = new ArrayList<TypeBarre>();
         this.charge = new ArrayList<Charge>();
     }
+    
+    public Treillis(ArrayList<TerrainTriangle> listTT){
+        this.barres = new ArrayList<Barre>();
+        this.noeuds = new ArrayList<Noeud>();
+        this.terrainTriangles = listTT;
+        this.typeBarre = new ArrayList<TypeBarre>();
+        this.charge = new ArrayList<Charge>();        
+    }
 
     public ArrayList<TerrainTriangle> getTerrainTriangles() {
         return terrainTriangles;

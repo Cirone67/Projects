@@ -10,7 +10,6 @@ package fr.insa.brenckle.projets;
  * @author MAURY Robin
  */
 import java.util.ArrayList;
-import java.util.*;
 import javafx.scene.canvas.GraphicsContext;
 
 public class TerrainTriangle extends Objet{
