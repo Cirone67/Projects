@@ -5,6 +5,7 @@
  */
 package fr.insa.brenckle.projets;
 import static fr.insa.brenckle.projets.Calcul.miseSousSystem;
+import static fr.insa.brenckle.projets.Calcul.vecteurcharge;
 import java.io.*;
 /**
  *
@@ -157,11 +158,12 @@ catch (IOException err)
 {System.out.println("Erreur :\n"+err);}
 }
 
-
+/*
 public static void main(String[] args){
 Treillis premier;
-premier = telechargement(1);
+premier = telechargement(3);
 Matrice prems = new Matrice(1,1);
+Matrice sec;
 //System.out.println(premier.getTypeBarre().get(1).getCout());
 //System.out.println(premier.getNoeuds().get(0).getOrd());
 //System.out.println(premier.getBarres().get(0).getFin().getIdNoeud());
@@ -170,7 +172,12 @@ for(int i =0; i< premier.getNoeuds().size();i++){
 }
 prems = miseSousSystem(premier);
 prems.String();
+premier.ajoute(new Charge(1,3,1000,-Math.PI/2));
+sec = vecteurcharge(premier);
+sec.String();
+Matrice resultat = prems.resoudreSyst(sec);
+resultat.String();
 //enregistrer(premier,2);
 }
-
+*/
 }

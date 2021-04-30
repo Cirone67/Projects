@@ -413,8 +413,8 @@ public Matrice solution(){
 //Méthode pour résoudre les systèmes linéaires
 public Matrice resoudreSyst(Matrice vecteur){ // Systèmesousformedematrice.resoudreSyst(vecteurdelautrecotedel'égalité);
     Matrice res = this.concatCol(vecteur);
-    res =res.Gauss().solution();
-    res.String();
+    res = res.Gauss().solution();
+    //res.String();
     
 return res;    
 }

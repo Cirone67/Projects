@@ -13,16 +13,16 @@ public class Charge {
     
    private int id ;
    private int noeud ;
+   private double angle; //Angle par rapport à l'horizon
    private double norme;
-   private double angle;
    protected static int nbrCharge =1;
    
-   Charge(int id, int noeud, double norme){
+   Charge(int id, int noeud, double norme, double angle){
        this.id = id;
-       this.norme = norme;
        this.noeud = noeud;
+       this.angle = angle;
+       this.norme = norme;
    }
-
     public int getId() {
         return id;
     }
@@ -39,14 +39,6 @@ public class Charge {
         this.noeud = noeud;
     }
 
-    public double getNorme() {
-        return norme;
-    }
-
-    public void setNorme(double norme) {
-        this.norme = norme;
-    }
-
     public double getAngle() {
         return angle;
     }
@@ -54,5 +46,12 @@ public class Charge {
     public void setAngle(double angle) {
         this.angle = angle;
     }
-         
+
+    public double getNorme() {
+        return norme;
+    }
+
+    public void setNorme(double norme) {
+        this.norme = norme;
+    }       
 }
