@@ -103,9 +103,7 @@ public class SaisiePointTerrain extends Stage{
             if ((this.tabs.focusedProperty().get() == true) && (this.tabs.getText() != "")){
                 this.tord.requestFocus();
             } else if ((this.tord.focusedProperty().get() == true) && (this.tabs.getText() != "")){
-                 TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
-                 this.p.add(pT);
-                 this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();
+                this.ok.requestFocus();
             }
         }
     });
