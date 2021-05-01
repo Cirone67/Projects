@@ -62,9 +62,7 @@ public class Controleur {
             listPT = CompletePoint(listPT, b);
             ArrayList<TerrainPoints> listPTr = new ArrayList<TerrainPoints>(TrianglePoint(listPT, b)); //Points complétant ceux de l'utilisateur 
            
-            double [] coord = this.vue.getMenuPrincipal().getMenuCreation().getDelimite().getCoordonnees();
-            Terrain terrain = new Terrain (coord[0], coord[1], coord[2], coord[3]);
-            ArrayList<TerrainSegment> listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, terrain, b)); //1ère liste de segments
+            ArrayList<TerrainSegment> listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, b)); //1ère liste de segments
             ArrayList<TerrainSegment> listSTr = new ArrayList<TerrainSegment>(creationSegmentTriangle(listPT, listPTr, b)); //2ème liste de segments pour trianguler
             listSTr = Suppsegmendouble(listST, listSTr); //Supprime les doublons de segments
             
