@@ -88,13 +88,14 @@ public class TerrainTriangle extends Objet{
                 TT.add(TTtempo);
                 j=2;
                 cond=1;
+                k=nbrST-1;
             }else{
-                TTtempo = new TerrainTriangle(ST.get(0),STr.get(0),ST.get(nbrST-1));
+                TTtempo = new TerrainTriangle(ST.get(0),ST.get(nbrST-1),STr.get(0));
                 TT.add(TTtempo);
                 j=1;
                 cond=0;
+                k=nbrST-2;
             }
-            k=nbrST-1;
                 for(i=0;i<nbrSTr-1;i++){
                     //System.out.println("TEST DEBUG");
                     r = i%2;

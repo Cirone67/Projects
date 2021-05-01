@@ -85,19 +85,25 @@ public  class TerrainSegment extends Objet{
     public static ArrayList<TerrainSegment> creationSegmentTriangle(ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, boolean verifie){
         int nbrP, nbrPr, i, j,k ,sortie , nbrSTr,l ;
         boolean tri;
-        double PXmin;
+        double PYmin;
         nbrP= P.size();
         nbrPr = Pr.size();
         ArrayList<TerrainSegment> STr = new ArrayList<TerrainSegment>();
         TerrainSegment STtempo;
+        PYmin=P.get(0).getPy();
+        for(i=1;i<nbrP-1;i++){
+            if(PYmin>P.get(i).getPy()){
+                PYmin=P.get(i).getPy();
+            }
+        }
         if(verifie==true){
             //creation des segments verticaux a rajouter
-            for(i=0;i<nbrP-1;i++){
-                if(Pr.get(0).getPy()==P.get(0).getPy()){
+            if(Pr.get(0).getPy()==P.get(0).getPy()){
                     l=1;
                 }else{
                     l=0;
                 }
+            for(i=0;i<nbrP-1;i++){
                 for(j=l;j<nbrPr;j++){
                     if((P.get(i).getPx()==Pr.get(j).getPx())&&(P.get(i).getPy()!=Pr.get(j).getPy())){
                         STtempo = new TerrainSegment(Pr.get(j),P.get(i));
@@ -123,6 +129,10 @@ public  class TerrainSegment extends Objet{
                     j=j+1;
                 }
             }
+            if((P.get(nbrP-2).getPy()!=PYmin)&&(P.get(nbrP-2).getPx()!=Pr.get(nbrPr-1).getPx())){
+                STtempo= new TerrainSegment(Pr.get(nbrPr-1),P.get(nbrP-2));
+                STr.add(STtempo);
+            }
             nbrSTr = STr.size();
           //trie les segments rajouter dans l'ordre croissant de leur point A
           Collections.sort(STr , TerrainSegment.ComparatorA);
@@ -146,20 +156,6 @@ public  class TerrainSegment extends Objet{
             }
         }
 //        System.out.println(STr);
-        return STr;
-    }
-    
-    //supprime les doublons de segement dans les deux listes
-    public static ArrayList<TerrainSegment> Suppsegmendouble(ArrayList<TerrainSegment> ST , ArrayList<TerrainSegment> STr){
-        int nbrSTr = STr.size(),i, j, nbrST = ST.size();
-        for(j=0;j<nbrSTr;j++){
-            for(i=0;i<nbrST;i++){
-                if(STr.get(j).getA().getPx()==(ST.get(i).getA().getPx())&&(STr.get(j).getB().getPx()==ST.get(i).getB().getPx())&&(STr.get(j).getA().getPy()==ST.get(i).getA().getPy())&&(STr.get(j).getB().getPy()==ST.get(i).getB().getPy())){
-                       STr.remove(j);
-                       nbrSTr=STr.size();
-                   }
-            }       
-        }
         return STr;
     }
     

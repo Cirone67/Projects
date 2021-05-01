@@ -221,7 +221,7 @@ public class Terrain {
 //          return T; 
 //    }
 
-//        public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        boolean verifieforme,app;
 //        Terrain T;
 //        NoeudSimple N = new NoeudSimple(1,1);
@@ -235,13 +235,13 @@ public class Terrain {
 //        P = TerrainPoints.SaisiePoint(T);//saisie des points terrains
 //        if (P.size() > 3) {//déja un triangle pas necessaire de creer de nouveau points et segments
 //            verifieforme = TerrainPoints.verifieForme(P);//verifie la forme saisi , speciale , ou polygnoale classique
-//            P = TerrainPoints.CompletePoint(P, verifieforme);//rajoute des points si necessaires pour fermer la forme
+//            P = TerrainPoints.CompletePoint(P , verifieforme);//rajoute des points si necessaires pour fermer la forme
 //            if (verifieforme == true) {
 //                Pr = TerrainPoints.TrianglePoint(P, verifieforme);//rajoute des points pour le decoupage en triangle
 //            }
+//            ST = TerrainSegment.creationSegment(P, Pr, T, verifieforme);
 //            STr = TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);//rajouter des segments pour le decoupage en triangle
 //            STr = TerrainSegment.Suppsegmendouble(ST, STr);//supprime les doublons avec la liste de segment deja existante
-//            System.out.println(STr);
 //            //creer les triangles
 //            TT = TerrainTriangle.Creationtriangle(ST, STr, verifieforme);
 //            }else{
@@ -251,10 +251,8 @@ public class Terrain {
 //                TT.add(TTtempo);
 //            }
 //        System.out.println(TT);
-//        System.out.println("------------");
 //        app = Terrain.noeudTerrain(TT, N , false);
-//          
-//        }
+//    }
 }
 
 

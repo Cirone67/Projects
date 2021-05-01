@@ -96,7 +96,7 @@ public class TerrainPoints extends Objet{
     }
    
     //completer la liste de point en vue des segments si necessaire(fermer le terrain pour former un polygone spéciale)
-    public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P , boolean verifie){
+    public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P, boolean verifie){
         int i;
         double yminPT, xminPT, xmaxPT;
         yminPT = P.get(0).getPy();
@@ -114,16 +114,28 @@ public class TerrainPoints extends Objet{
                 xmaxPT=P.get(i).getPx();
             }
         }
-        TerrainPoints PTa, PTb;
+        TerrainPoints PTa;
+        TerrainPoints PTb;
         if((P.get(nbr-1).getPy()==P.get(0).getPy())&&(yminPT==P.get(nbr-1).getPy())){ 
             }else{
                 if(P.get(nbr-1).getPy()!= yminPT){
                 PTa= new TerrainPoints(P.get(nbr-1).getPx(),yminPT);
                 P.add(PTa);
+                nbr=P.size();
+                if((verifie==false)&&(P.get(nbr-1).getPx()==P.get(0).getPx())){
+                    P.remove(nbr-1);
+                    nbr=P.size();
                 }
-                if((P.get(0).getPy()!=yminPT)&&(verifie == false)){
+                }
+                if(P.get(0).getPy()!=yminPT){
                 PTb = new TerrainPoints(P.get(0).getPx(),yminPT);
                 P.add(0,PTb);
+                nbr=P.size();
+                if((verifie == false)&&(P.get(0).getPx()!=P.get(nbr-1).getPx())){   
+                }else if(verifie==false){
+                    P.remove(0);
+                    nbr=P.size();
+                }
                 }
             }
             return P;
