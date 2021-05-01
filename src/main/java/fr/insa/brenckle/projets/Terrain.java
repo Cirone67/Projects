@@ -77,14 +77,14 @@ public class Terrain {
          nbrTT = TT.size();
          double angle;
          boolean app=false;
-         if(tele==false){//pour des triangles saisies
+         if((tele==false)&&(nbrTT!=1)){//pour des triangles saisies
              angle=Terrain.angleNoeud(N, TT.get(0).getC1());
              if(0<angle){
                 if(angle<=Math.PI){
                     j=j+1;
                     angle=Terrain.angleNoeud(N, TT.get(0).getC2());
 //                    System.out.println("TEST DEBUG A1");
-                    if(angle>0){
+                    if(0<angle){
                         if(angle<=Math.PI){
                         j=j+1;
                             angle=Terrain.angleNoeud(N, TT.get(0).getC3());
@@ -94,7 +94,7 @@ public class Terrain {
                                j=j+1;
                                app = true;
 //                               System.out.println("TEST DEBUG A3");
-//                               System.out.println("le noeud appartient au triangle 0");
+//                               System.out.println("le noeud appartient au triangle 0-debut");
                                }
                             }
                     }}
@@ -139,7 +139,7 @@ public class Terrain {
                                         if(angle<=Math.PI){
                                             j=j+1;
                                             app = true;
-//                                            System.out.println("le point appartient au triangle "+(nbrTT-1));
+//                                            System.out.println("le noeud appartient au triangle "+(nbrTT-1));
                                         }
                                     }
                             }
@@ -148,27 +148,30 @@ public class Terrain {
                 }
             }
     }
-    }if(tele==true){//pour des triangles télécharger 
+    }if((tele==true)||(nbrTT==1)){//pour des triangles télécharger 
         angle=Terrain.angleNoeud(N, TT.get(0).getC1());
              if(0<=angle){
                 if(angle<=Math.PI){
                     j=j+1;
                     angle=Terrain.angleNoeud(N, TT.get(0).getC2());
+//                    System.out.println("TESTDEBUG1");
                     if(angle<=Math.PI){
                         if(0<=angle){
                         j=j+1;
                             angle=Terrain.angleNoeud(N, TT.get(0).getC3());
+//                            System.out.println("TESTDEBUG2");
                             if(0<=angle){
                                if(angle<=Math.PI){
+//                                   System.out.println("TESTDEBUG3");
                                j=j+1;
                                app = true;
-                               //System.out.println("le point appartient au triangle 0");
+//                               System.out.println("le noeud appartient au triangle 0-fin");
                                }
                             }
                     }
                     }
                 }
-            }
+            }  
     }
 //    if(j!=3){
 //        System.out.println("Le noeud appartient pas au terrain");
@@ -217,11 +220,12 @@ public class Terrain {
 //          T= new Terrain(xmin , xmax, ymin ,ymax);
 //          return T; 
 //    }
-//    public static void main(String[] args) {
-//        int nbrP, nbrST;
-//        double angleSegment;
-//        boolean verifieforme;
+
+//        public static void main(String[] args) {
+//        boolean verifieforme,app;
 //        Terrain T;
+//        NoeudSimple N = new NoeudSimple(1,1);
+//        TerrainTriangle TTtempo;
 //        ArrayList<TerrainPoints> P = new ArrayList<TerrainPoints>();
 //        ArrayList<TerrainPoints> Pr = new ArrayList<TerrainPoints>();
 //        ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();
@@ -229,23 +233,28 @@ public class Terrain {
 //        ArrayList<TerrainTriangle> TT = new ArrayList<TerrainTriangle>();
 //        T = Terrain.SaisieTerrain();// saisie du terrain
 //        P = TerrainPoints.SaisiePoint(T);//saisie des points terrains
-//        verifieforme = TerrainPoints.verifieForme(P);//verifie la forme saisi , speciale , ou polygnoale classique
-//        P = TerrainPoints.CompletePoint(P, verifieforme);//rajoute des points si necessaires pour fermer la forme
-//        if (verifieforme == true) {
-//            Pr = TerrainPoints.TrianglePoint(P, verifieforme);//rajoute des points pour le decoupage en triangle
-//        }
-//        ST = TerrainSegment.creationSegment(P, Pr, T, verifieforme);
 //        if (P.size() > 3) {//déja un triangle pas necessaire de creer de nouveau points et segments
+//            verifieforme = TerrainPoints.verifieForme(P);//verifie la forme saisi , speciale , ou polygnoale classique
+//            P = TerrainPoints.CompletePoint(P, verifieforme);//rajoute des points si necessaires pour fermer la forme
+//            if (verifieforme == true) {
+//                Pr = TerrainPoints.TrianglePoint(P, verifieforme);//rajoute des points pour le decoupage en triangle
+//            }
 //            STr = TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);//rajouter des segments pour le decoupage en triangle
 //            STr = TerrainSegment.Suppsegmendouble(ST, STr);//supprime les doublons avec la liste de segment deja existante
 //            System.out.println(STr);
-//        }
-//        //creer les triangles
-//        TT = TerrainTriangle.Creationtriangle(ST, STr, verifieforme);
+//            //creer les triangles
+//            TT = TerrainTriangle.Creationtriangle(ST, STr, verifieforme);
+//            }else{
+//                System.out.println("Vous avez saisie un triangle et un seul");
+//                ST = TerrainSegment.creationSegment(P, Pr, T, false);
+//                TTtempo= new TerrainTriangle(ST.get(0),ST.get(1),ST.get(2)); 
+//                TT.add(TTtempo);
+//            }
 //        System.out.println(TT);
-//
-//    }
-          
+//        System.out.println("------------");
+//        app = Terrain.noeudTerrain(TT, N , false);
+//          
+//        }
 }
 
 
