@@ -50,21 +50,16 @@ public class Calcul {
     public static double anglNormal(TerrainTriangle terrainTriangle, int premierPoint, ArrayList<TerrainTriangle> triangle){
         
         TerrainSegment segment = conv(premierPoint,terrainTriangle);
-                 double scalaire ;
-                 double signe;
                  //Pour placer le vecteur au milieu du sol
            double xmilieu = (segment.getA().getPx()+segment.getB().getPx())/2;
            double ymilieu = (segment.getA().getPy()+segment.getB().getPy())/2;
 
-           scalaire = ((segment.getB().getPx()-segment.getA().getPx()));
+           double scalaire = ((segment.getB().getPx()-segment.getA().getPx()));
            NoeudSimple fictif = new NoeudSimple(-1,xprojection(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2,MIN_VALUE)+ xmilieu,yprojection(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2, MIN_VALUE)+ ymilieu);
            
            //Test si le vecteur normal fictif est dans le terrain ou pas.
-           System.out.println(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2);
-           System.out.println(fictif.getAbs());
-           System.out.println(fictif.getOrd());
-           if((noeudTerrain(triangle,new NoeudSimple(-1,0,-2),false)==true)){ //Renvoie vrai si dedans (false si telecharger true si saisie
-            System.out.println("dans");
+           if((noeudTerrain(triangle,fictif,true)==true)){ //Renvoie vrai si dedans (false si telecharger true si saisie
+            //System.out.println("dans");
                 if(Math.PI==Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2){
                     return 0;
                     
@@ -75,7 +70,7 @@ public class Calcul {
                     return -(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2);
                 }
             }else{
-               System.out.println("dehors");
+               //System.out.println("dehors");
             return (Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2);
            }  
     }    
@@ -140,9 +135,7 @@ public class Calcul {
            while(j<treillis.getBarres().size()+nbrAppui(treillis.getNoeuds())){
            for(int t =0; t<treillis.getNoeuds().size(); t++){
            int i = t*2;
-               
-               //System.out.println(i);
-               //System.out.println(j);
+
               if(treillis.getNoeuds().get(t) instanceof AppuiDouble){
                   systeme.setMij(i, j, 1);
                   systeme.setMij(i+1, j+1, 1);

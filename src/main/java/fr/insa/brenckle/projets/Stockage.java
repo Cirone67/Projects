@@ -158,11 +158,11 @@ catch (IOException err)
 {System.out.println("Erreur :\n"+err);}
 }
 
-/*
+
 public static void main(String[] args){
 Treillis premier;
 premier = telechargement(3);
-Matrice prems = new Matrice(1,1);
+Matrice prems;
 Matrice sec;
 //System.out.println(premier.getTypeBarre().get(1).getCout());
 //System.out.println(premier.getNoeuds().get(0).getOrd());
@@ -179,5 +179,5 @@ Matrice resultat = prems.resoudreSyst(sec);
 resultat.String();
 //enregistrer(premier,2);
 }
-*/
+
 }
