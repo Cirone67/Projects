@@ -97,42 +97,43 @@ public class NeuCanvas extends Pane {
                 TP.draw(context);
             }        
         
-        for (TerrainTriangle TT: modele.getTerrainTriangles()){  //dessine tous les points et segments terrain
+          for (int i = 0; i<modele.getTerrainTriangles().size(); i++){
+//        for (TerrainTriangle TT: modele.getTerrainTriangles()){  //dessine tous les points et segments terrain
             
             //TT.draw(context);
             
-            if (pT.contains(TT.getC1().getA()) == false){    //1er point du triangle --> vérifie s'il n'a pas déjà été dessiné (vérification nécessaire?)
-                TT.getC1().getA().draw(context); //le dessine
-                pT.add(TT.getC1().getA());
-            }
-            
-            if (pT.contains(TT.getC1().getB()) == false){    //2eme point du triangle --> idem
-                TT.getC1().getB().draw(context); 
-                pT.add(TT.getC1().getB());
-            }
-
-            if (pT.contains(TT.getC1().getB()) == false){    //3eme point du triangle
-                TT.getC2().getB().draw(context); 
-                pT.add(TT.getC2().getB());
-            }
-            
-            if (sT.contains(TT.getC1()) == false){ //1er segment du triangle --> vérifie s'il n'a pas déjà été dessiné 
-                   TT.getC1().draw(context); //le dessine
-                   sT.add(TT.getC1());
-               }
-                
-            
-            if (sT.contains(TT.getC2()) == false){ //2eme segment du triangle --> idem 
-                   TT.getC2().draw(context); 
-                   sT.add(TT.getC2());
-               }
-                
-                     
-            if (sT.contains(TT.getC3()) == false){ //2eme segment du triangle --> idem 
-                   TT.getC3().draw(context); 
-                   sT.add(TT.getC3());
-               }
-            
+//            if (pT.contains(TT.getC1().getA()) == false){    //1er point du triangle --> vérifie s'il n'a pas déjà été dessiné (vérification nécessaire?)
+//                TT.getC1().getA().draw(context); //le dessine
+//                pT.add(TT.getC1().getA());
+//            }
+                modele.getTerrainTriangles().get(i).getC1().getA().draw(context);
+//            if (pT.contains(TT.getC1().getB()) == false){    //2eme point du triangle --> idem
+//                TT.getC1().getB().draw(context); 
+//                pT.add(TT.getC1().getB());
+//            }
+                modele.getTerrainTriangles().get(i).getC1().getB().draw(context);
+//            if (pT.contains(TT.getC1().getB()) == false){    //3eme point du triangle
+//                TT.getC2().getB().draw(context); 
+//                pT.add(TT.getC2().getB());
+//            }
+                modele.getTerrainTriangles().get(i).getC2().getB().draw(context);
+//            if (sT.contains(TT.getC1()) == false){ //1er segment du triangle --> vérifie s'il n'a pas déjà été dessiné 
+//                   TT.getC1().draw(context); //le dessine
+//                   sT.add(TT.getC1());
+//               }
+                 modele.getTerrainTriangles().get(i).getC1().draw(context);
+//            
+//            if (sT.contains(TT.getC2()) == false){ //2eme segment du triangle --> idem 
+//                   TT.getC2().draw(context); 
+//                   sT.add(TT.getC2());
+//               }
+                modele.getTerrainTriangles().get(i).getC2().draw(context); 
+//                     
+//            if (sT.contains(TT.getC3()) == false){ //2eme segment du triangle --> idem 
+//                   TT.getC3().draw(context); 
+//                   sT.add(TT.getC3());
+//               }
+                 modele.getTerrainTriangles().get(i).getC3().draw(context);
         }
         
         for (Noeud n: modele.getNoeuds()){ //dessine tous les noeuds

@@ -164,7 +164,7 @@ public class TerrainTriangle extends Objet{
         x[0] = this.getC1().getA().getPx(); y[0] = this.getC1().getA().getPy();
         x[1] = this.getC2().getB().getPx(); y[1] = this.getC2().getB().getPy();
         x[2] = this.getC2().getA().getPx(); y[1] = this.getC2().getA().getPy();
-        context.setFill(Color.AQUA.deriveColor(1, 1, 1, 0.5));
+        context.setFill(Color.AQUA.deriveColor(1, 1, 1, 0.2));
         context.strokePolygon(x, y, 3);
         context.fillPolygon(x, y, 3);
     }
