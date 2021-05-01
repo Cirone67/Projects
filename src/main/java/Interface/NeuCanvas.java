@@ -9,20 +9,11 @@ import fr.insa.brenckle.projets.Barre;
 import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.TerrainPoints;
 import fr.insa.brenckle.projets.TerrainSegment;
-import fr.insa.brenckle.projets.TerrainTriangle;
 import fr.insa.brenckle.projets.Treillis;
-import java.io.FileInputStream;
 import java.util.ArrayList;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.Pane;
 
 /**

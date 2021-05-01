@@ -41,7 +41,7 @@ public class App extends Application {
 //        System.out.println(getClass().getResource("App.java"));
 //        String path = new File("Apparence.css").getPath();
 //        System.out.println(path);
-//        //scene.getStylesheets().add(getClass().getResource("Apparence.css").toExternalForm());
+//        //scene.getStylesheets().add(getClass().getResource("Apparence.css").toExternalForm());    C:\Users\Guillaume R\Documents\NetBeansProjects\Projects\src\main\java\Interface\Apparence.css
 //        scene.getStylesheets().add(path);
 //        stage.setScene(scene);
 //        stage.show();

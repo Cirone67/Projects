@@ -78,7 +78,7 @@ public class MenuCreation extends HBox{
         VBox outils = new VBox (15, hbSelect, couleur);
         hbSelect.setAlignment(Pos.TOP_CENTER);
         
-        this.saisiePointTerrain = new SaisiePointTerrain(this.getMenuPrincipal().getI().getFenetre());
+        this.saisiePointTerrain = new SaisiePointTerrain(this);
         saisiePointTerrain.setResizable(false); 
         this.delimite = new DelimiterTerrain(this);
         delimite.setResizable(false);
@@ -106,9 +106,9 @@ public class MenuCreation extends HBox{
           this.creePTerrain.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(20);
           });
-          this.saisiePointTerrain.getQuitter().setOnAction((t) -> {
-              this.menuPrincipal.getI().getControleur().changeEtat(21);
-          });
+//          this.saisiePointTerrain.getQuitter().setOnAction((t) -> {
+//              this.menuPrincipal.getI().getControleur().changeEtat(21);
+//          });
           this.genererTerrain.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(30);
           }); 

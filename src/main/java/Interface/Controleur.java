@@ -6,7 +6,6 @@
 package Interface;
 
 import fr.insa.brenckle.projets.Objet;
-import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.TerrainPoints;
 import static fr.insa.brenckle.projets.TerrainPoints.CompletePoint;
 import static fr.insa.brenckle.projets.TerrainPoints.TrianglePoint;
@@ -19,7 +18,6 @@ import fr.insa.brenckle.projets.TerrainTriangle;
 import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
 import java.util.ArrayList;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 

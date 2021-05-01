@@ -37,16 +37,18 @@ public class SaisiePointTerrain extends Stage{
     private Button clear;
     private TextField tabs;
     private TextField tord;
-    private ArrayList<TerrainPoints> p = new ArrayList< TerrainPoints>(); 
+    private ArrayList<TerrainPoints> p;
+    private MenuCreation menuCreation;
     
     public ArrayList<TerrainPoints> getP(){
         return this.p;
     }
     
-    public SaisiePointTerrain(Stage sp){
-        
+    public SaisiePointTerrain(MenuCreation menuCreation){
+    
+    this.menuCreation = menuCreation;
     this.setTitle("Saisie des points terrain");
-    this.initOwner(sp);
+    this.initOwner(menuCreation.getMenuPrincipal().getI().getFenetre());
     this.initModality(Modality.WINDOW_MODAL);
     this.abs = new Label ("Abscisse");
     this.ord = new Label ("Ordonée");
@@ -57,6 +59,7 @@ public class SaisiePointTerrain extends Stage{
     this.tord = new TextField();
     this.p = new ArrayList<TerrainPoints>();
     
+    ArrayList<TerrainPoints> provisoire = new ArrayList<TerrainPoints>();
     
     
     int espace = 30;
@@ -81,13 +84,13 @@ public class SaisiePointTerrain extends Stage{
     this.setScene(s);
     
     this.clear.setOnAction((t) -> {
-        this.p.clear();
+        provisoire.clear();
     });
     
     this.ok.setOnAction((t) -> {
         if ((this.tabs.getText() != "")&&(this.tord.getText() != "")){
             TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
-            this.p.add(pT);
+            provisoire.add(pT);
             this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();
         }
 
@@ -101,6 +104,11 @@ public class SaisiePointTerrain extends Stage{
                 this.ok.requestFocus();
             }
         }
+    });
+    this.quitter.setOnAction((t) -> {
+        p.addAll(provisoire);
+        provisoire.clear();
+        menuCreation.getMenuPrincipal().getI().getControleur().changeEtat(21);
     });
     
     
