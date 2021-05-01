@@ -159,6 +159,21 @@ public  class TerrainSegment extends Objet{
         return STr;
     }
     
+    //supprime les doublons de segement dans les deux listes
+    public static ArrayList<TerrainSegment> Suppsegmendouble(ArrayList<TerrainSegment> ST , ArrayList<TerrainSegment> STr){
+        int nbrSTr = STr.size(),i, j, nbrST = ST.size();
+        for(j=0;j<nbrSTr;j++){
+            for(i=0;i<nbrST;i++){
+                if(STr.get(j).getA().getPx()==(ST.get(i).getA().getPx())&&(STr.get(j).getB().getPx()==ST.get(i).getB().getPx())&&(STr.get(j).getA().getPy()==ST.get(i).getA().getPy())&&(STr.get(j).getB().getPy()==ST.get(i).getB().getPy())){
+                       STr.remove(j);
+                       nbrSTr=STr.size();
+//                       System.out.println("segment retire");
+                   }
+            }       
+        }
+        return STr;
+    }
+    
    //calcul d'un angle entre deux segment adjacents renvoie un nombre positif si l'angle est inferieur a pi 
     public static double angleSegment(TerrainSegment ST1, TerrainSegment ST2 ){
         double angle;
