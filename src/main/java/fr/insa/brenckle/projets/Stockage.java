@@ -164,12 +164,6 @@ Treillis premier;
 premier = telechargement(3);
 Matrice prems;
 Matrice sec;
-//System.out.println(premier.getTypeBarre().get(1).getCout());
-//System.out.println(premier.getNoeuds().get(0).getOrd());
-//System.out.println(premier.getBarres().get(0).getFin().getIdNoeud());
-for(int i =0; i< premier.getNoeuds().size();i++){
-    System.out.println(premier.getNoeuds().get(i).getOrd());
-}
 prems = miseSousSystem(premier);
 prems.String();
 premier.ajoute(new Charge(1,3,1000,-Math.PI/2));

@@ -306,21 +306,21 @@ return MconcN;
         int sig =1;
         int i;
         for(i=0; i<this.getNbrLig()-1;i++){
-            System.out.println("______________________________________");
-            this.String();
+            //System.out.println("______________________________________");
+            //this.String();
             int lPGP = lignePlusGrandPivot(i);
-            System.out.println("Pivot de la colonne"+ i + "trouve à  la ligne" + lPGP);
+            //System.out.println("Pivot de la colonne"+ i + "trouve à  la ligne" + lPGP);
             sig = sig * permuteLigne(this,i,lPGP);
-            System.out.println("Matrice apres permutation");
-            this.String();
+            //System.out.println("Matrice apres permutation");
+            //this.String();
             
             for(int j=i+1; j<this.getNbrLig();j++){
                 transvection(i,j);
             }
-            System.out.println("Résultat");
-            System.out.println("______________________________________");
+            //System.out.println("Résultat");
+            //System.out.println("______________________________________");
             
-            this.String();
+            //this.String();
         
         }
  return this;

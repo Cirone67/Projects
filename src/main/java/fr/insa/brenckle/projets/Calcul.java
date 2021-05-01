@@ -124,7 +124,7 @@ public class Calcul {
                  
                  systeme.setMij(i, j, Math.cos(anglAvecHoriz(treillis.getBarres().get(j),treillis.getNoeuds().get(t))));
                  systeme.setMij(i+1, j, Math.sin(anglAvecHoriz(treillis.getBarres().get(j),treillis.getNoeuds().get(t))));
-             systeme.String();
+             //systeme.String();
              }
              }
          }
@@ -147,7 +147,7 @@ public class Calcul {
               }else{
                j= j+2;   
               }
-              systeme.String();
+              //systeme.String();
            }
         
        }
