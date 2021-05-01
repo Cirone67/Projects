@@ -11,6 +11,7 @@ package fr.insa.brenckle.projets;
  */
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class TerrainTriangle extends Objet{
     private TerrainSegment C1;
@@ -152,12 +153,19 @@ public class TerrainTriangle extends Objet{
 }
 
     @Override
-    public double distancePoint(double abs, double ord) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double distancePoint(double abs, double ord) {  //distance avec le centre du triangle
+        return Double.MAX_VALUE; //A FAIRE
     }
 
     @Override
     public void draw(GraphicsContext context) {
-        //TO DO
+        double [] x = new double [3]; 
+        double [] y = new double [3];
+        x[0] = this.getC1().getA().getPx(); y[0] = this.getC1().getA().getPy();
+        x[1] = this.getC2().getB().getPx(); y[1] = this.getC2().getB().getPy();
+        x[2] = this.getC2().getA().getPx(); y[1] = this.getC2().getA().getPy();
+        context.setFill(Color.AQUA.deriveColor(1, 1, 1, 0.5));
+        context.strokePolygon(x, y, 3);
+        context.fillPolygon(x, y, 3);
     }
 }

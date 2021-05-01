@@ -5,11 +5,8 @@
  */
 package Interface;
 
-import fr.insa.brenckle.projets.TerrainPoints;
-import fr.insa.brenckle.projets.TerrainTriangle;
 import fr.insa.brenckle.projets.Treillis;
-import java.util.ArrayList;
-import javafx.scene.canvas.GraphicsContext;
+import java.io.FileNotFoundException;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -25,7 +22,7 @@ public class Interface extends BorderPane{
     private Treillis treillis;
     private Controleur controleur;
     
-    public Interface (Stage stage){
+    public Interface (Stage stage) throws FileNotFoundException{
         
         this.treillis = new Treillis();
         this.fenetre = stage;
@@ -39,8 +36,6 @@ public class Interface extends BorderPane{
         this.setCenter(this.graph);    
         
         this.setTop(this.menuPrincipal);
-        
-
         
            
     }

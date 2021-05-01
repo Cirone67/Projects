@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import java.io.FileNotFoundException;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
@@ -27,7 +28,7 @@ public class MenuPrincipal extends VBox{
     private int etat;
 
     
-    public MenuPrincipal (Interface I){
+    public MenuPrincipal (Interface I) throws FileNotFoundException{
         
         this.I = I;
         this.menuCreation = new MenuCreation(this);

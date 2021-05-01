@@ -19,6 +19,7 @@ import fr.insa.brenckle.projets.TerrainTriangle;
 import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
 import java.util.ArrayList;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 
@@ -49,6 +50,7 @@ public class Controleur {
             ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
             for (TerrainPoints TP: listPT){
                 GraphicsContext context = this.vue.getGraph().getGraphicsContext2D();
+                context.clearRect(0, 0, this.vue.getGraph().getCanvas().getWidth(), this.vue.getGraph().getCanvas().getWidth());
                 TP.draw(context);
             }
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().close();
@@ -73,7 +75,7 @@ public class Controleur {
             this.vue.getGraph().redraw();
         }
     }
-    
+     
     void clicDansInterface (MouseEvent t){
         if (this.etat == 10){
             //TO DO sélection

@@ -5,14 +5,20 @@
  */
 package Interface;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -35,11 +41,13 @@ public class MenuCreation extends HBox{
     private Button genererTerrain;
     private Button delimiterTerrain;
     private ColorPicker couleur;
+    private Button selection;
+    private Button suppression;
     
     private SaisiePointTerrain saisiePointTerrain;
     private DelimiterTerrain delimite;
     
-    public MenuCreation (MenuPrincipal menuPrincipal){
+    public MenuCreation (MenuPrincipal menuPrincipal) throws FileNotFoundException{
         
         //Création des éléments
         this.menuPrincipal = menuPrincipal;
@@ -57,7 +65,18 @@ public class MenuCreation extends HBox{
         this.actPTerrain = new Button ("Actualiser"); this.actPTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.supSegTerrain = new Button ("Supprimer"); this.supSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         
-        this.couleur = new ColorPicker();  
+        this.couleur = new ColorPicker(); this.couleur.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 1 10 1 10; -fx-font-size: 9pt");
+        this.selection = new Button(); this.selection.setStyle("-fx-background-color: #ccc; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10");
+        FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Pictures\\mouseCursor.png");
+        Image img = new Image(inputstream, 16, 24, false, false); ImageView select = new ImageView(img);
+        this.selection.setGraphic(select);
+        this.suppression = new Button(); this.suppression.setStyle("-fx-background-color: #ccc; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 6 3 6");
+        FileInputStream inputstream2 = new FileInputStream("C:\\Users\\Guillaume R\\Pictures\\delete.png");
+        Image img2 = new Image(inputstream2, 24, 24, false, false); ImageView suppress = new ImageView(img2);
+        this.suppression.setGraphic(suppress);
+        HBox hbSelect = new HBox (10, selection, suppression); 
+        VBox outils = new VBox (15, hbSelect, couleur);
+        hbSelect.setAlignment(Pos.TOP_CENTER);
         
         this.saisiePointTerrain = new SaisiePointTerrain(this.getMenuPrincipal().getI().getFenetre());
         saisiePointTerrain.setResizable(false); 
@@ -76,11 +95,11 @@ public class MenuCreation extends HBox{
           SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), noeuds, barres, 0, 10, 0, 5, 160, 5, 0, 0, 0, true);
           
           Separator sv1 = new Separator (Orientation.VERTICAL);
-          Separator sv2 = new Separator (Orientation.VERTICAL);
+          Separator sv2 = new Separator (Orientation.VERTICAL); Separator sv3 = new Separator (Orientation.VERTICAL);
           Separator sh = new Separator (Orientation.HORIZONTAL);
-          this.getChildren().addAll(terrain, sv1, treillis, sv2, this.couleur); this.setStyle("-fx-background-color: #e5e5e5");
+          this.getChildren().addAll(outils, sv1, terrain, sv2, treillis, sv3); this.setStyle("-fx-background-color: #e5e5e5");
           this.setSpacing(30);
-          this.setMargin(couleur, new Insets(20, 10, 5, 20));   
+          this.setMargin(outils, new Insets(20, -5, 5, 25));   
           
           
           //Gestion événements
@@ -106,6 +125,9 @@ public class MenuCreation extends HBox{
                 this.delimite.close();  
                 this.menuPrincipal.getI().getControleur().changeEtat(19);
             }              
+          });
+          this.selection.setOnAction((t) -> {
+              this.menuPrincipal.getI().getControleur().changeEtat(10);
           });
         
         

@@ -59,7 +59,7 @@ public class SaisiePointTerrain extends Stage{
     
     
     
-    int espace = 50;
+    int espace = 30;
     VBox boutons = new VBox(espace,this.abs,this.ord);
     boutons.setLayoutX(25); boutons.setLayoutY(105);
     VBox text = new VBox(espace,this.tabs,this.tord);
