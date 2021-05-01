@@ -66,8 +66,8 @@ public class Terrain {
         TerrainPoints B = ST1.getB();
         NX = N.getAbs();
         NY= N.getOrd();
-        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(NY - B.getPy(), NX - B.getPx()); 
-        //System.out.println(angle);
+        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(NY - A.getPy(), NX - A.getPx()); 
+        //System.out.println(angle*180/Math.PI);
         return angle;
     }
     
@@ -83,57 +83,63 @@ public class Terrain {
                 if(angle<=Math.PI){
                     j=j+1;
                     angle=Terrain.angleNoeud(N, TT.get(0).getC2());
-                    if(angle>Math.PI){
+//                    System.out.println("TEST DEBUG A1");
+                    if(angle>0){
+                        if(angle<=Math.PI){
                         j=j+1;
                             angle=Terrain.angleNoeud(N, TT.get(0).getC3());
-                            if(0<angle){
-                               if(angle<=Math.PI){
+//                            System.out.println("TEST DEBUG A2");
+                            if(0>=angle){
+                               if(angle>=-Math.PI){
                                j=j+1;
                                app = true;
-                               //System.out.println("le point appartient au triangle 0");
+//                               System.out.println("TEST DEBUG A3");
+//                               System.out.println("le noeud appartient au triangle 0");
                                }
                             }
-                    }
+                    }}
                 }
             }
         if(j!=3){
             for(i=1;i<nbrTT-1;i++){
              j=0;
              angle=Terrain.angleNoeud(N, TT.get(i).getC1());
-             if(angle>0){
+             if(angle>=0){
                     if(angle<=Math.PI){
                     j=j+1;
                     angle=Terrain.angleNoeud(N, TT.get(i).getC2());
-                        if(angle>Math.PI){
+                        if(angle>=-Math.PI){
+                            if(angle<=0){
                             j=j+1;
                             angle=Terrain.angleNoeud(N, TT.get(i).getC3());
-                                if(angle>0){
+                                if(angle>=0){
                                     if(angle<=Math.PI){
                                         j=j+1;
                                         app = true;
-                                        //System.out.println("le point appartient au triangle "+i);
+//                                        System.out.println("le noeud appartient au triangle "+i);
                                         i=nbrTT-1;
                                     }               
                                 }
+                        }
                         }
                     }
                 }
             }
             if(j!=3){
                 angle=Terrain.angleNoeud(N, TT.get(nbrTT-1).getC1());
-                if(angle>0){
+                if(angle>=0){
                     if(angle<=Math.PI){
                     j=j+1;
                     angle=Terrain.angleNoeud(N, TT.get(nbrTT-1).getC2());
-                        if(angle>0){
+                        if(angle>=0){
                             if(angle<=Math.PI){
                                 j=j+1;
                                 angle=Terrain.angleNoeud(N, TT.get(nbrTT-1).getC3());
-                                    if(angle>0){
+                                    if(angle>=0){
                                         if(angle<=Math.PI){
                                             j=j+1;
                                             app = true;
-                                            //System.out.println("le point appartient au triangle "+(nbrTT-1));
+//                                            System.out.println("le point appartient au triangle "+(nbrTT-1));
                                         }
                                     }
                             }
@@ -142,20 +148,17 @@ public class Terrain {
                 }
             }
     }
-        if(j!=3){
-            System.out.println("Le noeud n'appartient a aucun triangle du terrain.");
-        }
     }if(tele==true){//pour des triangles télécharger 
         angle=Terrain.angleNoeud(N, TT.get(0).getC1());
-             if(0<angle){
+             if(0<=angle){
                 if(angle<=Math.PI){
                     j=j+1;
                     angle=Terrain.angleNoeud(N, TT.get(0).getC2());
                     if(angle<=Math.PI){
-                        if(0<angle){
+                        if(0<=angle){
                         j=j+1;
                             angle=Terrain.angleNoeud(N, TT.get(0).getC3());
-                            if(0<angle){
+                            if(0<=angle){
                                if(angle<=Math.PI){
                                j=j+1;
                                app = true;
@@ -167,6 +170,9 @@ public class Terrain {
                 }
             }
     }
+//    if(j!=3){
+//        System.out.println("Le noeud appartient pas au terrain");
+//    }
        return app;
      }
 
