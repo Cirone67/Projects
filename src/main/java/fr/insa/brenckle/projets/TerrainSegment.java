@@ -50,7 +50,7 @@ public  class TerrainSegment extends Objet{
     }
     
     //creation des segment du terrain a partir des points saisie par l'utilsateur + completer en forme poylgonale si necessaire 
-    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr, Terrain T , boolean verifie){
+    public static ArrayList<TerrainSegment> creationSegment( ArrayList< TerrainPoints > P, ArrayList<TerrainPoints> Pr , boolean verifie){
         int i,nbr,nbrPr;
         TerrainSegment STtempo;
         ArrayList<TerrainSegment> ST = new ArrayList<TerrainSegment>();

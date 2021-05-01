@@ -239,7 +239,7 @@ public class Terrain {
 //            if (verifieforme == true) {
 //                Pr = TerrainPoints.TrianglePoint(P, verifieforme);//rajoute des points pour le decoupage en triangle
 //            }
-//            ST = TerrainSegment.creationSegment(P, Pr, T, verifieforme);
+//            ST = TerrainSegment.creationSegment(P, Pr, verifieforme);
 //            STr = TerrainSegment.creationSegmentTriangle(P, Pr, verifieforme);//rajouter des segments pour le decoupage en triangle
 //            STr = TerrainSegment.Suppsegmendouble(ST, STr);//supprime les doublons avec la liste de segment deja existante
 //            //creer les triangles
