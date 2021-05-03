@@ -221,19 +221,23 @@ public class Controleur {
                 if (this.vue.getTreillis().getNoeuds().get(i).distancePoint(px, py) < distMin){
                     objProche = this.vue.getTreillis().getNoeuds().get(i);
                     distMin = objProche.distancePoint(px, py);
+                    System.out.println(distMin+", distance minimale noeud");
                 }
             } for (int i=0; i<this.vue.getTreillis().getTerrainTriangles().size(); i++){
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC1().distancePoint(px, py) < distMin){  //segments
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC1();
                     distMin = objProche.distancePoint(px, py);
+                    System.out.println(distMin+", distance minimale segment C1");
                 }
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC2().distancePoint(px, py) < distMin){
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC2();
                     distMin = objProche.distancePoint(px, py);
+                    System.out.println(distMin+", distance minimale segment C2");
                 }
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).distancePoint(px, py) < distMin){
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC3();
                     distMin = objProche.distancePoint(px, py);
+                    System.out.println(distMin+", distance minimale segment C3");
                 }
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC1().getA().distancePoint(px, py) < distMin){  //points terrain  C1 A
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC1().getA();
