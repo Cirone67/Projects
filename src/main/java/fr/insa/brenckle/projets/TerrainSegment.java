@@ -186,9 +186,10 @@ public  class TerrainSegment extends Objet{
         double angle;
         TerrainPoints A = ST1.getA();
         TerrainPoints B = ST1.getB();
-        TerrainPoints C = ST2.getB();
-        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(C.getPy() - B.getPy(), C.getPx() - B.getPx()); 
-        System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);
+        TerrainPoints C = ST2.getA();
+        TerrainPoints D = ST2.getB();
+        angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(D.getPy() - C.getPy(), D.getPx() - C.getPx()); 
+        System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);//*180/Math.PI pour passer en degré
         return angle;
     }
     
