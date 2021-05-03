@@ -174,6 +174,13 @@ public  class TerrainSegment extends Objet{
         return STr;
     }
     
+    //inverse le sens d'un segment passe de AB a BA;
+    public static TerrainSegment InvSegment(TerrainSegment ST){
+        TerrainSegment STinv;
+        STinv = new TerrainSegment(ST.getB(),ST.getA());
+        return STinv;
+    }
+    
    //calcul d'un angle entre deux segment adjacents renvoie un nombre positif si l'angle est inferieur a pi 
     public static double angleSegment(TerrainSegment ST1, TerrainSegment ST2 ){
         double angle;

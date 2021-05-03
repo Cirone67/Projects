@@ -75,8 +75,8 @@ public class TerrainTriangle extends Objet{
         return ("[["+C1+";"+C2+";"+C3+"]]");
     }
     
-       //creation des triangles du terrain;
-    public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegment> ST, ArrayList<TerrainSegment> STr, boolean verifie){
+    //creation des triangles du terrain;
+public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegment> ST, ArrayList<TerrainSegment> STr, boolean verifie){
         int nbrST= ST.size();
         int nbrSTr = STr.size();
         int i, j ,k, r,cond; 
@@ -85,51 +85,54 @@ public class TerrainTriangle extends Objet{
         if(verifie == true){
             //forme special
             if(ST.get(0).getA().getPx()==ST.get(1).getA().getPx()){
-                TTtempo = new TerrainTriangle(ST.get(0),ST.get(1),STr.get(0));
+                TTtempo = new TerrainTriangle(ST.get(0),ST.get(1),TerrainSegment.InvSegment(STr.get(0)));
                 TT.add(TTtempo);
                 j=2;
                 cond=1;
                 k=nbrST-1;
             }else{
-                TTtempo = new TerrainTriangle(ST.get(0),ST.get(nbrST-1),STr.get(0));
+                TTtempo = new TerrainTriangle(ST.get(nbrST-1),ST.get(0),TerrainSegment.InvSegment(STr.get(0)));
                 TT.add(TTtempo);
                 j=1;
                 cond=0;
                 k=nbrST-2;
             }
-                for(i=0;i<nbrSTr-1;i++){
-                    //System.out.println("TEST DEBUG");
+                for(i=0;i<nbrSTr-2;i++){
+                    if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){//si le segment est vertical
+                        if(cond==1){
+                            cond=0;
+                            System.out.println("switch de 1 à 0 "+i);
+                            System.out.println(j+"|"+k);
+                            j=j+1;
+                            i=i+1;
+                        }else{
+                            cond=1;
+                            System.out.println("switch au 1 "+i);
+                            System.out.println(j+"|"+k);
+                            j=j+1;
+                            i=i+1; 
+                        }
+                    }
                     r = i%2;
                     if((r!=0)&&(cond==0)){
-                        TTtempo = new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(k));
+                        TTtempo = new TerrainTriangle(STr.get(i),TerrainSegment.InvSegment(STr.get(i+1)),ST.get(k));
                         TT.add(TTtempo);
                         k=k-1;
                     }
                     if((r==0)&&(cond==0)){
-                        TTtempo= new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(j));
+                        TTtempo= new TerrainTriangle(STr.get(i),ST.get(j),TerrainSegment.InvSegment(STr.get(i+1)));
                         TT.add(TTtempo);
                         j=j+1;
                     }
                     if((r!=0)&&(cond==1)){
-                        TTtempo = new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(j));
+                        TTtempo = new TerrainTriangle(STr.get(i),ST.get(j),TerrainSegment.InvSegment(STr.get(i+1)));
                         TT.add(TTtempo);
                         j=j+1;
                     }
                     if((r==0)&&(cond==1)){
-                        TTtempo= new TerrainTriangle(STr.get(i),STr.get(i+1),ST.get(k));
+                        TTtempo= new TerrainTriangle(STr.get(i),TerrainSegment.InvSegment(STr.get(i+1)),ST.get(k));
                         TT.add(TTtempo);
                         k=k-1;
-                    }
-                    if(ST.get(j).getA().getPx()==ST.get(j).getB().getPx()){//si le segment est vertical
-                        if(cond==1){
-                            j=j+1;
-                            i=i+1;
-                            cond=0;
-                            //System.out.println("switch de 1 à 0");
-                        }else{
-                            cond=1;
-                            //System.out.println("switch au 1");
-                        }
                     }
                 }
                 TTtempo= new TerrainTriangle(STr.get(nbrSTr-1),ST.get(j),ST.get(k));
@@ -137,15 +140,15 @@ public class TerrainTriangle extends Objet{
         }
         //forme polygonale
         if(verifie == false){
-            TTtempo = new TerrainTriangle (ST.get(0),ST.get(1),STr.get(0));
+            TTtempo = new TerrainTriangle (ST.get(0),ST.get(1),TerrainSegment.InvSegment(STr.get(0)));
             TT.add(TTtempo);
             j=0;
             for(i=2;i<nbrST-2;i++){
-               TTtempo= new TerrainTriangle( STr.get(j),ST.get(i),STr.get(j+1));
+               TTtempo= new TerrainTriangle( STr.get(j),ST.get(i),TerrainSegment.InvSegment(STr.get(j+1)));
                TT.add(TTtempo);
                j=j+1;
             }
-            TTtempo = new TerrainTriangle(ST.get(nbrST-2),ST.get(nbrST-1),STr.get(nbrSTr-1));
+            TTtempo = new TerrainTriangle(STr.get(nbrSTr-1),ST.get(nbrST-2),ST.get(nbrST-1));
             TT.add(TTtempo);
          
     }
