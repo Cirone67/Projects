@@ -7,6 +7,7 @@ package Interface;
 
 import fr.insa.brenckle.projets.Barre;
 import fr.insa.brenckle.projets.Noeud;
+import fr.insa.brenckle.projets.Objet;
 import fr.insa.brenckle.projets.TerrainPoints;
 import fr.insa.brenckle.projets.TerrainSegment;
 import fr.insa.brenckle.projets.Treillis;
@@ -70,6 +71,9 @@ public class NeuCanvas extends Pane {
             xy.clear();
             canvas.setCursor(Cursor.DEFAULT);
         });
+        this.canvas.setOnMouseClicked((t) -> {
+            I.getControleur().clicDansInterface(t);
+        });
 
     }
     
@@ -79,16 +83,15 @@ public class NeuCanvas extends Pane {
     
     public void redraw(){
         GraphicsContext context = this.getCanvas().getGraphicsContext2D();
+        canvas.setRotate(180);
         Treillis modele = this.getI().getTreillis();
-        ArrayList<TerrainPoints> pT = new ArrayList<TerrainPoints>();
-        ArrayList<TerrainSegment> sT = new ArrayList<TerrainSegment>();
         
         ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.getI().getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
-            for (TerrainPoints TP: listPT){   //redessine les premiers points
+        for (TerrainPoints TP: listPT){   //redessine les premiers points
                 TP.draw(context);
-            }        
+        }        
         
-          for (int i = 0; i<modele.getTerrainTriangles().size(); i++){
+        for (int i = 0; i<modele.getTerrainTriangles().size(); i++){
               
                 modele.getTerrainTriangles().get(i).getC1().getA().draw(context);  //dessine les points terrain
                 modele.getTerrainTriangles().get(i).getC1().getB().draw(context);
@@ -105,6 +108,12 @@ public class NeuCanvas extends Pane {
         for (Barre b: modele.getBarres()){ //dessine les barres
             b.draw(context);
         }
+        if(I.getControleur().getSelection().isEmpty() == false) {
+            for (Objet obj:I.getControleur().getSelection()){
+            obj.drawSelection(context);
+        }
+        }
+
     }
     
     public void zoom(double zoomRatio, double posX, double posY){

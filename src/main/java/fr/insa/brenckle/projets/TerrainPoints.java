@@ -12,6 +12,7 @@ package fr.insa.brenckle.projets;
 import java.util.ArrayList;
 import java.util.*;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 
 public class TerrainPoints extends Objet{
@@ -191,7 +192,7 @@ public class TerrainPoints extends Objet{
             for(i=0;i<nbr;i++){
                 for(j=1;j<Pr.size();j++){
                     if((P.get(i).getPx()==Pr.get(j).getPx())&&(P.get(i).getPy()==Pr.get(j).getPy())){
-                        Pr.remove(j);
+                        //  Pr.remove(j);
                     }
                 }
             }
@@ -219,9 +220,15 @@ public class TerrainPoints extends Objet{
     
     public void draw(GraphicsContext gc){
         int r = 3;
-        gc.setFill(this.getCouleur());
-        gc.strokeOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
+        gc.setFill(this.getCouleur()); gc.setStroke(this.getCouleur());
         gc.fillOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
+    }
+    
+    public void drawSelection(GraphicsContext gc){
+        int r = 3;
+        gc.setFill(this.couleurSelection); gc.setStroke(couleurSelection);
+        gc.strokeOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
+        gc.fillOval(this.getPx()-r*0.5, this.getPy()-r, r, r); 
     }
 
     @Override

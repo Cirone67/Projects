@@ -28,7 +28,7 @@ public class App extends Application {
         Interface I = new Interface (stage);
         Scene scene = new Scene (I, 1000, 500);
         stage.setScene(scene);
-        stage.setTitle("Treillis");
+        stage.setTitle("Treillis meister");
         FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Pictures\\Bridge Logo2.png");
         Image img = new Image(inputstream);        
         stage.getIcons().add(img);

@@ -45,6 +45,7 @@ public class MenuCreation extends HBox{
     private Button suppression;
     
     private SaisiePointTerrain saisiePointTerrain;
+    private PanneauNoeuds panneauNoeuds;
     private DelimiterTerrain delimite;
     
     public MenuCreation (MenuPrincipal menuPrincipal) throws FileNotFoundException{
@@ -82,6 +83,7 @@ public class MenuCreation extends HBox{
         saisiePointTerrain.setResizable(false); 
         this.delimite = new DelimiterTerrain(this);
         delimite.setResizable(false);
+        this.panneauNoeuds = new PanneauNoeuds(this);
         
         //Mise en place
           HBox titreTerrain = new HBox(15, new Label("Terrain"), this.delimiterTerrain, this.getGenererTerrain());
@@ -90,9 +92,9 @@ public class MenuCreation extends HBox{
           SousMenuPpl segTerrain = new SousMenuPpl (new Label ("Segments Terrain"), this.getCreeSegTerrain(), this.getSupSegTerrain(), 5, 5, 10, 5, 30, 5, 10, 5, 10, false);
           SousMenuPpl terrain = new SousMenuPpl (titreTerrain, pTerrain, segTerrain, 0, 10, 0, 5, 160, 5, 0, 0, 0, true);
           
-          SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.getCreeNoeud(), this.getSupNoeud(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
+          //SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.getCreeNoeud(), this.getSupNoeud(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
           SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.getCreeBarre(), this.getSupBarre(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
-          SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), noeuds, barres, 0, 10, 0, 5, 160, 5, 0, 0, 0, true);
+          SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), getPanneauNoeuds(), barres, 0, 10, 0, 5, 230, 5, 0, 0, 0, true);
           
           Separator sv1 = new Separator (Orientation.VERTICAL);
           Separator sv2 = new Separator (Orientation.VERTICAL); Separator sv3 = new Separator (Orientation.VERTICAL);
@@ -106,9 +108,6 @@ public class MenuCreation extends HBox{
           this.creePTerrain.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(20);
           });
-//          this.saisiePointTerrain.getQuitter().setOnAction((t) -> {
-//              this.menuPrincipal.getI().getControleur().changeEtat(21);
-//          });
           this.genererTerrain.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(30);
           }); 
@@ -128,6 +127,9 @@ public class MenuCreation extends HBox{
           });
           this.selection.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(10);
+          });
+          this.panneauNoeuds.getCreer().setOnAction((t) -> {
+              this.menuPrincipal.getI().getControleur().changeEtat(40);
           });
         
         
@@ -223,6 +225,13 @@ public class MenuCreation extends HBox{
      */
     public DelimiterTerrain getDelimite() {
         return delimite;
+    }
+
+    /**
+     * @return the panneauNoeuds
+     */
+    public PanneauNoeuds getPanneauNoeuds() {
+        return panneauNoeuds;
     }
     
 }

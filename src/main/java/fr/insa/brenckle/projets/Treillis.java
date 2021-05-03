@@ -43,6 +43,7 @@ private double TXmin;
         this.typeBarre = new ArrayList<TypeBarre>();
         this.charge = new ArrayList<Charge>();        
     }
+    
 
     public ArrayList<TerrainTriangle> getTerrainTriangles() {
         return terrainTriangles;

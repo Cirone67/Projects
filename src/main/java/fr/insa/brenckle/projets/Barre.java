@@ -113,8 +113,12 @@ public double angle(Barre Barre2){
 }
 
     public void draw(GraphicsContext context){
-        //TO DO
+        //A faire
     }
+    public void drawSelection (GraphicsContext context){
+        //A faire
+    }
+    
 /*
 public static void main(String[] args){
 Barre a = new Barre(new Noeud (1),new Noeud(2));

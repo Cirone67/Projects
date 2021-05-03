@@ -46,6 +46,7 @@ public class DelimiterTerrain extends Stage{
         this.ok = new Button ("Ok"); this.ok.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.valider = new Button ("Valider"); this.valider.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.coordonnees = new double[4];
+        choix.getSelectionModel().selectFirst();
         
         //Mise en place
         HBox hb = new HBox(20, choix, donnee, ok);

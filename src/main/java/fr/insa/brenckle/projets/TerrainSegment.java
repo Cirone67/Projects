@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public  class TerrainSegment extends Objet{
     private TerrainPoints A;
@@ -195,6 +196,10 @@ public  class TerrainSegment extends Objet{
     
     public void draw(GraphicsContext context){
         context.strokeLine(this.getA().getPx(), this.getA().getPy(), this.getB().getPx(), this.getB().getPy());
+    }
+    public void drawSelection(GraphicsContext gc){
+        gc.setStroke(couleurSelection);
+        gc.strokeLine(this.getA().getPx(), this.getA().getPy(), this.getB().getPx(), this.getB().getPy());
     }
 
     public double distancePoint(double abs, double ord) {

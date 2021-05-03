@@ -6,6 +6,7 @@
 package fr.insa.brenckle.projets;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -36,6 +37,13 @@ public abstract class Noeud extends Objet{
     
     public void draw(GraphicsContext gc){  //TO DO différencier noeuds simples et appuis
         int r = 3;
+        gc.setStroke(Color.web("#40b6ff"));
+        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
+        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
+    }
+    public void drawSelection(GraphicsContext gc){  
+        int r = 3;
+        gc.setStroke(couleurSelection); gc.setFill(couleurSelection);
         gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
         gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
     }

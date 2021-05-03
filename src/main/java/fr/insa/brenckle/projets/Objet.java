@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 public abstract class Objet{
     
     private Color couleur;
+    public static Color couleurSelection = Color.web("#2ba7ef", 0.6);
     
     public Objet(Color couleur){
         this.couleur = couleur;
@@ -33,6 +34,8 @@ public abstract class Objet{
     }
     
     public abstract void draw(GraphicsContext context);
+    
+    public abstract void drawSelection(GraphicsContext context);
     
     public abstract double distancePoint(double abs, double ord);     
     

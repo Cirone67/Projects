@@ -168,4 +168,7 @@ public class TerrainTriangle extends Objet{
         context.strokePolygon(x, y, 3);
         context.fillPolygon(x, y, 3);
     }
+    public void drawSelection(GraphicsContext context) {
+        
+    }
 }
