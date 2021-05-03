@@ -58,7 +58,7 @@ public class Calcul {
            NoeudSimple fictif = new NoeudSimple(-1,xprojection(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2,MIN_VALUE)+ xmilieu,yprojection(Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2, MIN_VALUE)+ ymilieu);
            
            //Test si le vecteur normal fictif est dans le terrain ou pas.
-           if((noeudTerrain(triangle,fictif,true)==true)){ //Renvoie vrai si dedans (false si telecharger true si saisie
+           if((noeudTerrain(triangle,fictif)==true)){ //Renvoie vrai si dedans (false si telecharger true si saisie
             //System.out.println("dans");
                 if(Math.PI==Math.acos(scalaire/(longueurT(segment.getA(),segment.getB())))+Math.PI/2){
                     return 0;

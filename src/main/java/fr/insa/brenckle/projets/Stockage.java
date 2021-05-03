@@ -92,9 +92,18 @@ curseur.newLine();
 for(int i=0; i<treillis.getTerrainTriangles().size();i++){
 curseur.write("Triangle;");
 curseur.write(treillis.getTerrainTriangles().get(i).getidT()+";");
+
+
+
 curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC1().getA().getPx(),treillis.getTerrainTriangles().get(i).getC1().getA().getPy())+";");
 curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC1().getB().getPx(),treillis.getTerrainTriangles().get(i).getC1().getB().getPy())+";");
 curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC2().getB().getPx(),treillis.getTerrainTriangles().get(i).getC1().getB().getPy())+"");
+
+
+
+
+
+
 curseur.newLine();
 }
 curseur.write("FINTRIANGLES");
