@@ -5,22 +5,15 @@
  */
 package Interface;
 
-import fr.insa.brenckle.projets.AppuiDouble;
-import fr.insa.brenckle.projets.AppuiSimple;
-import fr.insa.brenckle.projets.Noeud;
-import fr.insa.brenckle.projets.NoeudSimple;
-import fr.insa.brenckle.projets.Objet;
 import fr.insa.brenckle.projets.TerrainSegment;
 import fr.insa.brenckle.projets.TerrainTriangle;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
