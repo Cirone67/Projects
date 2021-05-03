@@ -135,7 +135,7 @@ public class Controleur {
         if (this.etat == 10){    //sélection
             double posX = t.getX();
             double posY = t.getY();
-            Objet objSelect = this.plusProche(posX, posY, 50);
+            Objet objSelect = this.plusProche(posX, posY, 25);
             
             if (objSelect != null){
                 if (t.isShiftDown() == true){

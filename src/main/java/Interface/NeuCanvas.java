@@ -9,7 +9,6 @@ import fr.insa.brenckle.projets.Barre;
 import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.Objet;
 import fr.insa.brenckle.projets.TerrainPoints;
-import fr.insa.brenckle.projets.TerrainSegment;
 import fr.insa.brenckle.projets.Treillis;
 import java.util.ArrayList;
 import javafx.scene.Cursor;

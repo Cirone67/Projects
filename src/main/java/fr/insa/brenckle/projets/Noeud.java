@@ -34,19 +34,7 @@ public abstract class Noeud extends Objet{
         double y = this.getOrd() - ord;
         return Math.sqrt(x*x+y*y);
     }    
-    
-    public void draw(GraphicsContext gc){  //TO DO différencier noeuds simples et appuis
-        int r = 3;
-        gc.setStroke(Color.web("#40b6ff"));
-        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
-    }
-    public void drawSelection(GraphicsContext gc){  
-        int r = 3;
-        gc.setStroke(couleurSelection); gc.setFill(couleurSelection);
-        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
-    }
+   
     
     
     /*

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public  class TerrainSegment extends Objet{
     private TerrainPoints A;
@@ -183,6 +182,14 @@ public  class TerrainSegment extends Objet{
         TerrainPoints C = ST2.getB();
         angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(C.getPy() - B.getPy(), C.getPx() - B.getPx()); 
         System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);
+        return angle;
+    }
+    
+    public static double angleSegmentHorizontale (TerrainSegment TS1){
+        double angle;
+        double projectionX = Math.abs(TS1.getA().getPx() - TS1.getB().getPx());
+        double hypothénuse = longueurT(TS1.getA(), TS1.getB());
+        angle = Math.acos(projectionX/hypothénuse);
         return angle;
     }
        

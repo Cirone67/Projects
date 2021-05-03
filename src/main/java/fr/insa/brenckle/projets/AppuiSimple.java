@@ -5,7 +5,18 @@
  */
 package fr.insa.brenckle.projets;
 
+import static fr.insa.brenckle.projets.Objet.couleurSelection;
+import static fr.insa.brenckle.projets.TerrainSegment.angleSegmentHorizontale;
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -20,5 +31,27 @@ public class AppuiSimple extends Appui{
     public AppuiSimple(int id, int idtriangleAppui, int premierPoint, double posSegment, ArrayList<TerrainTriangle> terrainTriangle) {
         super(id, idtriangleAppui, premierPoint, posSegment, terrainTriangle);
     }
+    
+    public void draw(GraphicsContext gc){  
+        try {
+            
+            File file = new File("C:\\Users\\Guillaume R\\Pictures\\appuiSimple.png");
+            String url = file.toURI().toURL().toString();
+            Image img2 = new Image(url, 24, 24, false, false); 
+            gc.setImageSmoothing(true);
+            gc.drawImage(img2, this.getAbs()-12, this.getOrd()-22.2);
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(AppuiSimple.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void drawSelection(GraphicsContext gc){  
+        int r = 3;
+        gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
+//        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
+//        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
+        gc.fillRect(this.getAbs()-12, this.getOrd()-22.2, 24, 24);
+    }    
     
 }
