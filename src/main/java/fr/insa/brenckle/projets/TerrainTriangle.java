@@ -97,7 +97,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                 cond=0;
                 k=nbrST-2;
             }
-                for(i=0;i<nbrSTr-2;i++){
+                for(i=0;i<nbrSTr-1;i++){
                     if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){//si le segment est vertical
                         if(cond==1){
                             cond=0;
