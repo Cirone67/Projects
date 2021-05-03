@@ -51,7 +51,7 @@ public class SaisiePointTerrain extends Stage{
     this.initOwner(menuCreation.getMenuPrincipal().getI().getFenetre());
     this.initModality(Modality.WINDOW_MODAL);
     this.abs = new Label ("Abscisse");
-    this.ord = new Label ("Ordonée");
+    this.ord = new Label ("Ordonnée");
     this.ok = new Button ("Valider");
     this.quitter = new Button ("Sauvegarder et quitter");
     this.clear = new Button ("Réinitialiser");

@@ -91,7 +91,9 @@ public class NeuCanvas extends Pane {
         }        
         
         for (int i = 0; i<modele.getTerrainTriangles().size(); i++){
-              
+                
+            // modele.getTerrainTriangles().get(i).draw(context);
+            
                 modele.getTerrainTriangles().get(i).getC1().getA().draw(context);  //dessine les points terrain
                 modele.getTerrainTriangles().get(i).getC1().getB().draw(context);
                 modele.getTerrainTriangles().get(i).getC2().getB().draw(context);
