@@ -41,7 +41,7 @@ public class NoeudSimple extends Noeud{
         gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
     }
     public void drawSelection(GraphicsContext gc){  
-        int r = 3;
+        int r = 4;
         gc.setStroke(couleurSelection); gc.setFill(couleurSelection);
         gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
         gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);

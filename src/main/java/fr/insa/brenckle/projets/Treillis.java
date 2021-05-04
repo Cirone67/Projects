@@ -12,6 +12,13 @@ import java.util.ArrayList;
  * @author brenc
  */
 public class Treillis {
+
+    /**
+     * @param terrainTriangles the terrainTriangles to set
+     */
+    public void setTerrainTriangles(ArrayList<TerrainTriangle> terrainTriangles) {
+        this.terrainTriangles = terrainTriangles;
+    }
 private ArrayList<TerrainTriangle> terrainTriangles;
 private ArrayList<Barre> barres;
 private ArrayList<Noeud> noeuds;

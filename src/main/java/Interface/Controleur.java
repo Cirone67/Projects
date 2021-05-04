@@ -53,7 +53,7 @@ public class Controleur {
     
     public void changeEtat (int etat){
         this.etat = etat;
-        if (etat == 10){
+        if (this.etat == 10){
             this.getSelection().clear();
             this.vue.getGraph().redraw();
         }
@@ -87,8 +87,12 @@ public class Controleur {
             
             ArrayList<TerrainTriangle> listTT = new ArrayList<TerrainTriangle>(Creationtriangle(listST, listSTr, b)); //Génère les triangles
             
-            Treillis treillis = new Treillis(listTT);
-            this.vue.setTreillis(treillis);
+            this.vue.getTreillis().setTerrainTriangles(listTT);
+            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
+                if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiSimple) || (vue.getTreillis().getNoeuds().get(i) instanceof AppuiDouble)){
+                    vue.getTreillis().getNoeuds().remove(i);
+                }
+            }
             this.vue.getGraph().redraw();
             this.etat = 10;
         } 
@@ -218,8 +222,7 @@ public class Controleur {
             //gère les états pour la création d'appuis (si un segment sélectionné ou pas)
             if ((selection.size() == 1) && (selection.get(0) instanceof TerrainSegment) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(false);
-                this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect((TerrainSegment) selection.get(0));
-                //System.out.println( ((TerrainSegment) selection.get(0)).toString());
+                this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect((TerrainSegment) selection.get(0));              
             }
             else if ((selection.size() != 1) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(true);
@@ -314,23 +317,19 @@ public class Controleur {
                 if (this.vue.getTreillis().getNoeuds().get(i).distancePoint(px, py) < distMin){
                     objProche = this.vue.getTreillis().getNoeuds().get(i);
                     distMin = objProche.distancePoint(px, py);
-                    System.out.println(distMin+", distance minimale noeud");
                 }
             } for (int i=0; i<this.vue.getTreillis().getTerrainTriangles().size(); i++){
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC1().distancePoint(px, py) < distMin){  //segments
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC1();
                     distMin = objProche.distancePoint(px, py);
-                    System.out.println(distMin+", distance minimale segment C1");
                 }
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC2().distancePoint(px, py) < distMin){
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC2();
                     distMin = objProche.distancePoint(px, py);
-                    System.out.println(distMin+", distance minimale segment C2");
                 }
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).distancePoint(px, py) < distMin){
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC3();
                     distMin = objProche.distancePoint(px, py);
-                    System.out.println(distMin+", distance minimale segment C3");
                 }
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC1().getA().distancePoint(px, py) < distMin){  //points terrain  C1 A
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC1().getA();
