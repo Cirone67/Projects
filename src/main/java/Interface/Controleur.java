@@ -180,6 +180,11 @@ public class Controleur {
             this.vue.getTreillis().getNoeuds().clear();
             this.vue.getTreillis().getTerrainTriangles().clear();
             this.vue.getTreillis().getTypeBarre().clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().removeAll();
+            this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().removeAll();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().removeAll();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().removeAll();
+            this.vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().clear();
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
             this.segments.clear();
             this.vue.getGraph().redraw();

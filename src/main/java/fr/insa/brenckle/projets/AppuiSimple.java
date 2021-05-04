@@ -32,7 +32,7 @@ public class AppuiSimple extends Appui{
     public void draw(GraphicsContext gc){  
         try {
             
-            File file = new File("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\appuiSimple.png");
+            File file = new File("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\appuiSimple2.png");
             String url = file.toURI().toURL().toString();
             Image img2 = new Image(url, 24, 24, false, false); 
             gc.setImageSmoothing(true);
