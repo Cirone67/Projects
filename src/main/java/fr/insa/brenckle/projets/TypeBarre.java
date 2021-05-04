@@ -18,7 +18,7 @@ private double restension;
 private double rescompression;
 private static int nbrTypeBarre=0;
 
-TypeBarre(int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
+public TypeBarre(int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
  this.categorie = categorie;
  this.cout = cout;
  this.longmax = longmax;

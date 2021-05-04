@@ -9,6 +9,8 @@ import static Interface.PanneauNoeuds.recherchePremierPoint;
 import static Interface.PanneauNoeuds.rechercheTriangle;
 import fr.insa.brenckle.projets.AppuiDouble;
 import fr.insa.brenckle.projets.AppuiSimple;
+import fr.insa.brenckle.projets.Barre;
+import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.NoeudSimple;
 import fr.insa.brenckle.projets.Objet;
 import fr.insa.brenckle.projets.TerrainPoints;
@@ -22,6 +24,7 @@ import static fr.insa.brenckle.projets.TerrainSegment.creationSegmentTriangle;
 import fr.insa.brenckle.projets.TerrainTriangle;
 import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
+import fr.insa.brenckle.projets.TypeBarre;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
@@ -37,12 +40,14 @@ public class Controleur {
     private Interface vue;
     private ArrayList<Objet> selection;
     private ArrayList<TerrainSegment> segments;
+    private Noeud noeud1;
     
     public Controleur(Interface vue){
         this.etat = 10;
         this.vue = vue;
         this.selection = new ArrayList<Objet>();
         segments = new ArrayList<TerrainSegment>();
+        noeud1 = null;
     }
     
     public void changeEtat (int etat){
@@ -97,7 +102,7 @@ public class Controleur {
                     double x = Double.parseDouble(absNoeud.getText());
                     double y = Double.parseDouble(ordNoeud.getText());
                     NoeudSimple ns = new NoeudSimple (x,y);
-                    this.vue.getMenuPrincipal().getI().getTreillis().getNoeuds().add(ns);
+                    this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ns);
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     absNoeud.clear();
                     ordNoeud.clear();
@@ -111,7 +116,7 @@ public class Controleur {
                 if ((!coeffLambda.getText().trim().isEmpty()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui simple")){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiSimple ap = new AppuiSimple(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
-                    this.vue.getMenuPrincipal().getI().getTreillis().getNoeuds().add(ap);
+                    this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ap);
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
                     System.out.println("salut");
@@ -119,15 +124,30 @@ public class Controleur {
                 else if ((!coeffLambda.getText().trim().isEmpty()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui double")){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiDouble ad = new AppuiDouble(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
-                    this.vue.getMenuPrincipal().getI().getTreillis().getNoeuds().add(ad); 
+                    this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ad); 
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
                 }  
                 
                 System.out.println(TSselect.toString());
-            }             
+            } 
+            else if (this.etat==51){
+                this.selection.clear();
+                this.vue.getGraph().redraw();
+            }
             this.etat = 10;
             
+        }
+        else if (this.etat == 100){
+            this.vue.getTreillis().getBarres().clear();
+            this.vue.getTreillis().getCharge().clear();
+            this.vue.getTreillis().getNoeuds().clear();
+            this.vue.getTreillis().getTerrainTriangles().clear();
+            this.vue.getTreillis().getTypeBarre().clear();
+            this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
+            this.segments.clear();
+            this.vue.getGraph().redraw();
+            etat = 10;
         }
     }
      
@@ -186,14 +206,45 @@ public class Controleur {
             //A FAIRE saisie des noeuds
         }
         else if (this.etat == 51){
-            //A FAIRE ajout de barre --> clic sur 1er noeud
-            this.changeEtat(52);
+            double posX = t.getX();
+            double posY = t.getY();
+            Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
+            
+            if (noeudSelect != null){
+                this.noeud1 = noeudSelect;
+                this.etat = 52;
+            } else {
+                this.noeud1 = null;
+            }
         }
         else if (this.etat == 52){
-            //A FAIRE ajout de barre --> clic sur 2eme noeud --> création de la barre si absence d'erreur
-            this.changeEtat(51);
+            double posX = t.getX();
+            double posY = t.getY();
+            Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
+            
+            if (noeudSelect != null){
+                TypeBarre type = new TypeBarre (1, 25, Double.MAX_VALUE, 0, 100, 100);
+                Barre neuBarre = new Barre(type, this.noeud1, noeudSelect);
+                this.vue.getTreillis().ajoute(neuBarre);
+                this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
+                this.vue.getGraph().redraw();
+                this.etat = 51;
+            }            
         }
     }  
+    
+    public void mouvementSouris (MouseEvent t){
+        if (this.etat == 52){
+            double posX = t.getX();
+            double posY = t.getY();
+            TerrainPoints TP1 = new TerrainPoints (noeud1.getAbs(), noeud1.getOrd());
+            TerrainPoints TP2 = new TerrainPoints (posX, posY);
+            TerrainSegment ST = new TerrainSegment (TP1, TP2);
+            this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
+            this.vue.getGraph().redraw();
+            ST.draw(this.vue.getGraph().getGraphicsContext2D());
+        }
+    }
     
     public Objet plusProche(double px, double py, double distanceMax){
         Treillis treillis = this.vue.getTreillis();
@@ -280,23 +331,23 @@ public class Controleur {
         }
     }
     
-    public Objet noeudPlusProche(double px, double py, double distanceMax){
+    public Noeud noeudPlusProche(double px, double py, double distanceMax){
         Treillis treillis = this.vue.getTreillis();
         
         if (this.vue.getTreillis().getNoeuds().isEmpty()==true){
             return null;
         } else {
-            Objet objProche = this.vue.getTreillis().getNoeuds().get(0);
-            double distMin = objProche.distancePoint(px, py);
+            Noeud noeudProche = this.vue.getTreillis().getNoeuds().get(0);
+            double distMin = noeudProche.distancePoint(px, py);
             
          for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){   //noeuds
             if (this.vue.getTreillis().getNoeuds().get(i).distancePoint(px, py) < distMin){
-                objProche = this.vue.getTreillis().getNoeuds().get(i);
-                distMin = objProche.distancePoint(px, py);
+                noeudProche = this.vue.getTreillis().getNoeuds().get(i);
+                distMin = noeudProche.distancePoint(px, py);
             }
         } 
         if (distMin <= distanceMax){
-            return objProche;
+            return noeudProche;
         } else {
             return null;
         } 

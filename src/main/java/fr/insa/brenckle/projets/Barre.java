@@ -7,6 +7,7 @@ package fr.insa.brenckle.projets;
 
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.StrokeLineCap;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Barre extends Objet {
  private static int nbrBarre = 1;
  
     //Constructeur de la classe Barre avec la méthode du compteur
-    Barre( TypeBarre type, Noeud debut, Noeud fin){
+    public Barre( TypeBarre type, Noeud debut, Noeud fin){
         this.id = nbrBarre++;
         this.debut = debut;
         this.fin = fin;
@@ -28,7 +29,7 @@ public class Barre extends Objet {
     }
     
     //Méthode spéciale import stockage
-    Barre(int id, int idTypeBarre, int idNoeudDebut, int idNoeudFin,ArrayList<Noeud> noeud,ArrayList<TypeBarre> typeBarre){ 
+    public Barre(int id, int idTypeBarre, int idNoeudDebut, int idNoeudFin,ArrayList<Noeud> noeud,ArrayList<TypeBarre> typeBarre){ 
         this.id = id;
         //Attribut le noeud de début et de fin
         for(int i=0; i< noeud.size();i++){
@@ -113,10 +114,15 @@ public double angle(Barre Barre2){
 }
 
     public void draw(GraphicsContext context){
-        //A faire
+        context.setStroke(this.getCouleur());
+        context.setLineWidth(2);
+        context.setLineCap(StrokeLineCap.ROUND);
+        context.strokeLine(this.getDebut().getAbs(), this.getDebut().getOrd(), this.getFin().getAbs(), this.getFin().getOrd());
     }
     public void drawSelection (GraphicsContext context){
-        //A faire
+        context.setStroke(couleurSelection);
+        context.setLineWidth(2); context.setLineCap(StrokeLineCap.ROUND);
+        context.strokeLine(this.getDebut().getAbs(), this.getDebut().getOrd(), this.getFin().getAbs(), this.getFin().getOrd());
     }
     
 /*

@@ -73,6 +73,9 @@ public class NeuCanvas extends Pane {
         this.canvas.setOnMouseClicked((t) -> {
             I.getControleur().clicDansInterface(t);
         });
+        this.canvas.setOnMouseMoved((t) -> {
+            I.getControleur().mouvementSouris(t);
+        });
 
     }
     
@@ -84,6 +87,7 @@ public class NeuCanvas extends Pane {
         GraphicsContext context = this.getCanvas().getGraphicsContext2D();
         canvas.setRotate(180);
         Treillis modele = this.getI().getTreillis();
+        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
         ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.getI().getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
         for (TerrainPoints TP: listPT){   //redessine les premiers points
@@ -102,12 +106,11 @@ public class NeuCanvas extends Pane {
                 modele.getTerrainTriangles().get(i).getC2().draw(context); 
                 modele.getTerrainTriangles().get(i).getC3().draw(context);
         }
-        
-        for (Noeud n: modele.getNoeuds()){ //dessine les noeuds
-            n.draw(context);
-        }
         for (Barre b: modele.getBarres()){ //dessine les barres
             b.draw(context);
+        }        
+        for (Noeud n: modele.getNoeuds()){ //dessine les noeuds
+            n.draw(context);
         }
         if(I.getControleur().getSelection().isEmpty() == false) {
             for (Objet obj:I.getControleur().getSelection()){

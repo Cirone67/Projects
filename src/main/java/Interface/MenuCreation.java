@@ -34,7 +34,7 @@ public class MenuCreation extends HBox{
     private Button creeBarre;
     private Button creeSegTerrain;
     
-    private ChoiceBox typeNoeud;
+    private ChoiceBox typeBarre;
     private Button actPTerrain;
     private Button supBarre;
     private Button supSegTerrain; 
@@ -44,6 +44,7 @@ public class MenuCreation extends HBox{
     private ColorPicker couleur;
     private Button selection;
     private Button suppression;
+    private Button reinitialiser;
     
     private SaisiePointTerrain saisiePointTerrain;
     private PanneauNoeuds panneauNoeuds;
@@ -62,11 +63,13 @@ public class MenuCreation extends HBox{
         this.creePTerrain = new Button ("Nouveau"); this.creePTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.creeSegTerrain = new Button ("Nouveau"); this.creeSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
        
-        this.typeNoeud = new ChoiceBox (); 
-        typeNoeud.getItems().addAll("Section pleine", "Section en I");   this.typeNoeud.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.typeBarre = new ChoiceBox (); 
+        typeBarre.getItems().addAll("Section pleine", "Section en I");   this.typeBarre.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.supBarre = new Button ("Supprimer"); this.supBarre.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.actPTerrain = new Button ("Actualiser"); this.actPTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.supSegTerrain = new Button ("Supprimer"); this.supSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        
+        this.reinitialiser = new Button ("Réinitialiser"); this.reinitialiser.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         
         this.couleur = new ColorPicker(); this.couleur.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 1 10 1 10; -fx-font-size: 9pt");
         this.selection = new Button(); this.selection.setStyle("-fx-background-color: #ccc; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10");
@@ -92,18 +95,20 @@ public class MenuCreation extends HBox{
           
           SousMenuPpl pTerrain = new SousMenuPpl(new Label ("Points Terrain"), this.getCreePTerrain(), this.getActPTerrain(), 5, 5, 10, 5, 50, 5, 10, 5, 20, false);   //espace entre ssTitre, marge T haut, marge T doite, marge T bas, marge T gauche, marge ST haut, ...
           SousMenuPpl segTerrain = new SousMenuPpl (new Label ("Segments Terrain"), this.getCreeSegTerrain(), this.getSupSegTerrain(), 5, 5, 10, 5, 30, 5, 10, 5, 10, false);
-          SousMenuPpl terrain = new SousMenuPpl (titreTerrain, pTerrain, segTerrain, 0, 10, 0, 5, 160, 5, 0, 0, 0, true);
+          SousMenuPpl terrain = new SousMenuPpl (titreTerrain, pTerrain, segTerrain, 0, 10, 0, 5, 100, 5, 0, 0, 0, true);
           
           //SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.getCreeNoeud(), this.getSupNoeud(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
-          SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.getCreeBarre(), this.getSupBarre(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
+          SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.typeBarre, 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
           SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), getPanneauNoeuds(), barres, 0, 10, 0, 5, 230, 5, 0, 0, 0, true);
           
           Separator sv1 = new Separator (Orientation.VERTICAL);
           Separator sv2 = new Separator (Orientation.VERTICAL); Separator sv3 = new Separator (Orientation.VERTICAL);
           Separator sh = new Separator (Orientation.HORIZONTAL);
-          this.getChildren().addAll(outils, sv1, terrain, sv2, treillis, sv3); this.setStyle("-fx-background-color: #e5e5e5");
+          this.getChildren().addAll(outils, sv1, terrain, sv2, treillis, sv3, reinitialiser); this.setStyle("-fx-background-color: #e5e5e5");
           this.setSpacing(30);
-          this.setMargin(outils, new Insets(20, -5, 5, 25));   
+          this.setMargin(terrain, new Insets(0, 0, 0, -30));
+          this.setMargin(outils, new Insets(20, -5, 5, 25));
+          this.setMargin(reinitialiser, new Insets(30, 2, 10, -20));
           
           
           //Gestion événements
@@ -135,6 +140,9 @@ public class MenuCreation extends HBox{
           });
           this.creeBarre.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(51);
+          });
+          this.reinitialiser.setOnAction((t) -> {
+              this.menuPrincipal.getI().getControleur().changeEtat(100);
           });
         
         
@@ -180,7 +188,7 @@ public class MenuCreation extends HBox{
      * @return the supNoeud
      */
     public ChoiceBox getSupNoeud() {
-        return typeNoeud;
+        return typeBarre;
     }
 
     /**
@@ -193,7 +201,7 @@ public class MenuCreation extends HBox{
     /**
      * @return the supBarre
      */
-    public Button getSupBarre() {
+    public Button getTypeBarre() {
         return supBarre;
     }
 
