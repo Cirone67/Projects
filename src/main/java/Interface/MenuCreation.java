@@ -73,11 +73,11 @@ public class MenuCreation extends HBox{
         
         this.couleur = new ColorPicker(); this.couleur.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 1 10 1 10; -fx-font-size: 9pt");
         this.selection = new Button(); this.selection.setStyle("-fx-background-color: #ccc; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10");
-        FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Pictures\\mouseCursor.png");
+        FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\mouseCursor.png");
         Image img = new Image(inputstream, 16, 24, false, false); ImageView select = new ImageView(img);
         this.selection.setGraphic(select);
         this.suppression = new Button(); this.suppression.setStyle("-fx-background-color: #ccc; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 6 3 6");
-        FileInputStream inputstream2 = new FileInputStream("C:\\Users\\Guillaume R\\Pictures\\delete.png");
+        FileInputStream inputstream2 = new FileInputStream("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\delete.png");
         Image img2 = new Image(inputstream2, 24, 24, false, false); ImageView suppress = new ImageView(img2);
         this.suppression.setGraphic(suppress);
         HBox hbSelect = new HBox (10, selection, suppression); 

@@ -29,7 +29,7 @@ public class App extends Application {
         Scene scene = new Scene (I, 1000, 500);
         stage.setScene(scene);
         stage.setTitle("Treillis meister");
-        FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Pictures\\Bridge Logo2.png");
+        FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\Bridge Logo2.png");
         Image img = new Image(inputstream);        
         stage.getIcons().add(img);
         stage.show();
