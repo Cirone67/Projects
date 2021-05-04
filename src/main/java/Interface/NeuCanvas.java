@@ -24,7 +24,6 @@ public class NeuCanvas extends Pane {
     
     private Interface I;
     private Canvas canvas;
-  //  private ArrayList<Double> dxy;
     
     
     public NeuCanvas (Interface I){

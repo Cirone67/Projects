@@ -46,8 +46,6 @@ public class AppuiSimple extends Appui{
     public void drawSelection(GraphicsContext gc){  
         int r = 3;
         gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
-//        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-//        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
         gc.fillRect(this.getAbs()-12, this.getOrd()-22.2, 24, 24);
     }    
     

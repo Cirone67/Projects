@@ -144,6 +144,9 @@ public class MenuCreation extends HBox{
           this.reinitialiser.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(100);
           });
+          this.couleur.setOnAction((t) -> {
+              this.menuPrincipal.getI().getControleur().changeCouleur(this.couleur.getValue());
+          });
         
         
         

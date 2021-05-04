@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -393,7 +394,16 @@ public class Controleur {
             return null;
         } 
         }
-    }    
+    } 
+    
+    public void changeCouleur(Color couleur){
+        if ((this.etat == 10) && (this.selection.size()>0)){
+            for (int i=0; i<selection.size(); i++){
+                selection.get(i).changeCouleur(couleur);
+            }
+        }
+        this.vue.getGraph().redraw();
+    }
 
     /**
      * @return the selection

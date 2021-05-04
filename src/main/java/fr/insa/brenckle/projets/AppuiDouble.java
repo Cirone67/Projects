@@ -31,10 +31,6 @@ public class AppuiDouble extends Appui{
     
     public void draw(GraphicsContext gc){  
         try {
-            int r = 3;
-            gc.setStroke(Color.web("#40b6ff"));
-            gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-            gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
             File file = new File("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\appuiDouble.png");
             String url = file.toURI().toURL().toString();
             Image img2 = new Image(url, 58.95, 24, false, false);
@@ -46,10 +42,8 @@ public class AppuiDouble extends Appui{
         
     }
     public void drawSelection(GraphicsContext gc){  
-        int r = 3;
-        gc.setStroke(couleurSelection); gc.setFill(couleurSelection);
-        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
+        gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
+        gc.fillRect(this.getAbs()-29, this.getOrd()-22.4, 58.95, 24);
     }    
     
 }

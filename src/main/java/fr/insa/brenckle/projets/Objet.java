@@ -24,6 +24,9 @@ public abstract class Objet{
     public Objet(){
         this.couleur = Color.BLACK;
     }
+    public void changeCouleur(Color couleur){
+        this.couleur = couleur;
+    }
 
     public Color getCouleur() {
         return couleur;

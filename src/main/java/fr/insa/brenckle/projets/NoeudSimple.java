@@ -35,8 +35,8 @@ public class NoeudSimple extends Noeud{
     }
     
     public void draw(GraphicsContext gc){  
-        int r = 3;
-        gc.setStroke(Color.web("#40b6ff"));
+        int r = 4;
+        gc.setStroke(this.getCouleur()); gc.setFill(this.getCouleur());
         gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
         gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
     }
