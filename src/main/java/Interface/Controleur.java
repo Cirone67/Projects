@@ -279,6 +279,29 @@ public class Controleur {
         
         }
     }
+    
+    public Objet noeudPlusProche(double px, double py, double distanceMax){
+        Treillis treillis = this.vue.getTreillis();
+        
+        if (this.vue.getTreillis().getNoeuds().isEmpty()==true){
+            return null;
+        } else {
+            Objet objProche = this.vue.getTreillis().getNoeuds().get(0);
+            double distMin = objProche.distancePoint(px, py);
+            
+         for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){   //noeuds
+            if (this.vue.getTreillis().getNoeuds().get(i).distancePoint(px, py) < distMin){
+                objProche = this.vue.getTreillis().getNoeuds().get(i);
+                distMin = objProche.distancePoint(px, py);
+            }
+        } 
+        if (distMin <= distanceMax){
+            return objProche;
+        } else {
+            return null;
+        } 
+        }
+    }    
 
     /**
      * @return the selection

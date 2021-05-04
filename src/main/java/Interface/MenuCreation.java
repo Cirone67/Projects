@@ -12,6 +12,7 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -33,7 +34,7 @@ public class MenuCreation extends HBox{
     private Button creeBarre;
     private Button creeSegTerrain;
     
-    private Button supNoeud;
+    private ChoiceBox typeNoeud;
     private Button actPTerrain;
     private Button supBarre;
     private Button supSegTerrain; 
@@ -61,7 +62,8 @@ public class MenuCreation extends HBox{
         this.creePTerrain = new Button ("Nouveau"); this.creePTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.creeSegTerrain = new Button ("Nouveau"); this.creeSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
        
-        this.supNoeud = new Button ("Supprimer"); this.supNoeud.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.typeNoeud = new ChoiceBox (); 
+        typeNoeud.getItems().addAll("Section pleine", "Section en I");   this.typeNoeud.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.supBarre = new Button ("Supprimer"); this.supBarre.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.actPTerrain = new Button ("Actualiser"); this.actPTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.supSegTerrain = new Button ("Supprimer"); this.supSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
@@ -131,6 +133,9 @@ public class MenuCreation extends HBox{
           this.panneauNoeuds.getCreer().setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(40);
           });
+          this.creeBarre.setOnAction((t) -> {
+              this.menuPrincipal.getI().getControleur().changeEtat(51);
+          });
         
         
         
@@ -174,8 +179,8 @@ public class MenuCreation extends HBox{
     /**
      * @return the supNoeud
      */
-    public Button getSupNoeud() {
-        return supNoeud;
+    public ChoiceBox getSupNoeud() {
+        return typeNoeud;
     }
 
     /**
