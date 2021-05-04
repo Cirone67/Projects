@@ -22,6 +22,13 @@ public abstract class Appui extends Noeud{
     this.premierPoint = premierPoint;
     nbrNoeud++;
     }
+    
+    public Appui(TerrainTriangle triangleAppui,int premierPoint ,double posSegment){
+    super(nbrNoeud++);
+    this.triangleAppui = triangleAppui;
+    this.posSegment = posSegment;
+    this.premierPoint = premierPoint;
+    }
     //Méthode pour le téléchargement
     public Appui(int id,int idtriangleAppui,int premierPoint ,double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
     super(id);

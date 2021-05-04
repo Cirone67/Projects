@@ -136,14 +136,32 @@ public void setMij(int i, int j, double x){
 public void String(){
     for(int i=0;i<this.nbrLig;i++){
         for(int j=0; j<this.nbrCol; j++){
-            System.out.print(formatdouble(this.getMij(i,j)) + "\t");
+            System.out.print(formatDouble(this.getMij(i,j)) + "\t");
         }
     System.out.println();
     }
-System.out.println();   
+System.out.println();
 }
 
-public String formatdouble(double x){
+    @Override
+    public String toString() {
+        // oui, il serait plus efficace d'utiliser un {@link java.lang.StringBuilder}
+        // mais ils n'ont pas été vu
+        String res = "";
+        for (int i = 0; i < nbrLig; i++) {
+            res = res + "[";
+            for (int j = 0; j < nbrCol; j++) {
+                res = res + formatDouble(this.getMij(i, j));
+                if (j < nbrCol - 1) {
+                    res = res + " ";
+                }
+            }
+            res = res + "]\n";
+        }
+        return res;
+    }
+
+public String formatDouble(double x){
     return String.format("%+4.2E",x);
 }
 

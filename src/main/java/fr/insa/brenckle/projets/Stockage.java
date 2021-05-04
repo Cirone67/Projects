@@ -175,12 +175,12 @@ premier = telechargement(3);
 Matrice prems;
 Matrice sec;
 prems = miseSousSystem(premier);
-prems.String();
+System.out.println(prems);
 premier.ajoute(new Charge(1,3,1000,-Math.PI/2));
 sec = vecteurcharge(premier);
-sec.String();
+System.out.println(sec);
 Matrice resultat = prems.resoudreSyst(sec);
-resultat.String();
+System.out.println(resultat);
 //enregistrer(premier,2);
 }
 
