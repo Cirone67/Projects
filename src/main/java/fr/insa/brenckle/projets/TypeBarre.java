@@ -18,6 +18,11 @@ private double restension;
 private double rescompression;
 private static int nbrTypeBarre=0;
 
+//ToString minimaliste pour l'affichage
+public String toString(){
+    return this.getCategorie()+" de traction max "+this.getRestension()+ " et de compression max "+this.getRescompression();
+}
+
 public TypeBarre(int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
  this.categorie = categorie;
  this.cout = cout;

@@ -35,6 +35,10 @@ public abstract class Appui extends Noeud{
     nbrNoeud++;
     }
     
+    public String toString(){
+        return " Appui qui est situé sur le triangle "+this.getTriangleAppui()+" sur le Segment "+ conv(this.getPremierPoint(),this.getTriangleAppui()).toString()+ " et possède le paramètre alpha " + this.getPosSegment();
+    }
+    
     public double getOrd(){// problème de sens !!!!!!!!!!!!!!!!!
         
       return  conv(premierPoint,triangleAppui).getA().getPy()*posSegment+conv(premierPoint,triangleAppui).getB().getPy()*(1-posSegment);         
