@@ -175,7 +175,7 @@ public class TerrainPoints extends Objet{
                 yminPT=P.get(i).getPy();
             }
         }
-        if(verifie=true){
+        if(verifie==true){
             j=0;
             i=0;
             while(P.get(i).getPx()==P.get(i+1).getPx()){

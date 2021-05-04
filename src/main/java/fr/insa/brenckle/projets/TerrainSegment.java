@@ -70,6 +70,10 @@ public  class TerrainSegment extends Objet{
             STtempo= new TerrainSegment(Pa.get(i),Pa.get(i+1));
             ST.add(STtempo);
         }
+        if((verifie==false)&&(nbrPr==0)){
+            STtempo = new TerrainSegment(Pa.get(nbr-1),Pa.get(0));
+            ST.add(STtempo);
+        }
         System.out.println(ST);
         return ST;
     }
@@ -138,19 +142,7 @@ public  class TerrainSegment extends Objet{
           Collections.sort(STr , TerrainSegment.ComparatorA);
         }
         if(verifie==false){
-            i=nbrP-1;
-            k=1;
-            sortie=0;
-            while((P.get(i).getPy()==P.get(i-1).getPy()|| sortie == 1)){
-                k=k+1;
-                i=i-1;
-                if(i==0){
-                    sortie=1;
-                    System.out.println("Votre terrain saisie presente une erreur, veuillez en saisir un autre : saissez au moins un poylgone");
-                }
-            }
-            i=2;
-            for(i=2;i<nbrP-k;i++){
+            for(i=2;i<nbrP-1;i++){
                 STtempo = new TerrainSegment(P.get(0),P.get(i));
                 STr.add(STtempo);
             }
