@@ -16,6 +16,7 @@ private double longmax;
 private double longmin;
 private double restension;
 private double rescompression;
+private static int nbrTypeBarre=0;
 
 TypeBarre(int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
  this.categorie = categorie;
@@ -26,6 +27,11 @@ TypeBarre(int categorie, double cout, double longmax, double longmin, double res
  this.restension = restension;
 
 }
+
+    public static int getNbrTypeBarre() {
+        return nbrTypeBarre;
+    }
+
 
     public int getCategorie() {
         return categorie;
@@ -50,5 +56,26 @@ TypeBarre(int categorie, double cout, double longmax, double longmin, double res
     public double getRescompression() {
         return rescompression;
     }
-// TO DO catalogue
+    
+    
+    //Catalogue à télécharger par défault
+    public void BarreDefault(Treillis treillis){
+      TypeBarre cuivre = new TypeBarre(1,100.0,1.0,5.0,1000.0,2000.0);
+      treillis.ajoute(cuivre);
+      nbrTypeBarre++;
+      TypeBarre fer = new TypeBarre(2,100.0,1.0,5.0,3550.0,2540.0);
+      treillis.ajoute(fer);
+      nbrTypeBarre++;
+      TypeBarre acier = new TypeBarre(3,100.0,1.0,8.0,4253.0,7523.0);
+      treillis.ajoute(acier);
+      nbrTypeBarre++;
+      TypeBarre aluminium = new TypeBarre(4,100.0,1.0,10.0,1623.0,850.0);
+      treillis.ajoute(aluminium);
+      nbrTypeBarre++;
+      
+      //Ajoute à la liste ce qui te plait...
+    
+    }
+    
+
 }

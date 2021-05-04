@@ -37,6 +37,10 @@ public class NoeudSimple extends Noeud{
         nbrNoeud++;
     }
     
+    public String toString(){
+        return "("+this.abs+";"+this.ord+")";
+    }
+    
     public void draw(GraphicsContext gc){  
         int r = 3;
         gc.setStroke(Color.web("#40b6ff"));

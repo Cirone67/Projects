@@ -23,7 +23,6 @@ private double TYmin;
 private double TXmax; 
 private double TXmin;
  
-//liste de charge ? à la place de l'appliquer à un point ? Attribut en public ????
 
 //Méthode qui détermine la zone constructible du Treillis
 //TO DO :Programme calculant Tmin,Tmax,ect.....
