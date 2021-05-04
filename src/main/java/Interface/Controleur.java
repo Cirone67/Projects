@@ -138,6 +138,42 @@ public class Controleur {
             this.etat = 10;
             
         }
+        else if (this.etat == 71){
+            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
+                if ((vue.getTreillis().getNoeuds().get(i) instanceof NoeudSimple) && (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getNoeuds().get(i).toString()))){
+                    vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().add(vue.getTreillis().getNoeuds().get(i).toString());
+                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getNoeuds().get(i).toString());
+                }
+            }
+            this.etat = 10;
+        }
+        else if (this.etat == 72){
+            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
+                if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiSimple) && (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getNoeuds().get(i).toString()))){
+                    vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().add(vue.getTreillis().getNoeuds().get(i).toString());
+                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getNoeuds().get(i).toString());
+                }
+            }  
+            this.etat = 10;
+        }
+        else if (this.etat == 73){
+            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
+                if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiDouble) && (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getNoeuds().get(i).toString()))){
+                    vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().add(vue.getTreillis().getNoeuds().get(i).toString());
+                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getNoeuds().get(i).toString());
+                }
+            } 
+            this.etat = 10;
+        }
+        else if (this.etat == 74){
+            for (int i=0; i<this.vue.getTreillis().getBarres().size(); i++){
+                if (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getBarres().get(i).toString())){
+                    vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(vue.getTreillis().getBarres().get(i).toString());
+                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getBarres().get(i).toString());
+                } 
+            }
+            this.etat = 10;
+        }        
         else if (this.etat == 100){
             this.vue.getTreillis().getBarres().clear();
             this.vue.getTreillis().getCharge().clear();
@@ -177,7 +213,7 @@ public class Controleur {
             if ((selection.size() == 1) && (selection.get(0) instanceof TerrainSegment) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(false);
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect((TerrainSegment) selection.get(0));
-                System.out.println( ((TerrainSegment) selection.get(0)).toString());
+                //System.out.println( ((TerrainSegment) selection.get(0)).toString());
             }
             else if ((selection.size() != 1) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(true);
