@@ -79,11 +79,17 @@ public class TerrainTriangle extends Objet{
 public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegment> ST, ArrayList<TerrainSegment> STr, boolean verifie){
         int nbrST= ST.size();
         int nbrSTr = STr.size();
+        double yminPT;
         int i, j ,k, r,cond; 
         TerrainTriangle TTtempo;
         ArrayList <TerrainTriangle> TT = new ArrayList<TerrainTriangle>();
-        if(verifie == true){
-            //forme special
+        if(verifie == true){//forme speciale
+            yminPT=ST.get(0).getA().getPy();
+            for(i=0;i<nbrST-1;i++){
+                if(yminPT>ST.get(i).getA().getPy());
+                yminPT=ST.get(i).getA().getPy();
+            }
+            //initilisation
             if(ST.get(0).getA().getPx()==ST.get(1).getA().getPx()){
                 TTtempo = new TerrainTriangle(ST.get(0),ST.get(1),TerrainSegment.InvSegment(STr.get(0)));
                 TT.add(TTtempo);
@@ -97,18 +103,29 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                 cond=0;
                 k=nbrST-2;
             }
+                
                 for(i=0;i<nbrSTr-1;i++){
-                    if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){//si le segment est vertical
+                     //pour gerer un "segment point", ne pas faire de verticale juste apres le point le plus faible
+                    if((STr.get(i).getA().getPx()==STr.get(i).getB().getPx())&&(STr.get(i).getA().getPy()==STr.get(i).getB().getPy())){
+                        i=i+1;
+                        TTtempo= new TerrainTriangle(ST.get(j),TerrainSegment.InvSegment(STr.get(i)),ST.get(k));
+                        TT.add(TTtempo);
+                        j=j+1;
+                        k=k-1;
                         if(cond==1){
                             cond=0;
-                            System.out.println("switch de 1 à 0 "+i);
-                            System.out.println(j+"|"+k);
+                        }else{
+                            cond=1;
+                        }  
+                    }
+                    //pour gerer les verticales
+                    if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){
+                        if(cond==1){
+                            cond=0;
                             j=j+1;
                             i=i+1;
                         }else{
                             cond=1;
-                            System.out.println("switch au 1 "+i);
-                            System.out.println(j+"|"+k);
                             j=j+1;
                             i=i+1; 
                         }
@@ -135,8 +152,20 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                         k=k-1;
                     }
                 }
-                TTtempo= new TerrainTriangle(STr.get(nbrSTr-1),ST.get(j),ST.get(k));
-                TT.add(TTtempo);
+                //fermeture du terrain
+                if(yminPT!=ST.get(j).getB().getPy()){
+                    TTtempo= new TerrainTriangle(STr.get(nbrSTr-1),ST.get(j+1),ST.get(k));
+                    TT.add(TTtempo);
+                }else{
+                    TTtempo= new TerrainTriangle(STr.get(nbrSTr-1),ST.get(j),ST.get(k));
+                    TT.add(TTtempo);
+                }
+                //retire d'eventuelle erreur du au condition
+                for(i=0;i<TT.size()-1;i++){
+                    if((TT.get(i).getC1().getB().getPx()==TT.get(i).getC2().getB().getPx())&&(TT.get(i).getC3().getA().getPx()==TT.get(i).getC2().getB().getPx())&&(TT.get(i).getC3().getA().getPy()==TT.get(i).getC2().getB().getPy())&&(TT.get(i).getC1().getB().getPy()==TT.get(i).getC2().getB().getPy())){
+                        TT.remove(i);
+                    }
+                }
         }
         //forme polygonale
         if(verifie == false){

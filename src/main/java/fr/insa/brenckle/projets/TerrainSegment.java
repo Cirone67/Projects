@@ -105,7 +105,7 @@ public  class TerrainSegment extends Objet{
                 }
             for(i=0;i<nbrP-1;i++){
                 for(j=l;j<nbrPr;j++){
-                    if((P.get(i).getPx()==Pr.get(j).getPx())&&(P.get(i).getPy()!=Pr.get(j).getPy())){
+                    if(P.get(i).getPx()==Pr.get(j).getPx()){
                         STtempo = new TerrainSegment(Pr.get(j),P.get(i));
                         STr.add(STtempo);
                     }
@@ -162,8 +162,8 @@ public  class TerrainSegment extends Objet{
     //supprime les doublons de segement dans les deux listes
     public static ArrayList<TerrainSegment> Suppsegmendouble(ArrayList<TerrainSegment> ST , ArrayList<TerrainSegment> STr){
         int nbrSTr = STr.size(),i, j, nbrST = ST.size();
-        for(j=0;j<nbrSTr;j++){
-            for(i=0;i<nbrST;i++){
+        for(j=0;j<nbrSTr-1;j++){
+            for(i=0;i<nbrST-1;i++){
                 if(STr.get(j).getA().getPx()==(ST.get(i).getA().getPx())&&(STr.get(j).getB().getPx()==ST.get(i).getB().getPx())&&(STr.get(j).getA().getPy()==ST.get(i).getA().getPy())&&(STr.get(j).getB().getPy()==ST.get(i).getB().getPy())){
                        STr.remove(j);
                        nbrSTr=STr.size();
