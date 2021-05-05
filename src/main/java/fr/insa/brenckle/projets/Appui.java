@@ -24,10 +24,11 @@ public abstract class Appui extends Noeud{
     }
     
     public Appui(TerrainTriangle triangleAppui,int premierPoint ,double posSegment){
-    super(nbrNoeud++);
+    super(nbrNoeud);
     this.triangleAppui = triangleAppui;
     this.posSegment = posSegment;
     this.premierPoint = premierPoint;
+    nbrNoeud++;
     }
     //Méthode pour le téléchargement
     public Appui(int id,int idtriangleAppui,int premierPoint ,double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
@@ -43,7 +44,7 @@ public abstract class Appui extends Noeud{
     }
     
     public String toString(){
-        return " Appui qui est situé sur le triangle "+this.getTriangleAppui()+" sur le Segment "+ conv(this.getPremierPoint(),this.getTriangleAppui()).toString()+ " et possède le paramètre alpha " + this.getPosSegment();
+        return " Appui "+ this.getIdNoeud()+ " de coordonnée : ("+ this.getAbs()+";"+this.getOrd()+")";
     }
     
     public double getOrd(){// problème de sens !!!!!!!!!!!!!!!!!

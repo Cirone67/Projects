@@ -16,8 +16,7 @@ import java.util.ArrayList;
  * @author brenc
  */
 public class Calcul {
-    
-    //private Matrice système;
+
     
     public static double xprojection(double angle, double norme){
      return norme*Math.cos(angle);   

@@ -91,7 +91,7 @@ public class Barre extends Objet {
     }
     
     public String toString(){
-      return "La barre n°"+ this.id + " de type "+ this.type + "commence par le Noeud "+ this.debut+ " et finit par le Noeud"+ this.fin;
+      return "La barre n°"+ this.id + " de type "+ this.type + "possède Noeud debut : "+ this.debut+ ",Noeud fin : "+ this.fin;
     }
  
 

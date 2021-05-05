@@ -5,6 +5,8 @@
  */
 package fr.insa.brenckle.projets;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author brenc
@@ -22,6 +24,14 @@ public class Charge {
        this.noeud = noeud;
        this.angle = angle;
        this.norme = norme;
+   }
+   
+      Charge(int noeud, double norme, double angle){
+       this.id = nbrCharge;
+       this.noeud = noeud;
+       this.angle = angle;
+       this.norme = norme;
+       nbrCharge++;
    }
     public int getId() {
         return id;
@@ -53,5 +63,27 @@ public class Charge {
 
     public void setNorme(double norme) {
         this.norme = norme;
-    }       
+    }
+    
+    //Méthode de projection de charge pour le visuel
+        public static double xprojection(double angle, double norme){
+     return norme*Math.cos(angle);   
+    }
+    
+    public static double yprojection(double angle, double norme){
+     return  norme*Math.sin(angle); 
+    }
+    
+    //Méthode qui trouve le noeud sur laquel s'applique la charge
+    
+    public static Noeud trouveNoeud(Charge charge, ArrayList<Noeud> noeud){
+    Noeud temp = null;
+        for(int i =0; i<noeud.size();i++){
+         if(noeud.get(i).getIdNoeud()== charge.getNoeud()){
+            temp = noeud.get(i); 
+            }  
+         }
+        return temp;
+        
+    }
 }

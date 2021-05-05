@@ -19,9 +19,10 @@ public class NoeudSimple extends Noeud{
     private double ord;
     
     public NoeudSimple(double abs, double ord){
-        super(nbrNoeud++);
+        super(nbrNoeud);
         this.abs = abs;
         this.ord = ord;
+        nbrNoeud++;
     }
         public NoeudSimple(int id, double abs, double ord){
         super(id);

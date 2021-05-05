@@ -28,11 +28,11 @@ public class Stockage {
     }
     
  //Méthode qui télécharge le treillis
-public static Treillis telechargement(int idfichier){
+public static Treillis telechargement(String id){
     String contenu[];
     Treillis treillis = new Treillis();
 try {
-    BufferedReader flux=new BufferedReader(new FileReader("Treillis"+idfichier+".txt"));
+    BufferedReader flux=new BufferedReader(new FileReader(id));
 String lignelue;
    while((lignelue=flux.readLine())!=null){
     contenu = lignelue.split(";");
@@ -81,11 +81,11 @@ System.out.println("Erreur :\n"+err);}
 return treillis;
 }
 
-public static void enregistrer(Treillis treillis, int nbr){
+public static void enregistrer(Treillis treillis, String id){
 try
 {
     
-BufferedWriter curseur=new BufferedWriter(new FileWriter("Treillis"+nbr+".txt",true));
+BufferedWriter curseur=new BufferedWriter(new FileWriter(id,false));//"Treillis"+nbr+".txt" et false pour écraser
 //La zone constructible
 curseur.write("ZoneConstructible;"+treillis.getTXmin()+";"+treillis.getTXmax()+";"+treillis.getTYmin()+";"+treillis.getTYmax());
 curseur.newLine();
@@ -168,7 +168,7 @@ catch (IOException err)
 {System.out.println("Erreur :\n"+err);}
 }
 
-
+/*
 public static void main(String[] args){
 Treillis premier;
 premier = telechargement(3);
@@ -183,5 +183,5 @@ Matrice resultat = prems.resoudreSyst(sec);
 System.out.println(resultat);
 //enregistrer(premier,2);
 }
-
+*/
 }
