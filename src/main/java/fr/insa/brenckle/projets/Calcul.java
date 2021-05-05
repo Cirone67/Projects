@@ -161,7 +161,7 @@ public class Calcul {
     return systeme;   
    }
     // Méthode qui créée le vecteur de l'autre coté de l'égalité  
-   public static Matrice vecteurcharge(Treillis treillis){
+   public static Matrice vecteurCharge(Treillis treillis){
        Matrice vecteur = new Matrice(treillis.getNoeuds().size()*2,1);
        for(int t =0;t<treillis.getNoeuds().size();t++){
            int i=2*t;
@@ -179,4 +179,16 @@ public class Calcul {
            }  
        return vecteur;
    }
+   /*
+   public String affichage(Treillis treillis){
+       String res;
+       Matrice affichage;
+       for(int i =0; i<treillis.getBarres().size();i++){
+           
+       }
+       for(){
+           
+       }
+   }
+   */
 }

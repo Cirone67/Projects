@@ -5,7 +5,7 @@
  */
 package fr.insa.brenckle.projets;
 import static fr.insa.brenckle.projets.Calcul.miseSousSystem;
-import static fr.insa.brenckle.projets.Calcul.vecteurcharge;
+import static fr.insa.brenckle.projets.Calcul.vecteurCharge;
 import static fr.insa.brenckle.projets.TypeBarre.getNbrTypeBarre;
 import java.io.*;
 /**
