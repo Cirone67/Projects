@@ -130,7 +130,7 @@ public boolean RestrictionL(Barre B){
             verifie = false;
         }
         if(verifie==false){
-            System.out.println("Votre barre présente n'est pas de bonne longueur");
+//            System.out.println("Votre barre n'est pas de bonne longueur");
         }
         return verifie;
 }
