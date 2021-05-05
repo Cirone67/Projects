@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package fr.insa.brenckle.projets;
-import java.util.List;
 import java.util.ArrayList;
 
 /**

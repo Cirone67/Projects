@@ -17,7 +17,7 @@ public class Charge {
    private int noeud ;
    private double angle; //Angle par rapport à l'horizon
    private double norme;
-   protected static int nbrCharge =1;
+   protected static int nbrCharge = 1;
    
    Charge(int id, int noeud, double norme, double angle){
        this.id = id;

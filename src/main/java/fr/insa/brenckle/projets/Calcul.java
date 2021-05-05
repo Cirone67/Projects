@@ -150,7 +150,7 @@ public class Calcul {
            }
         
        }
-           //elimine les valeurs très petite négligeable lié aux arrondies
+           //elimine les valeurs très petite négligeable lié aux arrondis
            for(int i=0; i <treillis.getNoeuds().size()*2;i++){
                for(int m=0; m <treillis.getBarres().size()+nbrAppui(treillis.getNoeuds());m++){
                    if(systeme.getMij(i, m)<Math.pow(10, -5)&&systeme.getMij(i, m)>-Math.pow(10, -5)){
@@ -160,6 +160,7 @@ public class Calcul {
            }
     return systeme;   
    }
+   
     // Méthode qui créée le vecteur de l'autre coté de l'égalité  
    public static Matrice vecteurCharge(Treillis treillis){
        Matrice vecteur = new Matrice(treillis.getNoeuds().size()*2,1);

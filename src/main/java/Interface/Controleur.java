@@ -119,7 +119,7 @@ public class Controleur {
                 TextField coeffLambda = this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getLambda();
                 TerrainSegment TSselect = this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getSegmentSelect();
                 
-                if ((!coeffLambda.getText().trim().isEmpty()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui simple")){
+                if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui simple")){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiSimple ap = new AppuiSimple(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ap);
@@ -127,7 +127,7 @@ public class Controleur {
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
                 } 
-                else if ((!coeffLambda.getText().trim().isEmpty()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui double")){
+                else if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui double")){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiDouble ad = new AppuiDouble(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ad); 
@@ -144,6 +144,11 @@ public class Controleur {
             }
             this.etat = 10;
             
+        }
+        else if (this.etat == 60){
+            if ((!this.vue.getMenuPrincipal().getMenuGestion().getNorme().getText().trim().isBlank()) && (!this.vue.getMenuPrincipal().getMenuGestion().getAngle().getText().trim().isBlank())){
+               
+            }
         }
         else if (this.etat == 71){   //selection avec le menu gestion (états 71 à 74)
             this.selection.clear();
@@ -243,7 +248,6 @@ public class Controleur {
             this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().clear();
             this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().clear();
             this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().clear();
-            this.vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().clear();
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
             this.segments.clear();
             this.vue.getGraph().redraw();
@@ -282,6 +286,15 @@ public class Controleur {
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(true);
                 this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect(null);
             }
+            //gère les états pour la création de charges (un seul noeud doit être sélectionné)
+            if ((selection.size() == 1) && (selection.get(0) instanceof Noeud)){
+                this.vue.getMenuPrincipal().getMenuGestion().getSaisieCharge().setDisable(false);
+                this.vue.getMenuPrincipal().getMenuGestion().setNoeudSelect((Noeud) selection.get(0));              
+            }
+            else if ((selection.size() != 1) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
+                this.vue.getMenuPrincipal().getMenuGestion().getSaisieCharge().setDisable(true);
+                this.vue.getMenuPrincipal().getMenuGestion().setNoeudSelect(null); 
+            }            
             
             this.vue.getGraph().redraw();
         }
