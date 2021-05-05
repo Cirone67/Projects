@@ -106,6 +106,18 @@ public double prix(){
     return this.longueur()*this.type.getCout();
 }
 
+
+//Calcul du prix total du treillis
+public double PrixTreillis(ArrayList<Barre> B){
+    double prixT=0;
+    int i;
+    for(i=0;i<B.size();i++){
+        prixT=prixT+B.get(i).prix();
+    }
+//    System.out.println("Le prix total du treillis est de : "+prixT);
+    return prixT;
+}
+
 //Méthode qui donne l'angle entre deux segment/Barre
 public double angle(Barre Barre2){
     //Calcul du produit scalaire
