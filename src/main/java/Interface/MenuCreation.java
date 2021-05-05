@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -147,9 +148,7 @@ public class MenuCreation extends HBox{
           this.couleur.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeCouleur(this.couleur.getValue());
           });
-        
-        
-        
+
     }
 
     /**

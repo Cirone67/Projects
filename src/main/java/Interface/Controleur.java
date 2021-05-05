@@ -108,6 +108,7 @@ public class Controleur {
                     double y = Double.parseDouble(ordNoeud.getText());
                     NoeudSimple ns = new NoeudSimple (x,y);
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ns);
+                    this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().add(ns.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     absNoeud.clear();
                     ordNoeud.clear();
@@ -122,14 +123,15 @@ public class Controleur {
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiSimple ap = new AppuiSimple(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ap);
+                    this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().add(ap.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
-                    System.out.println("salut");
                 } 
                 else if ((!coeffLambda.getText().trim().isEmpty()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui double")){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiDouble ad = new AppuiDouble(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ad); 
+                    this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().add(ad.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
                 }  
@@ -143,40 +145,92 @@ public class Controleur {
             this.etat = 10;
             
         }
-        else if (this.etat == 71){
-            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
-                if ((vue.getTreillis().getNoeuds().get(i) instanceof NoeudSimple) && (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getNoeuds().get(i).toString()))){
-                    vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().add(vue.getTreillis().getNoeuds().get(i).toString());
-                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getNoeuds().get(i).toString());
+        else if (this.etat == 71){   //selection avec le menu gestion (états 71 à 74)
+            this.selection.clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getSelectionModel().clearSelection();            
+            int i =0; int k=0;
+            String s = this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getSelectionModel().getSelectedItem();
+            if(!vue.getTreillis().getNoeuds().isEmpty()){
+                while (k==0){
+                    if (i==vue.getTreillis().getNoeuds().size()){
+                        k=1;
+                    }
+                    else if (vue.getTreillis().getNoeuds().get(i).toString().equals(s)){
+                        k=1;
+                        this.selection.add(vue.getTreillis().getNoeuds().get(i));
+                    }                
+                    i = i+1;
                 }
             }
+            this.vue.getGraph().redraw();
             this.etat = 10;
         }
         else if (this.etat == 72){
-            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
-                if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiSimple) && (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getNoeuds().get(i).toString()))){
-                    vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().add(vue.getTreillis().getNoeuds().get(i).toString());
-                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getNoeuds().get(i).toString());
+            this.selection.clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getSelectionModel().clearSelection();            
+            int i =0; int k=0;
+            String s = this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getSelectionModel().getSelectedItem();
+            if(!vue.getTreillis().getNoeuds().isEmpty()){
+                while (k==0){
+                    if (i==vue.getTreillis().getNoeuds().size()){
+                        k=1;
+                    }
+                    else if (vue.getTreillis().getNoeuds().get(i).toString().equals(s)){
+                        k=1;
+                        this.selection.add(vue.getTreillis().getNoeuds().get(i));
+                    }                
+                    i = i+1;
                 }
-            }  
+            }
+            this.vue.getGraph().redraw();
             this.etat = 10;
         }
         else if (this.etat == 73){
-            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
-                if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiDouble) && (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getNoeuds().get(i).toString()))){
-                    vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().add(vue.getTreillis().getNoeuds().get(i).toString());
-                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getNoeuds().get(i).toString());
+            this.selection.clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getSelectionModel().clearSelection();
+            int i =0; int k=0;
+            String s = this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getSelectionModel().getSelectedItem();
+            if(!vue.getTreillis().getNoeuds().isEmpty()){
+                while (k==0){
+                    if (i==vue.getTreillis().getNoeuds().size()){
+                        k=1;
+                    }
+                    else if (vue.getTreillis().getNoeuds().get(i).toString().equals(s)){
+                        k=1;
+                        this.selection.add(vue.getTreillis().getNoeuds().get(i));
+                    }                
+                    i = i+1;
                 }
-            } 
+            }
+            this.vue.getGraph().redraw();
             this.etat = 10;
         }
         else if (this.etat == 74){
-            for (int i=0; i<this.vue.getTreillis().getBarres().size(); i++){
-                if (!vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().contains(vue.getTreillis().getBarres().get(i).toString())){
-                    vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(vue.getTreillis().getBarres().get(i).toString());
-                    vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().add(vue.getTreillis().getBarres().get(i).toString());
-                } 
+            this.selection.clear();
+            int i =0; int k=0;
+            this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getSelectionModel().clearSelection();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getSelectionModel().clearSelection();
+            String s = this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getSelectionModel().getSelectedItem();
+            if(!vue.getTreillis().getBarres().isEmpty()){
+                while (k==0){
+                    if (i==vue.getTreillis().getBarres().size()){
+                        k=1;
+                    }
+                    else if (vue.getTreillis().getBarres().get(i).toString().equals(s)){
+                        k=1;
+                        this.selection.add(vue.getTreillis().getBarres().get(i));
+                    }                
+                    i = i+1;
+                }
             }
+            this.vue.getGraph().redraw();
             this.etat = 10;
         }        
         else if (this.etat == 100){
@@ -185,10 +239,10 @@ public class Controleur {
             this.vue.getTreillis().getNoeuds().clear();
             this.vue.getTreillis().getTerrainTriangles().clear();
             this.vue.getTreillis().getTypeBarre().clear();
-            this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().removeAll();
-            this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().removeAll();
-            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().removeAll();
-            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().removeAll();
+            this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().clear();
+            this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().clear();
             this.vue.getMenuPrincipal().getMenuGestion().getNoeudContenu().clear();
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
             this.segments.clear();
@@ -271,6 +325,7 @@ public class Controleur {
                 TypeBarre type = new TypeBarre (1, 25, Double.MAX_VALUE, 0, 100, 100);
                 Barre neuBarre = new Barre(type, this.noeud1, noeudSelect);
                 this.vue.getTreillis().ajoute(neuBarre);
+                this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(neuBarre.toString());
                 this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
                 this.vue.getGraph().redraw();
                 this.etat = 51;
