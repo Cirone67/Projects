@@ -118,6 +118,23 @@ public double PrixTreillis(ArrayList<Barre> B){
     return prixT;
 }
 
+//Méthode autour des restrictions de longueur renvoie false si il y a un probleme de longueur 
+public boolean RestrictionL(Barre B){
+    TypeBarre TBarre = B.getType();
+    double longB = B.longueur();
+    boolean verifie=true;
+        if(longB<TBarre.getLongmin()){
+            verifie = false;
+        }
+        if(longB>TBarre.getLongmax()){
+            verifie = false;
+        }
+        if(verifie==false){
+            System.out.println("Votre barre présente n'est pas de bonne longueur");
+        }
+        return verifie;
+}
+
 //Méthode qui donne l'angle entre deux segment/Barre
 public double angle(Barre Barre2){
     //Calcul du produit scalaire
