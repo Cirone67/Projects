@@ -66,9 +66,9 @@ public class MenuCreation extends HBox{
         this.creeSegTerrain = new Button ("Nouveau"); this.creeSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
        
         this.typeBarre = new ChoiceBox (); 
-        BarreDefault(this.getMenuPrincipal().getI().getTreillis());
-        if (!this.getMenuPrincipal().getI().getTreillis().getTypeBarre().isEmpty()){
-            for (TypeBarre TB: this.getMenuPrincipal().getI().getTreillis().getTypeBarre()){
+//        BarreDefault(this.menuPrincipal.getI().getTreillis());
+        if (!this.menuPrincipal.getI().getTreillis().getTypeBarre().isEmpty()){
+            for (TypeBarre TB: this.menuPrincipal.getI().getTreillis().getTypeBarre()){
                 typeBarre.getItems().add(TB.getNom());
             }
         }
@@ -109,7 +109,7 @@ public class MenuCreation extends HBox{
           SousMenuPpl terrain = new SousMenuPpl (new Label("Terrain"), pTerrain, actionTerrain, 0, 10, 0, 5, 175, 5, 0, 0, 0, true);
           
           //SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.getCreeNoeud(), this.getSupNoeud(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
-          SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.typeBarre, 0, -10, 10, 15, 60, 5, 10, 5, 10, false);
+          SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.typeBarre, 5, -10, 10, 15, 60, 5, -10, 5, 10, false);
           SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), getPanneauNoeuds(), barres, 0, 10, 0, 5, 290, 0, 0, 0, 0, true);
  
           

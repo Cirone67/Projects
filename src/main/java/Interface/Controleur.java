@@ -30,11 +30,14 @@ import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
 import fr.insa.brenckle.projets.TypeBarre;
 import java.util.ArrayList;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  *
@@ -276,7 +279,6 @@ public class Controleur {
             this.vue.getTreillis().getCharge().clear();
             this.vue.getTreillis().getNoeuds().clear();
             this.vue.getTreillis().getTerrainTriangles().clear();
-            this.vue.getTreillis().getTypeBarre().clear();
             this.vue.getMenuPrincipal().getMenuGestion().getListNoeud().getItems().clear();
             this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().clear();
             this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().clear();
@@ -296,7 +298,7 @@ public class Controleur {
                         for (Barre b: vue.getTreillis().getBarres()){
                             if ((b.getDebut() == (Noeud) O) || (b.getFin() == (Noeud) O)){
                                 vue.getTreillis().supprime(b);
-                                vue.getMenuPrincipal().getMenuGestion().supprimeList(O);
+                                vue.getMenuPrincipal().getMenuGestion().supprimeList(b);
                             } 
                         }
                     vue.getTreillis().supprimeN((Noeud) O);
@@ -340,6 +342,10 @@ public class Controleur {
             this.vue.getGraph().redraw();
             TextArea text = new TextArea (); text.setText("Matrice résultat");
             text.setText(resultat.toString());
+            Scene s = new Scene(text);
+            Stage stage = new Stage();
+            stage.setScene(s);
+            stage.show();
         }
     }
      
@@ -415,21 +421,31 @@ public class Controleur {
             double posX = t.getX();
             double posY = t.getY();
             Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
+            System.out.println(noeudSelect.toString());
             
             if (noeudSelect != null){
                 int i =0; int k=0;
                 while (k==0){
-                    if (this.vue.getMenuPrincipal().getMenuCreation().getTypeBarre().getValue().equals(this.vue.getTreillis().getTypeBarre().get(i).getNom())){
+                    if (this.vue.getMenuPrincipal().getMenuCreation().getTypeBarre().getValue().equals(this.vue.getTreillis().getTypeBarre().get(i).getNom())){  //problème avec lisTypeBarre (outofbounds lenght 0)
                         k=1;
                     }
                     i=i+1;
                 }
                 TypeBarre type = this.vue.getTreillis().getTypeBarre().get(i-1);
                 Barre neuBarre = new Barre(type, this.noeud1, noeudSelect);
-                this.vue.getTreillis().ajoute(neuBarre);
-                this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(neuBarre.toString());
-                this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
-                this.vue.getGraph().redraw();
+                Boolean b = neuBarre.RestrictionL();
+                if (b==false){
+                    Alert f = new Alert(Alert.AlertType.WARNING);
+                    f.setHeaderText("Attention");
+                    f.setContentText("Longueur impossible pour ce type de barre");
+                    f.showAndWait();  
+                    this.vue.getGraph().redraw();
+                }else{
+                    this.vue.getTreillis().ajoute(neuBarre);
+                    this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(neuBarre.toString());
+                    this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
+                    this.vue.getGraph().redraw();
+                }
                 this.etat = 51;
             }            
         }

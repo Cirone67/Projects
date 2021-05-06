@@ -59,7 +59,7 @@ public class DelimiterTerrain extends Stage{
         
         //Gestion des événements
         this.ok.setOnAction((t) -> {    
-            if (donnee.getText() != ""){
+            if (!donnee.getText().isBlank()){
                 if (choix.getValue().equals("Xmin") == true){
                     coordonnees[0] = Double.parseDouble(donnee.getText());
                 } else if (choix.getValue().equals("Xmax") == true){
@@ -75,7 +75,7 @@ public class DelimiterTerrain extends Stage{
         });
         
         scene.setOnKeyPressed((t) -> {
-            if ((t.getCode().getName() == "Enter")&&(donnee.focusedProperty().get() == true)&&(donnee.getText()!="")){
+            if ((t.getCode().getName().equals("Enter"))&&(donnee.focusedProperty().get() == true)&&(!donnee.getText().isBlank())){
                 if (choix.getValue().equals("Xmin") == true){
                     coordonnees[0] = Double.parseDouble(donnee.getText());
                 } else if (choix.getValue().equals("Xmax") == true){

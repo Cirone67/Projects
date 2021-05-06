@@ -119,9 +119,9 @@ public double PrixTreillis(ArrayList<Barre> B){
 }
 
 //Méthode autour des restrictions de longueur renvoie false si il y a un probleme de longueur 
-public boolean RestrictionL(Barre B){
-    TypeBarre TBarre = B.getType();
-    double longB = B.longueur();
+public boolean RestrictionL(){
+    TypeBarre TBarre = this.getType();
+    double longB = this.longueur();
     boolean verifie=true;
         if(longB<TBarre.getLongmin()){
             verifie = false;

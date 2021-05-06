@@ -6,6 +6,7 @@
 package Interface;
 
 import fr.insa.brenckle.projets.Treillis;
+import static fr.insa.brenckle.projets.TypeBarre.BarreDefault;
 import java.io.FileNotFoundException;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class Interface extends BorderPane{
     public Interface (Stage stage) throws FileNotFoundException{
         
         this.treillis = new Treillis();
+        BarreDefault(this.treillis);
         this.fenetre = stage;
         this.controleur = new Controleur(this);
         
