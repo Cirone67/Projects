@@ -72,7 +72,7 @@ public class TerrainTriangle extends Objet{
     }
     
     public String toString(){
-        return ("[["+C1+";"+C2+";"+C3+"]]");
+        return ("[["+C1+";"+C2+";"+C3+"]]"+idT);
     }
     
     //creation des triangles du terrain;
@@ -103,7 +103,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                 cond=0;
                 k=nbrST-2;
             }
-                
+//             System.out.println("cond1="+cond);   
                 for(i=0;i<nbrSTr-1;i++){
                      //pour gerer un "segment point", ne pas faire de verticale juste apres le point le plus faible
                     if((STr.get(i).getA().getPx()==STr.get(i).getB().getPx())&&(STr.get(i).getA().getPy()==STr.get(i).getB().getPy())){
@@ -116,10 +116,11 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                             cond=0;
                         }else{
                             cond=1;
-                        }  
+                        } 
+//                        System.out.println("condSP="+cond);
                     }
-                    //pour gerer les verticales
-                    if(i+1!=nbrSTr){
+                    //pour gerer les verticales, ne pas finir sur une verticale recente
+                    if(i!=nbrSTr-1){
                     if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){
                         if(cond==1){
                             cond=0;
@@ -130,6 +131,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                             j=j+1;
                             i=i+1; 
                         }
+//                        System.out.println("condV="+cond);
                         }
                     }
                     r = i%2;
@@ -183,6 +185,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
             TT.add(TTtempo);
          
     }
+        System.out.println(TT);
         return TT;
 }
 
