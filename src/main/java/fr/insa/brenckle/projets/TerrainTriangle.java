@@ -119,7 +119,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                         }  
                     }
                     //pour gerer les verticales
-                    if(i+1==nbrSTr-1){
+                    if(i+1!=nbrSTr){
                     if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){
                         if(cond==1){
                             cond=0;
