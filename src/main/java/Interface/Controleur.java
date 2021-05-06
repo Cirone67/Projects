@@ -327,13 +327,15 @@ public class Controleur {
         }
         else if (this.etat == 150){
             Matrice resultat = miseSousSystem(vue.getTreillis()).resoudreSyst(vecteurCharge(vue.getTreillis()));
+            int i = 0;
             for (Barre b: vue.getTreillis().getBarres()){
-                double res = resultat.getMij(b.getId(), 0);
+                double res = resultat.getMij(i, 0);
                 if (res<0){
                     b.setCouleur(Color.RED);
                 } else{
                     b.setCouleur(Color.GREEN);
                 }
+                i=i+1;
             }
             this.vue.getGraph().redraw();
             TextArea text = new TextArea (); text.setText("Matrice résultat");
