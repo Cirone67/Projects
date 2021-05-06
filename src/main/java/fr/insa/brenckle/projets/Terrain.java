@@ -10,7 +10,6 @@ package fr.insa.brenckle.projets;
  * @author MAURY Robin
  */
 import java.util.ArrayList;
-import java.util.*;
 
 public class Terrain {
     private double Ymax;

@@ -6,9 +6,11 @@
 package Interface;
 
 import fr.insa.brenckle.projets.TerrainPoints;
+import static fr.insa.brenckle.projets.TerrainPoints.verifiePT;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -88,10 +90,19 @@ public class SaisiePointTerrain extends Stage{
     });
     
     this.ok.setOnAction((t) -> {
-        if ((this.tabs.getText() != "")&&(this.tord.getText() != "")){
+        if ((!this.tabs.getText().isBlank())&&(!this.tord.getText().isBlank())){
             TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
-            provisoire.add(pT);
-            this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();
+            Boolean b = verifiePT(this.menuCreation.getMenuPrincipal().getI().getTerrain(), pT);
+            if (b==true){
+                provisoire.add(pT);
+                this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();                
+            } else {
+                    Alert f = new Alert(Alert.AlertType.WARNING);
+                    f.setHeaderText("Attention");
+                    f.setContentText("Point hors du terrain");
+                    f.showAndWait();                
+            }
+
         }
 
     });

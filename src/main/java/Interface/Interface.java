@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.Treillis;
 import static fr.insa.brenckle.projets.TypeBarre.BarreDefault;
 import java.io.FileNotFoundException;
@@ -16,17 +17,35 @@ import javafx.stage.Stage;
  * @author Guillaume R
  */
 public class Interface extends BorderPane{
+
+    /**
+     * @param terrain the terrain to set
+     */
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
+
+    /**
+     * @return the terrain
+     */
+    public Terrain getTerrain() {
+        return terrain;
+    }
     
     private Stage fenetre;
     private MenuPrincipal menuPrincipal;
     private NeuCanvas graph;
     private Treillis treillis;
     private Controleur controleur;
+    private Terrain terrain;
     
     public Interface (Stage stage) throws FileNotFoundException{
         
         this.treillis = new Treillis();
         BarreDefault(this.treillis);
+        
+        this.terrain = new Terrain (0, Double.MAX_VALUE, 0, Double.MAX_VALUE);
+        
         this.fenetre = stage;
         this.controleur = new Controleur(this);
         

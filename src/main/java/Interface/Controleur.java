@@ -17,6 +17,7 @@ import fr.insa.brenckle.projets.Matrice;
 import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.NoeudSimple;
 import fr.insa.brenckle.projets.Objet;
+import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.TerrainPoints;
 import static fr.insa.brenckle.projets.TerrainPoints.CompletePoint;
 import static fr.insa.brenckle.projets.TerrainPoints.TrianglePoint;
@@ -67,6 +68,8 @@ public class Controleur {
         }
         else if (this.etat == 19){
             this.vue.getMenuPrincipal().getMenuCreation().getCreePTerrain().setDisable(false);
+            double[] coord = vue.getMenuPrincipal().getMenuCreation().getDelimite().getCoordonnees();
+            this.vue.setTerrain(new Terrain (coord[0], coord[1], coord[2], coord[3]));
         }
         else if (this.etat == 20){  //clique sur "nouveau" point terrain
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().show();
