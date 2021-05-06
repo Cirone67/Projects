@@ -6,6 +6,7 @@
 package Interface;
 
 import fr.insa.brenckle.projets.Barre;
+import fr.insa.brenckle.projets.Charge;
 import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.Objet;
 import fr.insa.brenckle.projets.TerrainPoints;
@@ -107,7 +108,10 @@ public class NeuCanvas extends Pane {
         }
         for (Barre b: modele.getBarres()){ //dessine les barres
             b.draw(context);
-        }        
+        }
+        for (Charge c: modele.getCharge()){
+            c.draw(context);
+        }
         for (Noeud n: modele.getNoeuds()){ //dessine les noeuds
             n.draw(context);
         }

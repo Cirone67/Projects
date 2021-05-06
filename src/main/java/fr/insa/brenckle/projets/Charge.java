@@ -6,33 +6,72 @@
 package fr.insa.brenckle.projets;
 
 import java.util.ArrayList;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
  * @author brenc
  */
-public class Charge {
+public class Charge extends Objet{
     
    private int id ;
    private int noeud ;
    private double angle; //Angle par rapport à l'horizon
    private double norme;
+   private Noeud n; //c'est mon anniv je fais ce que je veux
    protected static int nbrCharge = 1;
    
-   Charge(int id, int noeud, double norme, double angle){
+   public Charge(int id, int noeud, double norme, double angle){
        this.id = id;
        this.noeud = noeud;
        this.angle = angle;
        this.norme = norme;
+       this.n = null;
    }
    
-      Charge(int noeud, double norme, double angle){
+     public Charge(int noeud, double norme, double angle){
        this.id = nbrCharge;
        this.noeud = noeud;
        this.angle = angle;
        this.norme = norme;
+       this.n = null;
        nbrCharge++;
    }
+      public Charge(Noeud noeud, double norme, double angle){
+       this.id = nbrCharge;
+       this.noeud = noeud.getIdNoeud();
+       this.angle = angle;
+       this.norme = norme;
+       this.n = noeud;  
+       nbrCharge++;
+   }
+    
+     public void draw(GraphicsContext gc){
+         gc.setStroke(this.getCouleur());
+         int r = 3;
+         double x = this.n.getAbs();
+         double y = this.n.getOrd();
+         double x2 = x + Math.cos(this.angle)*this.norme;
+         double y2 = y + Math.sin(this.angle)*this.norme;
+         double [] abs = new double [5]; double [] ord = new double [5];
+         abs[0] = x; ord[0] = y;
+         abs[1] = x2; ord[1] = y2;
+         abs[2] = x2 -r; ord[2] = y2-r;
+         abs[3] = abs[1]; ord[3] = ord[1];
+         abs[4] = x2; ord[4] = y2-r;
+         gc.setLineWidth(0.5);
+         gc.strokePolyline(abs, ord, 5);
+     }
+     
+    public void drawSelection(GraphicsContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
+    public double distancePoint(double abs, double ord) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }     
+     
     public int getId() {
         return id;
     }
@@ -86,4 +125,7 @@ public class Charge {
         return temp;
         
     }
+
+   
+
 }

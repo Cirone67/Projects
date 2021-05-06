@@ -35,7 +35,7 @@ public class PanneauNoeuds extends HBox{
         
         this.segmentSelect = null;
         this.menuCreation = menuCreation;
-        this.creer = new Button ("Créer"); //this.creer.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.creer = new Button ("Créer"); this.creer.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.abs = new TextField();
         this.ord = new TextField();
         this.lambda = new TextField();

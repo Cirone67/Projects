@@ -5,7 +5,12 @@
  */
 package Interface;
 
+import fr.insa.brenckle.projets.AppuiDouble;
+import fr.insa.brenckle.projets.AppuiSimple;
+import fr.insa.brenckle.projets.Barre;
 import fr.insa.brenckle.projets.Noeud;
+import fr.insa.brenckle.projets.NoeudSimple;
+import fr.insa.brenckle.projets.Objet;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
@@ -30,9 +35,10 @@ public class MenuGestion extends HBox{
     private ListView<String> listAppuiDouble;
     private ListView<String> listBarre;
     private Button saisieCharge;
+    private Button reinitialiserCharge;
     private TextField norme;
     private TextField angle;
-    private Button calculCharges;
+    private Button calculForce;
     private Noeud noeudSelect;
     
     public MenuGestion (MenuPrincipal mP){
@@ -60,15 +66,19 @@ public class MenuGestion extends HBox{
         VBox barres = new VBox (5, new Label("Barres"), getListBarre());
         barres.setPrefHeight(100);
         
-        this.calculCharges = new Button ("Calcul des charges"); this.calculCharges.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.calculForce = new Button ("Calcul des forces"); this.calculForce.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt"); 
         
         this.angle = new TextField(); VBox saisieAngle = new VBox ( new Label("Angle:"), getAngle());
         this.norme = new TextField(); VBox saisieNorme = new VBox ( new Label("Norme:"), getNorme());
         VBox vbsaisie = new VBox (5, saisieNorme, saisieAngle);
+        
         this.saisieCharge = new Button ("Créer charge"); saisieCharge.setDisable(true);
-        HBox hbentrercharge = new HBox (10, vbsaisie, getSaisieCharge()); HBox.setMargin(saisieCharge, new Insets (35,0,0,0));
-        VBox vbcharge = new VBox (hbentrercharge, calculCharges);
-        VBox.setMargin(calculCharges, new Insets (15,5,10,10));
+        this.reinitialiserCharge = new Button ("Réinitialiser"); this.reinitialiserCharge.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        VBox boutonsCharge = new VBox (10, saisieCharge, reinitialiserCharge);
+        
+        HBox hbentrercharge = new HBox (10, vbsaisie, boutonsCharge); HBox.setMargin(boutonsCharge, new Insets (35,0,0,0));
+        VBox vbcharge = new VBox (hbentrercharge, calculForce);
+        VBox.setMargin(calculForce, new Insets (15,5,10,10));
         
         Separator sv1 = new Separator (Orientation.VERTICAL); Separator sv2 = new Separator (Orientation.VERTICAL); 
         this.getChildren().addAll(noeuds, appuiSimples, appuiDoubles, sv1, barres, sv2, vbcharge);
@@ -93,8 +103,44 @@ public class MenuGestion extends HBox{
         this.saisieCharge.setOnAction((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(60);
         });
+        this.reinitialiserCharge.setOnAction((t) -> {
+            this.menuPrincipal.getI().getControleur().changeEtat(61);
+        });
+        this.calculForce.setOnAction((t) -> {
+            this.menuPrincipal.getI().getControleur().changeEtat(150);
+        });
         
         
+    }
+    public void supprimeList(Objet O){
+        if (O instanceof Barre){
+            for (int i=0; i<this.getListBarre().getItems().size(); i++){
+                if (this.getListBarre().getItems().get(i).equals(((Barre) O).toString())){
+                    this.getListBarre().getItems().remove(i);
+                }
+            }            
+        }
+        else if (O instanceof NoeudSimple){
+            for (int i=0; i<this.getListNoeud().getItems().size(); i++){
+                if (this.getListNoeud().getItems().get(i).equals(((NoeudSimple) O).toString())){
+                    this.getListNoeud().getItems().remove(i);
+                }
+            }            
+        }
+        else if (O instanceof AppuiSimple){
+            for (int i=0; i<this.getListAppuiSimple().getItems().size(); i++){
+                if (this.getListAppuiSimple().getItems().get(i).equals(((AppuiSimple) O).toString())){
+                    this.getListAppuiSimple().getItems().remove(i);
+                }
+            }            
+        } 
+        else if (O instanceof AppuiDouble){
+            for (int i=0; i<this.getListAppuiDouble().getItems().size(); i++){
+                if (this.getListAppuiDouble().getItems().get(i).equals(((AppuiDouble) O).toString())){
+                    this.getListAppuiDouble().getItems().remove(i);
+                }
+            }            
+        }         
     }
 
     /**
@@ -170,16 +216,11 @@ public class MenuGestion extends HBox{
     /**
      * @return the calculCharges
      */
-    public Button getCalculCharges() {
-        return calculCharges;
+    public Button getCalculForce() {
+        return calculForce;
     }
 
-    /**
-     * @param calculCharges the calculCharges to set
-     */
-    public void setCalculCharges(Button calculCharges) {
-        this.calculCharges = calculCharges;
-    }
+
 
     /**
      * @return the saisieCharge

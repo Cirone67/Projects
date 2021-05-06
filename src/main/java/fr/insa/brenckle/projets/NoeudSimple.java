@@ -7,7 +7,6 @@ package fr.insa.brenckle.projets;
 
 import static fr.insa.brenckle.projets.Objet.couleurSelection;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 /**
  *
