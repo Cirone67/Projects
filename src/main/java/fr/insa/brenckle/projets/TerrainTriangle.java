@@ -119,6 +119,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                         }  
                     }
                     //pour gerer les verticales
+                    if(i+1==nbrSTr-1){
                     if((STr.get(i).getB().getPx()==STr.get(i+1).getB().getPx())&&(STr.get(i).getA().getPx()==STr.get(i+1).getA().getPx())){
                         if(cond==1){
                             cond=0;
@@ -128,6 +129,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                             cond=1;
                             j=j+1;
                             i=i+1; 
+                        }
                         }
                     }
                     r = i%2;
