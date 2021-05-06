@@ -171,16 +171,18 @@ catch (IOException err)
 /*
 public static void main(String[] args){
 Treillis premier;
-premier = telechargement(3);
+premier = telechargement("Treillis3.txt");
 Matrice prems;
 Matrice sec;
 prems = miseSousSystem(premier);
 System.out.println(prems);
 premier.ajoute(new Charge(1,3,1000,-Math.PI/2));
-sec = vecteurcharge(premier);
+sec = vecteurCharge(premier);
 System.out.println(sec);
+
 Matrice resultat = prems.resoudreSyst(sec);
-System.out.println(resultat);
+//System.out.println(resultat);
+
 //enregistrer(premier,2);
 }
 */

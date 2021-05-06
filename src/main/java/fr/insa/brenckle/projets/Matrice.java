@@ -189,11 +189,13 @@ return MconcN;
 //Méthode cacaténation Colonne
 public Matrice concatCol(Matrice N){
     if(this.nbrLig == N.nbrLig){
+        
 Matrice MconcN = new Matrice(this.nbrLig,this.nbrCol+N.nbrCol);
-for(int i=0;i<this.nbrCol;i++){
-        for(int j=0; j<this.nbrLig; j++){
+System.out.println("nbr lig " +this.nbrLig);
+for(int i=0;i<this.nbrLig;i++){
+        for(int j=0; j<this.nbrCol; j++){
             MconcN.setMij(i,j,this.getMij(i,j));
-        } 
+        }
 }
 for(int i=this.nbrCol;i<N.nbrCol+this.nbrCol;i++){
         for(int j=0; j<N.nbrLig; j++){
