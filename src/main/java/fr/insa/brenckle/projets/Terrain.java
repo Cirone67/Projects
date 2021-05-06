@@ -115,6 +115,13 @@ for(i=0;i<nbrTT;i++){
         T = new Terrain(xmin,xmax,ymin,ymax);
         return T;
     }
+    public static void VideListes(ArrayList<TerrainPoints> PT ,ArrayList<TerrainPoints> PTr ,ArrayList<TerrainSegment> STr, ArrayList<TerrainSegment> ST, ArrayList<TerrainTriangle> TT){
+        PT.clear();
+        PTr.clear();
+        STr.clear();
+        ST.clear();
+        TT.clear();
+    }
 //          double xmin, xmax, ymin, ymax;
 //          Terrain T;
 //          TerrainPoints PTtempo;

@@ -108,7 +108,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                      //pour gerer un "segment point", ne pas faire de verticale juste apres le point le plus faible
                     if((STr.get(i).getA().getPx()==STr.get(i).getB().getPx())&&(STr.get(i).getA().getPy()==STr.get(i).getB().getPy())){
                         i=i+1;
-                        if(i==nbrSTr-1){
+                        if(i==nbrSTr-1){//prend en compte si le point le plus bas est l'avant dernier du terrain : condition speciale
                             TTtempo = new TerrainTriangle(ST.get(j),ST.get(j+1),ST.get(j+2));
                             TT.add(TTtempo);
                         }else{
