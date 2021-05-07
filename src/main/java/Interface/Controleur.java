@@ -11,6 +11,7 @@ import fr.insa.brenckle.projets.AppuiDouble;
 import fr.insa.brenckle.projets.AppuiSimple;
 import fr.insa.brenckle.projets.Barre;
 import static fr.insa.brenckle.projets.Calcul.matriceCarree;
+import static fr.insa.brenckle.projets.Barre.PrixTreillis;
 import static fr.insa.brenckle.projets.Calcul.miseSousSystem;
 import static fr.insa.brenckle.projets.Calcul.vecteurCharge;
 import fr.insa.brenckle.projets.Charge;
@@ -74,6 +75,7 @@ public class Controleur {
         }
         else if (this.etat == 20){  //clique sur "nouveau" point terrain
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().show();
+            this.vue.getGraph().redraw();
         }
         else if (this.etat == 21){
             ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
@@ -137,7 +139,7 @@ public class Controleur {
                 TextField coeffLambda = this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getLambda();
                 TerrainSegment TSselect = this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getSegmentSelect();
                 
-                if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui simple")){
+                if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString().equals("Appui simple"))){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiSimple ap = new AppuiSimple(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ap);
@@ -145,7 +147,7 @@ public class Controleur {
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
                 } 
-                else if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString() == "Appui double")){
+                else if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString().equals("Appui double"))){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
                     AppuiDouble ad = new AppuiDouble(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ad); 
@@ -290,7 +292,7 @@ public class Controleur {
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
             this.segments.clear();
             this.vue.getGraph().redraw();
-            etat = 10;
+            this.etat = 10;
         }
         else if (this.etat == 101){ //sup barre ou noeud
             for (Objet O: selection){
@@ -298,7 +300,7 @@ public class Controleur {
                         vue.getTreillis().supprime((Barre) O);
                         vue.getMenuPrincipal().getMenuGestion().supprimeList(O);
                     }
-                    else if (O instanceof Noeud){
+                    if (O instanceof Noeud){
                         for (Barre b: vue.getTreillis().getBarres()){
                             if ((b.getDebut() == (Noeud) O) || (b.getFin() == (Noeud) O)){
                                 vue.getTreillis().supprime(b);
@@ -312,24 +314,29 @@ public class Controleur {
             selection.clear();
             vue.getGraph().redraw();
             this.vue.getMenuPrincipal().getMenuCreation().getSuppression().setDisable(true);
+            this.etat = 10;
         }
-        else if (this.etat == 102){
+        else if (this.etat == 102){  //réinitialisation du terrain
             vue.getTreillis().getTerrainTriangles().clear();
             vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
-            for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){  //supprime appuis et barres reliées aux appuis
-                if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiSimple) || (vue.getTreillis().getNoeuds().get(i) instanceof AppuiDouble)){
+            segments.clear();
+            int i=0;
+            for (Noeud n:this.vue.getTreillis().getNoeuds()){  //supprime appuis et barres reliées à ces appuis
+                if ((n instanceof AppuiSimple) || (n instanceof AppuiDouble)){
                     for (Barre barre : vue.getTreillis().getBarres()) {
-                        if((barre.getDebut()==vue.getTreillis().getNoeuds().get(i)) || (barre.getFin()==vue.getTreillis().getNoeuds().get(i))){
+                        if((barre.getDebut()==n) || (barre.getFin()==n)){
                             vue.getMenuPrincipal().getMenuGestion().supprimeList(barre);
                             vue.getTreillis().supprime(barre);
                         }
                     }
                     vue.getMenuPrincipal().getMenuGestion().supprimeList(vue.getTreillis().getNoeuds().get(i));
-                    vue.getTreillis().getNoeuds().remove(i);
+                    vue.getTreillis().getNoeuds().remove(n);
                 }
+                i=i+1;
             }
             selection.clear();
             vue.getGraph().redraw();
+            this.etat = 10;
         }
         else if (this.etat == 150){
             Matrice system = miseSousSystem(vue.getTreillis());
@@ -359,6 +366,7 @@ public class Controleur {
                     f.showAndWait();  
                     this.vue.getGraph().redraw();  
             }
+            this.etat = 10;
         }
     }
      
@@ -455,6 +463,8 @@ public class Controleur {
                     this.vue.getGraph().redraw();
                 }else{
                     this.vue.getTreillis().ajoute(neuBarre);
+                    Double prix = PrixTreillis(vue.getTreillis().getBarres());
+                    this.vue.getMenuPrincipal().getMenuGestion().getPrix().setText(Double.toString(prix) + " €");
                     this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(neuBarre.toString());
                     this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
                     this.vue.getGraph().redraw();
@@ -477,7 +487,7 @@ public class Controleur {
         }
     }
     
-    public Objet plusProche(double px, double py, double distanceMax){  //A FAIRE changer la sélection pour que l'initialisation de objProche se fasse sur une liste non vide
+    public Objet plusProche(double px, double py, double distanceMax){  
         Treillis treillis = this.vue.getTreillis();
         ArrayList<TerrainPoints> TP = new ArrayList<TerrainPoints>(); TP.addAll(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
         boolean b = verifieForme(TP);
@@ -513,6 +523,7 @@ public class Controleur {
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC3();
                     distMin = objProche.distancePoint(px, py);
                 }
+//                System.out.println(objProche.toString());
                 if (this.vue.getTreillis().getTerrainTriangles().get(i).getC1().getA().distancePoint(px, py) < distMin){  //points terrain  C1 A
                     objProche = this.vue.getTreillis().getTerrainTriangles().get(i).getC1().getA();
                     distMin = objProche.distancePoint(px, py);

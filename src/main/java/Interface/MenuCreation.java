@@ -6,7 +6,6 @@
 package Interface;
 
 import fr.insa.brenckle.projets.TypeBarre;
-import static fr.insa.brenckle.projets.TypeBarre.BarreDefault;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
@@ -105,12 +104,13 @@ public class MenuCreation extends HBox{
           VBox.setMargin(this.delimiterTerrain, new Insets (0,0,0,15));
           VBox.setMargin(this.genererTerrain, new Insets (0,0,0,19));
           SousMenuPpl pTerrain = new SousMenuPpl(new Label ("Points Terrain"), this.getCreePTerrain(), this.getActPTerrain(), 5, 5, 10, 5, 55, 5, 10, 5, 20, false);   //espace entre ssTitre, marge T haut, marge T doite, marge T bas, marge T gauche, marge ST haut, ...
-          //SousMenuPpl segTerrain = new SousMenuPpl (new Label ("Segments Terrain"), this.getCreeSegTerrain(), this.getSupSegTerrain(), 5, 5, 10, 5, 30, 5, 10, 5, 10, false);
-          SousMenuPpl terrain = new SousMenuPpl (new Label("Terrain"), pTerrain, actionTerrain, 0, 10, 0, 5, 175, 5, 0, 0, 0, true);
+          Label terr = new Label ("Terrain"); terr.setStyle("-fx-font-size: 11pt; -fx-font-family: \"Segoe UI Semibold\"; -fx-opacity: 0.8");
+          SousMenuPpl terrain = new SousMenuPpl (terr, pTerrain, actionTerrain, 0, 10, 0, 5, 175, 5, 0, 0, 0, true);
           
           //SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.getCreeNoeud(), this.getSupNoeud(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
-          SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.typeBarre, 5, -10, 10, 15, 60, 5, -10, 5, 10, false);
-          SousMenuPpl treillis = new SousMenuPpl (new Label ("Treillis"), getPanneauNoeuds(), barres, 0, 10, 0, 5, 290, 0, 0, 0, 0, true);
+          SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.typeBarre, 5, -10, 10, 15, 60, 0, -10, 5, 10, false);
+          Label treill = new Label ("Treillis"); treill.setStyle("-fx-font-size: 11pt; -fx-font-family: \"Segoe UI Semibold\"; -fx-opacity: 0.8");
+          SousMenuPpl treillis = new SousMenuPpl (treill, getPanneauNoeuds(), barres, 0, 10, 0, 5, 290, 0, 0, 0, 0, true); 
  
           
           Separator sv1 = new Separator (Orientation.VERTICAL);
@@ -118,7 +118,7 @@ public class MenuCreation extends HBox{
           Separator sh = new Separator (Orientation.HORIZONTAL);
           this.getChildren().addAll(outils, sv1, terrain, sv2, treillis, sv3, reinitialiser); this.setStyle("-fx-background-color: #e5e5e5");
           this.setSpacing(30);
-          this.setMargin(terrain, new Insets(0, 0, 0, -30));
+          this.setMargin(terrain, new Insets(0, 0, 5, -30));
           this.setMargin(outils, new Insets(20, -5, 5, 25));
           this.setMargin(reinitialiser, new Insets(30, 2, 10, -5));
           

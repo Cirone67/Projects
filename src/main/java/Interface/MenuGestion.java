@@ -20,7 +20,9 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -40,39 +42,51 @@ public class MenuGestion extends HBox{
     private TextField angle;
     private Button calculForce;
     private Noeud noeudSelect;
+    private Text prix;
     
     public MenuGestion (MenuPrincipal mP){
         
         this.menuPrincipal = mP;
+        
+        this.prix = new Text("0 €"); prix.setStyle("-fx-font-size: 11pt; -fx-font-family: \"Segoe UI Semibold\"");
+        Label pr = new Label("Coût du treillis:"); pr.setStyle("-fx-font-size: 9pt; -fx-font-family: \"Segoe UI Semibold\"");
+        VBox hbPrix = new VBox (pr, getPrix());
+        Pane panePrix = new Pane(hbPrix);
         
         this.noeudSelect = null;
         this.listNoeud = new ListView<String>(); listNoeud.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         VBox noeuds = new VBox (5, new Label("Noeuds Simples"), getListNoeud());
         noeuds.setPrefHeight(100);
+        noeuds.setPrefWidth(125);
         
         this.listAppuiSimple = new ListView<String>(); listAppuiSimple.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         VBox appuiSimples = new VBox (5, new Label("Appuis Simples"), getListAppuiSimple());
         appuiSimples.setPrefHeight(100);
+        appuiSimples.setPrefWidth(200);
         
         this.listAppuiDouble = new ListView<String>(); listAppuiDouble.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         VBox appuiDoubles = new VBox (5, new Label("Appuis doubles"), getListAppuiDouble());
         appuiDoubles.setPrefHeight(100);
+        appuiDoubles.setPrefWidth(200);
         
         this.listBarre = new ListView<String>(); listBarre.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         VBox barres = new VBox (5, new Label("Barres"), getListBarre());
         barres.setPrefHeight(100);
+        barres.setPrefWidth(250);
         
         this.calculForce = new Button ("Calcul des forces"); this.calculForce.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt"); 
         
-        this.angle = new TextField(); VBox saisieAngle = new VBox ( new Label("Angle:"), getAngle());
-        this.norme = new TextField(); VBox saisieNorme = new VBox ( new Label("Norme:"), getNorme());
+        this.angle = new TextField(); angle.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
+        VBox saisieAngle = new VBox ( new Label("Angle:"), getAngle());
+        this.norme = new TextField(); norme.setStyle(" -fx-font-family: \"Segoe UI Semibold\"");
+        VBox saisieNorme = new VBox ( new Label("Norme:"), getNorme());
         VBox vbsaisie = new VBox (5, saisieNorme, saisieAngle);
         
-        this.saisieCharge = new Button ("Créer charge"); saisieCharge.setDisable(true);
+        this.saisieCharge = new Button ("Créer charge"); saisieCharge.setDisable(true); this.saisieCharge.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         this.reinitialiserCharge = new Button ("Réinitialiser"); this.reinitialiserCharge.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
         VBox boutonsCharge = new VBox (10, saisieCharge, reinitialiserCharge);
         
@@ -80,12 +94,13 @@ public class MenuGestion extends HBox{
         VBox vbcharge = new VBox (hbentrercharge, calculForce);
         VBox.setMargin(calculForce, new Insets (15,5,10,10));
         
-        Separator sv1 = new Separator (Orientation.VERTICAL); Separator sv2 = new Separator (Orientation.VERTICAL); 
-        this.getChildren().addAll(noeuds, appuiSimples, appuiDoubles, sv1, barres, sv2, vbcharge);
+        Separator sv1 = new Separator (Orientation.VERTICAL); Separator sv2 = new Separator (Orientation.VERTICAL); Separator sv3 = new Separator (Orientation.VERTICAL); 
+        this.getChildren().addAll(noeuds, appuiSimples, appuiDoubles, sv1, barres, sv2, vbcharge, sv3, panePrix);  //rajouter indicateur du coût
         this.setSpacing(10); this.setStyle("-fx-background-color: #e5e5e5");
         HBox.setMargin(noeuds, new Insets (5,0,5,10)); HBox.setMargin(appuiSimples, new Insets (5,0,5,10));
         HBox.setMargin(appuiDoubles, new Insets (5,0,5,10)); HBox.setMargin(barres, new Insets (5,0,5,0));
         HBox.setMargin(vbcharge, new Insets (5,5,0,0)); 
+        HBox.setMargin(panePrix, new Insets(30,10,30,10));
         
         //Gestion des événements
         this.listNoeud.setOnMouseClicked((t) -> {
@@ -256,5 +271,13 @@ public class MenuGestion extends HBox{
     public TextField getAngle() {
         return angle;
     }
+
+    /**
+     * @return the prix
+     */
+    public Text getPrix() {
+        return prix;
+    }
+
 
 }

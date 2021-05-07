@@ -83,7 +83,7 @@ public TypeBarre(int categorie, double cout, double longmin, double longmax, dou
       TypeBarre acier = new TypeBarre("Acier", 3,100.0,1.0,1000.0,4253.0,7523.0);
       treillis.ajoute(acier);
       nbrTypeBarre++;
-      TypeBarre aluminium = new TypeBarre("Aluminium", 4,100.0,1.0,300,1623.0,850.0);
+      TypeBarre aluminium = new TypeBarre("Aluminium", 4,100.0,300,10,1623.0,850.0);
       treillis.ajoute(aluminium);
       nbrTypeBarre++;
       

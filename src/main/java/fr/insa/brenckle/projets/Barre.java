@@ -108,14 +108,13 @@ public double prix(){
 
 
 //Calcul du prix total du treillis
-public double PrixTreillis(ArrayList<Barre> B){
+public static double PrixTreillis(ArrayList<Barre> B){
     double prixT=0;
     int i;
     for(i=0;i<B.size();i++){
         prixT=prixT+B.get(i).prix();
     }
-//    System.out.println("Le prix total du treillis est de : "+prixT);
-    return prixT;
+    return Math.round(prixT*100.0)/100.0;
 }
 
 //Méthode autour des restrictions de longueur renvoie false si il y a un probleme de longueur 

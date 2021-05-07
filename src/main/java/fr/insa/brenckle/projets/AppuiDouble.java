@@ -41,9 +41,11 @@ public class AppuiDouble extends Appui{
         try {
             File file = new File("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\appuiDouble.png");
             String url = file.toURI().toURL().toString();
-            Image img2 = new Image(url, 58.95, 24, false, false);
+            Image img2 = new Image(url, 50, 24, false, false);
             gc.setImageSmoothing(true);        
-            gc.drawImage(img2, this.getAbs()-29, this.getOrd()-22.4);
+            gc.drawImage(img2, this.getAbs()-25.5, this.getOrd()-23.5);
+//        gc.strokeOval(this.getAbs()-3*0.5, this.getOrd()-3, 3, 3);
+//        gc.fillOval(this.getAbs()-3*0.5, this.getOrd()-3, 3, 3); 
         } catch (MalformedURLException ex) {
             Logger.getLogger(AppuiDouble.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +53,7 @@ public class AppuiDouble extends Appui{
     }
     public void drawSelection(GraphicsContext gc){  
         gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
-        gc.fillRect(this.getAbs()-29, this.getOrd()-22.4, 58.95, 24);
+        gc.fillRect(this.getAbs()-25.5, this.getOrd()-23.5, 50, 24);
     }    
     
 }

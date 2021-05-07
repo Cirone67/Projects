@@ -54,9 +54,9 @@ public class SaisiePointTerrain extends Stage{
     this.initModality(Modality.WINDOW_MODAL);
     this.abs = new Label ("Abscisse");
     this.ord = new Label ("Ordonnée");
-    this.ok = new Button ("Valider");
-    this.quitter = new Button ("Sauvegarder et quitter");
-    this.clear = new Button ("Réinitialiser");
+    this.ok = new Button ("Valider"); this.ok.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+    this.quitter = new Button ("Sauvegarder et quitter"); this.quitter.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+    this.clear = new Button ("Réinitialiser"); this.clear.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
     this.tabs = new TextField();
     this.tord = new TextField();
     this.p = new ArrayList<TerrainPoints>();
@@ -117,7 +117,7 @@ public class SaisiePointTerrain extends Stage{
         }
     });
     this.quitter.setOnAction((t) -> {
-        p.addAll(provisoire);
+        p.addAll(provisoire);     
         provisoire.clear();
         menuCreation.getMenuPrincipal().getI().getControleur().changeEtat(21);
     });
