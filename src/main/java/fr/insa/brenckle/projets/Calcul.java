@@ -140,13 +140,14 @@ public class Calcul {
                   systeme.setMij(i+1, j+1, 1);
               j = j+2;
               } else if(treillis.getNoeuds().get(t) instanceof AppuiSimple){
+                  //systeme.String();
                   systeme.setMij(i, j, Math.cos(anglNormal(((AppuiSimple)treillis.getNoeuds().get(t)).getTriangleAppui(),((AppuiSimple)treillis.getNoeuds().get(t)).getPremierPoint(), treillis.getTerrainTriangles())));
                   systeme.setMij(i+1, j, Math.sin(anglNormal(((AppuiSimple)treillis.getNoeuds().get(t)).getTriangleAppui(),((AppuiSimple)treillis.getNoeuds().get(t)).getPremierPoint(), treillis.getTerrainTriangles())));
               j= j+1;
               }else{
-               j= j+2;   
+               //j= j+2;   
               }
-              //systeme.String();
+              systeme.String();
            }
         
        }
@@ -180,16 +181,37 @@ public class Calcul {
            }  
        return vecteur;
    }
+   
+   //méthode qui renvoie vrai si le matrice est carré ( et donc le système a une unique solution)
+   public static boolean matriceCarree(Matrice matrice){
+       boolean res = false;
+       System.out.println(matrice);
+      if(matrice.getNbrCol()==matrice.getNbrLig()) {
+          res = true;
+      }
+      return res;
+   }
+   
+   
    /*
    public String affichage(Treillis treillis){
-       String res;
+       String res = "";
        Matrice affichage;
        for(int i =0; i<treillis.getBarres().size();i++){
-           
+       res= res+"Barre "+treillis.getBarres().get(i).getId()+" = \n";
        }
-       for(){
-           
-       }
+       
+      int  j=treillis.getBarres().size();
+       while(j<treillis.getBarres().size()+nbrAppui(treillis.getNoeuds())){
+           if(treillis.getNoeuds().get(j-treillis.getBarres().size()) instanceof AppuiDouble){
+           res = res+ ("Rx"+(treillis.getNoeuds().get(j-treillis.getBarres())).getIdNoeud()+" = \n");
+           res = res+"Ry"+treillis.getNoeuds().get(j-treillis.getBarres())+" = \n"
+           }
+           if(treillis.getNoeuds().get(j-treillis.getBarres().size()) instanceof AppuiSimple){
+            res = res+"Rx"+treillis.getNoeuds().get(j-treillis.getBarres())+" = \n";   
+           }    
+           }
+       return res;
    }
    */
 }

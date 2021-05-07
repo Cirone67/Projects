@@ -10,6 +10,7 @@ import static Interface.PanneauNoeuds.rechercheTriangle;
 import fr.insa.brenckle.projets.AppuiDouble;
 import fr.insa.brenckle.projets.AppuiSimple;
 import fr.insa.brenckle.projets.Barre;
+import static fr.insa.brenckle.projets.Calcul.matriceCarree;
 import static fr.insa.brenckle.projets.Calcul.miseSousSystem;
 import static fr.insa.brenckle.projets.Calcul.vecteurCharge;
 import fr.insa.brenckle.projets.Charge;
@@ -331,6 +332,8 @@ public class Controleur {
             vue.getGraph().redraw();
         }
         else if (this.etat == 150){
+            Matrice system = miseSousSystem(vue.getTreillis());
+            if(matriceCarree(system)){
             Matrice resultat = miseSousSystem(vue.getTreillis()).resoudreSyst(vecteurCharge(vue.getTreillis()));
             int i = 0;
             for (Barre b: vue.getTreillis().getBarres()){
@@ -349,6 +352,13 @@ public class Controleur {
             Stage stage = new Stage();
             stage.setScene(s);
             stage.show();
+            }else{
+              Alert f = new Alert(Alert.AlertType.WARNING);
+                    f.setHeaderText("Attention");
+                    f.setContentText("Treillis hyperstatique. Veuillez le rendre isostatique");
+                    f.showAndWait();  
+                    this.vue.getGraph().redraw();  
+            }
         }
     }
      
