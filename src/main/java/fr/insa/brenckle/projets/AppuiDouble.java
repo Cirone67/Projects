@@ -33,6 +33,10 @@ public class AppuiDouble extends Appui{
         super(id, triangleAppui, premierPoint, posSegment);
     }
     
+        public AppuiDouble( TerrainTriangle triangleAppui, int premierPoint, double posSegment) {
+        super(triangleAppui, premierPoint, posSegment);
+    }
+    
     public void draw(GraphicsContext gc){  
         try {
             File file = new File("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\appuiDouble.png");
