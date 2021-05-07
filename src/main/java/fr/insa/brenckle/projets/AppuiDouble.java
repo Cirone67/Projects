@@ -24,6 +24,10 @@ public class AppuiDouble extends Appui{
     public AppuiDouble(int id, int idtriangleAppui, int premierPoint, double posSegment, ArrayList<TerrainTriangle> terrainTriangle) {
         super(id, idtriangleAppui, premierPoint, posSegment, terrainTriangle);
     }
+    
+    public AppuiDouble(int idtriangleAppui, int premierPoint, double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
+        super(idtriangleAppui, premierPoint, posSegment, terrainTriangle);
+    }
 
     public AppuiDouble(int id, TerrainTriangle triangleAppui, int premierPoint, double posSegment) {
         super(id, triangleAppui, premierPoint, posSegment);

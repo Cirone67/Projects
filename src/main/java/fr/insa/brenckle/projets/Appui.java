@@ -43,6 +43,18 @@ public abstract class Appui extends Noeud{
     nbrNoeud++;
     }
     
+    public Appui(int idtriangleAppui,int premierPoint ,double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
+    super(nbrNoeud);
+    for(int i=0; i< terrainTriangle.size();i++){
+        if(terrainTriangle.get(i).getidT()== idtriangleAppui){
+           this.triangleAppui = terrainTriangle.get(i);
+        }
+    }
+    this.posSegment = posSegment;
+    this.premierPoint = premierPoint;
+    nbrNoeud++;
+    }
+    
     public String toString(){
         return " Appui "+ this.getIdNoeud()+ " de coordonnée : ("+ this.getAbs()+";"+this.getOrd()+")";
     }

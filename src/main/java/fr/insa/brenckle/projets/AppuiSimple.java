@@ -29,6 +29,10 @@ public class AppuiSimple extends Appui{
         super(id, idtriangleAppui, premierPoint, posSegment, terrainTriangle);
     }
     
+        public AppuiSimple(int idtriangleAppui, int premierPoint, double posSegment, ArrayList<TerrainTriangle> terrainTriangle){
+        super(idtriangleAppui, premierPoint, posSegment, terrainTriangle);
+    }
+    
     public void draw(GraphicsContext gc){  
         try {
             
