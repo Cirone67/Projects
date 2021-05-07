@@ -28,7 +28,7 @@ public String toStringBis(){
     return getNom();
 }
 
-public TypeBarre(String nom, int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
+public TypeBarre(String nom, int categorie, double cout,double longmin , double longmax, double restension, double rescompression){
  this.categorie = categorie; 
  this.cout = cout;
  this.longmax = longmax;
@@ -38,8 +38,8 @@ public TypeBarre(String nom, int categorie, double cout, double longmax, double 
  this.nom = nom;
 }
 
-public TypeBarre(int categorie, double cout, double longmax, double longmin, double restension, double rescompression){
-    this (Integer.toString(categorie), categorie, cout, longmax, longmin, restension, rescompression);
+public TypeBarre(int categorie, double cout, double longmin, double longmax, double restension, double rescompression){
+    this (Integer.toString(categorie), categorie, cout,longmin , longmax, restension, rescompression);
 }
 
     public static int getNbrTypeBarre() {
@@ -74,13 +74,13 @@ public TypeBarre(int categorie, double cout, double longmax, double longmin, dou
     
     //Catalogue à télécharger par défault
     public static void BarreDefault(Treillis treillis){
-      TypeBarre cuivre = new TypeBarre("Cuivre", 1,100.0,1.0,500,1000.0,2000.0);
+      TypeBarre cuivre = new TypeBarre("Cuivre", 1,100.0,500.0,1000.0,1000.0,2000.0);
       treillis.ajoute(cuivre);
       nbrTypeBarre++;
-      TypeBarre fer = new TypeBarre("Fer", 2,100.0,1.0,800,3550.0,2540.0);
+      TypeBarre fer = new TypeBarre("Fer", 2,100.0,800.0,1000.0,3550.0,2540.0);
       treillis.ajoute(fer);
       nbrTypeBarre++;
-      TypeBarre acier = new TypeBarre("Acier", 3,100.0,1.0,1000,4253.0,7523.0);
+      TypeBarre acier = new TypeBarre("Acier", 3,100.0,1.0,1000.0,4253.0,7523.0);
       treillis.ajoute(acier);
       nbrTypeBarre++;
       TypeBarre aluminium = new TypeBarre("Aluminium", 4,100.0,1.0,300,1623.0,850.0);
