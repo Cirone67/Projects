@@ -103,15 +103,20 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                 cond=0;
                 k=nbrST-2;
             }
-//             System.out.println("cond1="+cond);   
                 for(i=0;i<nbrSTr-1;i++){
                      //pour gerer un "segment point", ne pas faire de verticale juste apres le point le plus faible
                     if((STr.get(i).getA().getPx()==STr.get(i).getB().getPx())&&(STr.get(i).getA().getPy()==STr.get(i).getB().getPy())){
+                        System.out.println("segmentpoint"+i+1);
                         i=i+1;
-                        if(i==nbrSTr-1){//prend en compte si le point le plus bas est l'avant dernier du terrain : condition speciale
+                        //prend en compte si le point le plus bas est l'avant dernier du terrain : condition speciale 
+                        if((i==nbrSTr-1)&&(ST.get(j+2).getB().getPx()==ST.get(j).getA().getPx())&&(ST.get(j+2).getB().getPy()==ST.get(j).getA().getPy())){
+  
+                            System.out.println("segmentfin");
                             TTtempo = new TerrainTriangle(ST.get(j),ST.get(j+1),ST.get(j+2));
                             TT.add(TTtempo);
+                            sortie=1;//pour gerer la fin du terrain
                         }else{
+                            System.out.println("segmentautre");
                         TTtempo= new TerrainTriangle(ST.get(j),TerrainSegment.InvSegment(STr.get(i)),ST.get(k));
                         TT.add(TTtempo);
                         }
@@ -121,9 +126,6 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                             cond=0;
                         }else{
                             cond=1;
-                        }
-                        if(i==nbrSTr-1){
-                            sortie=1;
                         }
 //                        System.out.println("condSP="+cond);
                     }
