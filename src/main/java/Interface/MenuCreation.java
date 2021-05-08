@@ -122,7 +122,7 @@ public class MenuCreation extends HBox{
           this.setMargin(outils, new Insets(20, -5, 5, 25));
           this.setMargin(reinitialiser, new Insets(30, 2, 10, -5));
           
-          
+                        
           //Gestion événements
           this.creePTerrain.setOnAction((t) -> {
               this.menuPrincipal.getI().getControleur().changeEtat(20);
