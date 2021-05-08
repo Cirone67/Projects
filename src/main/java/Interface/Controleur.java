@@ -141,7 +141,7 @@ public class Controleur {
                 
                 if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString().equals("Appui simple"))){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
-                    AppuiSimple ap = new AppuiSimple(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
+                    AppuiSimple ap = new AppuiSimple(rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ap);
                     this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().add(ap.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
@@ -149,7 +149,7 @@ public class Controleur {
                 } 
                 else if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString().equals("Appui double"))){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
-                    AppuiDouble ad = new AppuiDouble(1, rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
+                    AppuiDouble ad = new AppuiDouble(rechercheTriangle (TSselect, listTT), recherchePremierPoint(TSselect, listTT), Double.parseDouble(coeffLambda.getText()));
                     this.vue.getMenuPrincipal().getI().getTreillis().ajouteN(ad); 
                     this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().add(ad.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
