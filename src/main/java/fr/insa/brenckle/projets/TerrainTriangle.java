@@ -140,7 +140,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                         }
                     
                     r = i%2;
-                    
+                    if(i!=nbrSTr-1){
                     if((r!=0)&&(cond==0)){
                         TTtempo = new TerrainTriangle(STr.get(i),TerrainSegment.InvSegment(STr.get(i+1)),ST.get(k));
                         TT.add(TTtempo);
@@ -161,6 +161,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                         TT.add(TTtempo);
                         k=k-1;
                     }
+                }
                 }
                 }
                 //fermeture du terrain
