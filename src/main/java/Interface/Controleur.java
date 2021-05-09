@@ -176,6 +176,9 @@ public class Controleur {
         }
         else if (this.etat == 61){
             vue.getTreillis().getCharge().clear();
+            for (Barre b: vue.getTreillis().getBarres()){
+                    b.setCouleur(Color.BLACK);
+            }
             vue.getGraph().redraw();
             this.etat = 10;
         }

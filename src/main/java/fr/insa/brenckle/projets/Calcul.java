@@ -143,11 +143,9 @@ public class Calcul {
                   //systeme.String();
                   systeme.setMij(i, j, Math.cos(anglNormal(((AppuiSimple)treillis.getNoeuds().get(t)).getTriangleAppui(),((AppuiSimple)treillis.getNoeuds().get(t)).getPremierPoint(), treillis.getTerrainTriangles())));
                   systeme.setMij(i+1, j, Math.sin(anglNormal(((AppuiSimple)treillis.getNoeuds().get(t)).getTriangleAppui(),((AppuiSimple)treillis.getNoeuds().get(t)).getPremierPoint(), treillis.getTerrainTriangles())));
-              j= j+1;
-              }else{
-               //j= j+2;   
+              j= j+1;  
               }
-              systeme.String();
+              //systeme.String();
            }
         
        }
