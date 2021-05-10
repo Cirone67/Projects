@@ -44,7 +44,7 @@ public class MenuPrincipal extends VBox{
         this.menuEdition = new MenuEdition(this);
         this.menuGestion = new MenuGestion(this);
               
-        this.edition = new Button ("Edition"); this.edition.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
+        this.edition = new Button ("Fichier"); this.edition.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
         this.creation = new Button ("Création"); this.creation.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
         this.gestion = new Button ("Gestion"); this.gestion.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 30 3 30; -fx-font-size: 10pt");
         

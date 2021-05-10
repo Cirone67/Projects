@@ -395,37 +395,7 @@ public class Controleur {
             } else {
                 selection.clear();
             }
-            //gère les états pour la création d'appuis (si un segment sélectionné ou pas)
-            if ((selection.size() == 1) && (selection.get(0) instanceof TerrainSegment) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
-                this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(false);
-                this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect((TerrainSegment) selection.get(0));              
-            }
-            else if ((selection.size() != 1) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
-                this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(true);
-                this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect(null);
-            }
-            //gère les états pour la création de charges (un seul noeud doit être sélectionné)
-            if ((selection.size() == 1) && (selection.get(0) instanceof Noeud)){
-                this.vue.getMenuPrincipal().getMenuGestion().getSaisieCharge().setDisable(false);
-                this.vue.getMenuPrincipal().getMenuGestion().setNoeudSelect((Noeud) selection.get(0));
-           System.out.println(this.vue.getMenuPrincipal().getMenuGestion().getNoeudSelect().toString());
-            }
-            else if ((selection.size() != 1)){
-                this.vue.getMenuPrincipal().getMenuGestion().getSaisieCharge().setDisable(true);
-                this.vue.getMenuPrincipal().getMenuGestion().setNoeudSelect(null); 
-            }  
-            //gère les états pour la suppression (on ne peut pas supprimer de segment terrain)
-            int d =0;
-            for (Objet O: this.selection){
-                if ((O instanceof TerrainSegment) || (O instanceof TerrainPoints)){
-                    d=1;
-                }
-            }
-            if (selection.size() == 0){ d=1; }
-            if (d==0){
-                this.vue.getMenuPrincipal().getMenuCreation().getSuppression().setDisable(false);     
-            } else {this.vue.getMenuPrincipal().getMenuCreation().getSuppression().setDisable(true);}
-            
+            this.verifieSelection();
             this.vue.getGraph().redraw();
         }
         
@@ -475,7 +445,42 @@ public class Controleur {
                 this.etat = 51;
             }            
         }
-    }  
+    } 
+    
+    public void verifieSelection(){
+        //gère les états pour la création d'appuis (si un segment sélectionné ou pas)
+        if ((selection.size() == 1) && (selection.get(0) instanceof TerrainSegment) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
+            this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(false);
+            this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect((TerrainSegment) selection.get(0));              
+        }
+        else if ((selection.size() != 1) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getEtat() == 1)){
+            this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getCreer().setDisable(true);
+            this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().setSegmentSelect(null);
+        }
+        //gère les états pour la création de charges (un seul noeud doit être sélectionné)
+        if ((selection.size() == 1) && (selection.get(0) instanceof Noeud)){
+            this.vue.getMenuPrincipal().getMenuGestion().getSaisieCharge().setDisable(false);
+            this.vue.getMenuPrincipal().getMenuGestion().setNoeudSelect((Noeud) selection.get(0));
+        }
+        else {
+            this.vue.getMenuPrincipal().getMenuGestion().getSaisieCharge().setDisable(true);
+            this.vue.getMenuPrincipal().getMenuGestion().setNoeudSelect(null); 
+        }  
+        //gère les états pour la suppression (on ne peut pas supprimer de segment terrain)
+        int d =0;
+        for (Objet O: this.selection){
+            if ((O instanceof TerrainSegment) || (O instanceof TerrainPoints)){
+                d=1;
+            }
+        }
+        if (selection.size() == 0){ d=1; }
+        if (d==0){
+            this.vue.getMenuPrincipal().getMenuCreation().getSuppression().setDisable(false);     
+        } else {this.vue.getMenuPrincipal().getMenuCreation().getSuppression().setDisable(true);}
+        
+        this.vue.getGraph().redraw();
+                    
+    }
     
     public void mouvementSouris (MouseEvent t){
         if (this.etat == 52){

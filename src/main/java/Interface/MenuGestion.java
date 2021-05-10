@@ -81,8 +81,10 @@ public class MenuGestion extends HBox{
         this.calculForce = new Button ("Calcul des forces"); this.calculForce.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt"); 
         
         this.angle = new TextField(); angle.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
+        angle.setMaxWidth(100);
         VBox saisieAngle = new VBox ( new Label("Angle:"), getAngle());
         this.norme = new TextField(); norme.setStyle(" -fx-font-family: \"Segoe UI Semibold\"");
+        norme.setMaxWidth(100);
         VBox saisieNorme = new VBox ( new Label("Norme:"), getNorme());
         VBox vbsaisie = new VBox (5, saisieNorme, saisieAngle);
         
@@ -105,15 +107,19 @@ public class MenuGestion extends HBox{
         //Gestion des événements
         this.listNoeud.setOnMouseClicked((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(71);
+            this.menuPrincipal.getI().getControleur().verifieSelection();
         });       
         this.listAppuiSimple.setOnMouseClicked((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(72);
+            this.menuPrincipal.getI().getControleur().verifieSelection();
         }); 
         this.listAppuiDouble.setOnMouseClicked((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(73);
+            this.menuPrincipal.getI().getControleur().verifieSelection();
         });        
          this.listBarre.setOnMouseClicked((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(74);
+            this.menuPrincipal.getI().getControleur().verifieSelection();
         });    
         this.saisieCharge.setOnAction((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(60);
