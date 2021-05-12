@@ -16,6 +16,9 @@ import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -27,12 +30,20 @@ public class NeuCanvas extends Pane {
     private Canvas canvas;
     
     
+    
     public NeuCanvas (Interface I){
         this.I = I;
         this.canvas = new Canvas (this.getWidth(), this.getHeight());
         this.getChildren().add(this.canvas);
         this.canvas.heightProperty().bind(this.heightProperty());
         this.canvas.widthProperty().bind(this.widthProperty());
+        
+        Text absSouris = new Text("X:0"); absSouris.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
+        Text ordSouris = new Text ("Y:0"); ordSouris.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
+        VBox posSouris = new VBox(3, absSouris, ordSouris);
+        
+        this.getChildren().add(posSouris);
+        posSouris.setLayoutX(6); posSouris.setLayoutY(2);
         
         this.canvas.heightProperty().addListener((o) -> {
            this.redraw(); 
@@ -74,6 +85,8 @@ public class NeuCanvas extends Pane {
             I.getControleur().clicDansInterface(t);
         });
         this.canvas.setOnMouseMoved((t) -> {
+            absSouris.setText("X:"+ Double.toString(Math.round(t.getX()*100)/100));
+            ordSouris.setText("Y:"+ Double.toString(Math.round(t.getY()*100)/100)); 
             I.getControleur().mouvementSouris(t);
         });
 
@@ -88,6 +101,10 @@ public class NeuCanvas extends Pane {
         canvas.setRotate(180);
         Treillis modele = this.getI().getTreillis();
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
+        context.setStroke(Color.web("#cccccc"));
+        context.setLineWidth(6);
+        context.strokeRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
         ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.getI().getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
         for (TerrainPoints TP: listPT){   //redessine les premiers points
@@ -124,10 +141,8 @@ public class NeuCanvas extends Pane {
     }
     
     public void zoom(double zoomRatio, double posX, double posY){
-        //double scaleX = canvas.getScaleX(); double scaleY = canvas.getScaleY();
         canvas.setScaleX(canvas.getScaleX()*zoomRatio); 
         canvas.setScaleY(canvas.getScaleY()*zoomRatio);  
-        //double neuScaleX = canvas.getScaleX(); double neuScaleY = canvas.getScaleX();
         this.redraw();
     }
     

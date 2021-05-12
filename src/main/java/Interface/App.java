@@ -27,7 +27,7 @@ public class App extends Application {
         Interface I = new Interface (stage);
         Scene scene = new Scene (I, 1000, 500);
         stage.setScene(scene);
-        //scene.getStylesheets().add("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\Apparence.css");    
+        //scene.getStylesheets().add(getClass().getResource("/Interface.Ressources/Apparence.css").toString());    
         stage.setTitle("Treillis Meister");
         FileInputStream inputstream = new FileInputStream("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\Bridge Logo2.png");
         Image img = new Image(inputstream);        
