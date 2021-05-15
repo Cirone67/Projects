@@ -5,7 +5,6 @@
  */
 package Interface;
 
-import java.io.FileNotFoundException;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;

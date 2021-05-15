@@ -44,11 +44,10 @@ public class PanneauNoeuds extends HBox{
         this.etat = 1;
         
         //Mise en place
-        VBox vbAppui = new VBox (5, new Label("Lambda:"), getLambda());
-        //HBox hbAppui = new HBox (10, textLambda, creer);
+        VBox vbAppui = new VBox (5, new Label("Lambda:"), lambda);
         
-        VBox vbAbs = new VBox (2, new Label("Abscisse:"), getAbs());
-        VBox vbOrd = new VBox (2, new Label("Ordonnée:"), getOrd());
+        VBox vbAbs = new VBox (2, new Label("Abscisse:"), abs);
+        VBox vbOrd = new VBox (2, new Label("Ordonnée:"), ord);
         VBox vbSimple = new VBox (5, vbAbs, vbOrd); 
 
         choixNoeud.getSelectionModel().select(2);
@@ -62,7 +61,7 @@ public class PanneauNoeuds extends HBox{
         
         
         choixNoeud.setOnAction((t) -> {
-            if (((choixNoeud.getValue().toString() == "Appui simple") || (choixNoeud.getValue().toString() == "Appui double")) && (etat == 0)){
+            if (((choixNoeud.getValue().toString().equals("Appui simple")) || (choixNoeud.getValue().toString().equals("Appui double"))) && (etat == 0)){
                 this.getChildren().removeAll(vbSimple, creer);
                 this.getChildren().addAll(vbAppui, creer);
                 lambda.clear();
@@ -72,7 +71,7 @@ public class PanneauNoeuds extends HBox{
                     creer.setDisable(true);
                 }
                 
-            } else if ((choixNoeud.getValue().toString() == "Noeud simple") && (etat == 1)){
+            } else if ((choixNoeud.getValue().toString().equals("Noeud simple")) && (etat == 1)){
                 this.getChildren().removeAll(vbAppui, creer);
                 this.getChildren().addAll(vbSimple, creer);
                 choixNoeud.setTranslateY(40); creer.setTranslateY(40);

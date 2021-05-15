@@ -39,10 +39,10 @@ public class DelimiterTerrain extends Stage{
         //Création éléments
         this.compte = 0;
         this.choix = new ChoiceBox(); 
-        this.choix.getItems().addAll("Xmin", "Xmax", "Ymin", "Ymax"); this.choix.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-font-size: 9pt");
+        this.choix.getItems().addAll("Xmin", "Xmax", "Ymin", "Ymax"); 
         this.donnee = new TextField(); 
-        this.ok = new Button ("Ok"); this.ok.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
-        this.valider = new Button ("Valider"); this.valider.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.ok = new Button ("Ok"); 
+        this.valider = new Button ("Valider"); 
         this.coordonnees = new double[4];
         choix.getSelectionModel().selectFirst();
         
@@ -51,7 +51,7 @@ public class DelimiterTerrain extends Stage{
         HBox.setMargin(choix, new Insets (10,0,0,10));
         HBox.setMargin(donnee, new Insets (10,0,0,0));
         HBox.setMargin(ok, new Insets (10, 10, 0, 0));
-        VBox corps = new VBox (hb, getValider());
+        VBox corps = new VBox (hb, valider);
         VBox.setMargin(valider, new Insets (10, 10, 10, 125));
         Scene scene = new Scene(corps);
         this.setScene(scene);

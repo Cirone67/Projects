@@ -6,8 +6,6 @@
 package Interface;
 
 import fr.insa.brenckle.projets.TypeBarre;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -17,8 +15,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 

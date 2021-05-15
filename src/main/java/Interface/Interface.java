@@ -8,7 +8,6 @@ package Interface;
 import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.Treillis;
 import static fr.insa.brenckle.projets.TypeBarre.BarreDefault;
-import java.io.FileNotFoundException;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -41,7 +40,7 @@ public class Interface extends BorderPane{
         this.menuPrincipal = new MenuPrincipal(this);
         
         this.graph = new NeuCanvas(this);
-        //this.graph.setManaged(false);
+
         this.setCenter(this.graph);    
         
         this.setTop(this.menuPrincipal);

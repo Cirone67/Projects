@@ -5,15 +5,18 @@
  */
 package Interface;
 
+import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.TerrainPoints;
 import static fr.insa.brenckle.projets.TerrainPoints.verifiePT;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -72,7 +75,7 @@ public class SaisiePointTerrain extends Stage{
     VBox text = new VBox(espace,this.tabs,this.tord);
     text.setLayoutX(100); text.setLayoutY(100);
     Group g = new Group(boutons, text);
-    HBox valid = new HBox (espace, this.getClear(), this.getQuitter(), this.getOk());
+    HBox valid = new HBox (espace, this.clear, this.quitter, this.ok);
     valid.setLayoutX(50); valid.setLayoutY(300);
     
 
@@ -96,17 +99,33 @@ public class SaisiePointTerrain extends Stage{
     });
     
     this.ok.setOnAction((t) -> {
-        if ((!this.tabs.getText().isBlank())&&(!this.tord.getText().isBlank())){
+        if ((!this.tabs.getText().isBlank()) && (!this.tord.getText().isBlank())){
             TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
             Boolean b = verifiePT(this.menuCreation.getMenuPrincipal().getI().getTerrain(), pT);
-            if (b==true){
+            
+            Terrain zoneDessin = new Terrain (0, this.menuCreation.getMenuPrincipal().getI().getGraph().getCanvas().getHeight(), 0, this.menuCreation.getMenuPrincipal().getI().getGraph().getCanvas().getWidth());
+            Boolean dansZone = verifiePT(zoneDessin, pT);
+            
+            if ((b==true)&&(dansZone==true)){
                 provisoire.add(pT);
                 this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();                
-            } else {
-                    Alert f = new Alert(Alert.AlertType.WARNING);
-                    f.setHeaderText("Attention");
-                    f.setContentText("Point hors du terrain");
-                    f.showAndWait();                
+            } else if (b==false){
+                Alert f = new Alert(Alert.AlertType.WARNING);
+                f.setHeaderText("Attention");
+                f.setContentText("Point hors du terrain");
+                f.showAndWait();                
+            } else if (dansZone==false){
+                Alert confirmer = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmer.setTitle("Attention");
+                confirmer.setHeaderText("Le point saisi est hors de la zone de dessin,\n" + "êtes-vous sûr de vouloir le créer?");
+                confirmer.setContentText(pT.toString());
+                Optional<ButtonType> select = confirmer.showAndWait();
+                if (select.get() == ButtonType.OK){
+                    provisoire.add(pT);
+                    this.tabs.clear(); this.tord.clear(); this.tabs.requestFocus();                    
+                } else if (select.get() == ButtonType.CANCEL){
+                    this.tabs.requestFocus(); 
+                }
             }
 
         }
@@ -114,10 +133,10 @@ public class SaisiePointTerrain extends Stage{
     });
     
     s.setOnKeyPressed((t) -> {
-        if (t.getCode().getName() == "Enter"){
-            if ((this.tabs.focusedProperty().get() == true) && (this.tabs.getText() != "")){
+        if (t.getCode().getName().equals("Enter")){
+            if ((this.tabs.focusedProperty().get() == true) && (!this.tabs.getText().isBlank())){
                 this.tord.requestFocus();
-            } else if ((this.tord.focusedProperty().get() == true) && (this.tabs.getText() != "")){
+            } else if ((this.tord.focusedProperty().get() == true) && (!this.tabs.getText().isBlank())){
                 this.ok.requestFocus();
             }
         }
