@@ -78,18 +78,18 @@ public class MenuGestion extends HBox{
         barres.setPrefHeight(100);
         barres.setPrefWidth(250);
         
-        this.calculForce = new Button ("Calcul des forces"); this.calculForce.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt"); 
+        this.calculForce = new Button ("Calcul des forces");  
         
-        this.angle = new TextField(); angle.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
+        this.angle = new TextField();
         angle.setMaxWidth(100);
         VBox saisieAngle = new VBox ( new Label("Angle:"), getAngle());
-        this.norme = new TextField(); norme.setStyle(" -fx-font-family: \"Segoe UI Semibold\"");
+        this.norme = new TextField(); 
         norme.setMaxWidth(100);
         VBox saisieNorme = new VBox ( new Label("Norme:"), getNorme());
         VBox vbsaisie = new VBox (5, saisieNorme, saisieAngle);
         
-        this.saisieCharge = new Button ("Créer charge"); saisieCharge.setDisable(true); this.saisieCharge.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
-        this.reinitialiserCharge = new Button ("Réinitialiser"); this.reinitialiserCharge.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        this.saisieCharge = new Button ("Créer charge"); saisieCharge.setDisable(true); 
+        this.reinitialiserCharge = new Button ("Réinitialiser"); 
         VBox boutonsCharge = new VBox (10, saisieCharge, reinitialiserCharge);
         
         HBox hbentrercharge = new HBox (10, vbsaisie, boutonsCharge); HBox.setMargin(boutonsCharge, new Insets (35,0,0,0));

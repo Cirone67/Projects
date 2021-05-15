@@ -220,12 +220,14 @@ public class TerrainPoints extends Objet{
     
     public void draw(GraphicsContext gc){
         int r = 3;
+        gc.setLineWidth(1);
         gc.setFill(this.getCouleur()); gc.setStroke(this.getCouleur());
         gc.fillOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
     }
     
     public void drawSelection(GraphicsContext gc){
         int r = 3;
+        gc.setLineWidth(1);
         gc.setFill(this.couleurSelection); gc.setStroke(couleurSelection);
         gc.strokeOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
         gc.fillOval(this.getPx()-r*0.5, this.getPy()-r, r, r); 

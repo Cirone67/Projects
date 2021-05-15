@@ -48,7 +48,8 @@ public class Charge extends Objet{
     
      public void draw(GraphicsContext gc){
          gc.setStroke(this.getCouleur());
-         int r = 3;
+         int r = 10;
+         double pi = Math.PI;
          double x = this.n.getAbs();
          double y = this.n.getOrd();
          double x2 = x + Math.cos(this.angle)*this.norme;
@@ -56,9 +57,9 @@ public class Charge extends Objet{
          double [] abs = new double [5]; double [] ord = new double [5];
          abs[0] = x; ord[0] = y;
          abs[1] = x2; ord[1] = y2;
-         abs[2] = x2 -r; ord[2] = y2-r;
+         abs[2] = x2 - r*Math.sin(pi/4); ord[2] = y2 - r*Math.sin(pi/4);
          abs[3] = abs[1]; ord[3] = ord[1];
-         abs[4] = x2; ord[4] = y2-r;
+         abs[4] = x2 - r*Math.sin(pi/4); ord[4] = y2 + r*Math.sin(pi/4);
          gc.setLineWidth(0.5);
          gc.strokePolyline(abs, ord, 5);
      }

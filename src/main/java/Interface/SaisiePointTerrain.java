@@ -7,6 +7,7 @@ package Interface;
 
 import fr.insa.brenckle.projets.TerrainPoints;
 import static fr.insa.brenckle.projets.TerrainPoints.verifiePT;
+import java.io.InputStream;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -54,9 +56,9 @@ public class SaisiePointTerrain extends Stage{
     this.initModality(Modality.WINDOW_MODAL);
     this.abs = new Label ("Abscisse");
     this.ord = new Label ("Ordonnée");
-    this.ok = new Button ("Valider"); this.ok.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
-    this.quitter = new Button ("Sauvegarder et quitter"); this.quitter.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
-    this.clear = new Button ("Réinitialiser"); this.clear.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+    this.ok = new Button ("Valider"); 
+    this.quitter = new Button ("Sauvegarder et quitter"); 
+    this.clear = new Button ("Réinitialiser"); 
     this.tabs = new TextField();
     this.tord = new TextField();
     this.p = new ArrayList<TerrainPoints>();
@@ -83,7 +85,11 @@ public class SaisiePointTerrain extends Stage{
     valid.setBorder(bord2);
 
     Scene s = new Scene(bp);
+    s.getStylesheets().add(getClass().getResource("Ressources/Apparence.css").toString()); 
     this.setScene(s);
+    InputStream inp = this.getClass().getResourceAsStream("Ressources/IconeTerrain.png");
+    Image img = new Image(inp);        
+    this.getIcons().add(img);
     
     this.clear.setOnAction((t) -> {
         provisoire.clear();

@@ -7,6 +7,7 @@ package fr.insa.brenckle.projets;
 
 import static fr.insa.brenckle.projets.Objet.couleurSelection;
 import java.io.File;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,17 +39,13 @@ public class AppuiDouble extends Appui{
     }
     
     public void draw(GraphicsContext gc){  
-        try {
-            File file = new File("C:\\Users\\Guillaume R\\Documents\\NetBeansProjects\\Projects\\src\\main\\java\\Interface\\appuiDouble.png");
-            String url = file.toURI().toURL().toString();
-            Image img2 = new Image(url, 50, 24, false, false);
+            InputStream inp = this.getClass().getResourceAsStream("appuiDouble.png");
+            Image img2 = new Image(inp, 50, 24, false, false);
             gc.setImageSmoothing(true);        
             gc.drawImage(img2, this.getAbs()-25.5, this.getOrd()-23.5);
 //        gc.strokeOval(this.getAbs()-3*0.5, this.getOrd()-3, 3, 3);
 //        gc.fillOval(this.getAbs()-3*0.5, this.getOrd()-3, 3, 3); 
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(AppuiDouble.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         
     }
     public void drawSelection(GraphicsContext gc){  

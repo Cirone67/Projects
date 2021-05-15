@@ -35,11 +35,11 @@ public class PanneauNoeuds extends HBox{
         
         this.segmentSelect = null;
         this.menuCreation = menuCreation;
-        this.creer = new Button ("Créer"); this.creer.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
-        this.abs = new TextField(); this.abs.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
-        this.ord = new TextField();  this.ord.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
-        this.lambda = new TextField(); this.lambda.setStyle("-fx-font-family: \"Segoe UI Semibold\"");
-        this.choixNoeud = new ChoiceBox(); this.choixNoeud.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-font-size: 9pt");
+        this.creer = new Button ("Créer"); 
+        this.abs = new TextField();
+        this.ord = new TextField(); 
+        this.lambda = new TextField(); 
+        this.choixNoeud = new ChoiceBox(); 
         this.choixNoeud.getItems().addAll("Noeud simple", "Appui simple", "Appui double");
         this.etat = 1;
         
@@ -49,8 +49,7 @@ public class PanneauNoeuds extends HBox{
         
         VBox vbAbs = new VBox (2, new Label("Abscisse:"), getAbs());
         VBox vbOrd = new VBox (2, new Label("Ordonnée:"), getOrd());
-        VBox vbSimple = new VBox (5, vbAbs, vbOrd);
-        //HBox hbSimple = new HBox(10, vbCoord, creer); 
+        VBox vbSimple = new VBox (5, vbAbs, vbOrd); 
 
         choixNoeud.getSelectionModel().select(2);
         this.getChildren().addAll(choixNoeud, vbAppui, creer);
