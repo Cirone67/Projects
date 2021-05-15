@@ -11,6 +11,7 @@ import fr.insa.brenckle.projets.Barre;
 import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.NoeudSimple;
 import fr.insa.brenckle.projets.Objet;
+import fr.insa.brenckle.projets.Treillis;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
@@ -36,17 +37,27 @@ public class MenuGestion extends HBox{
     private ListView<String> listAppuiSimple;
     private ListView<String> listAppuiDouble;
     private ListView<String> listBarre;
+    
     private Button saisieCharge;
     private Button reinitialiserCharge;
     private TextField norme;
     private TextField angle;
     private Button calculForce;
+    
+    private Button selection;
+    private Button suppression;
+    
     private Noeud noeudSelect;
     private Text prix;
     
     public MenuGestion (MenuPrincipal mP){
         
         this.menuPrincipal = mP;
+        
+        this.selection = new BoutonImage("Ressources/mouseCursor.png", 16, 24);
+        this.suppression = new BoutonImage("Ressources/delete.png", 24, 24);
+        suppression.setDisable(true);
+        HBox hbSelect = new HBox (10, selection, suppression);
         
         this.prix = new Text("0 €"); prix.setStyle("-fx-font-size: 11pt; -fx-font-family: \"Segoe UI Semibold\"");
         Label pr = new Label("Coût du treillis:"); pr.setStyle("-fx-font-size: 9pt; -fx-font-family: \"Segoe UI Semibold\"");
@@ -162,6 +173,30 @@ public class MenuGestion extends HBox{
                 }
             }            
         }         
+    }
+    
+    public void remplirListes(Treillis treillis){
+        for (Noeud noeud: treillis.getNoeuds()){  
+            if (noeud instanceof NoeudSimple){
+                this.listNoeud.getItems().add(noeud.toString());
+            }
+            else if (noeud instanceof AppuiSimple){
+                this.listAppuiSimple.getItems().add(noeud.toString());
+            }
+            else if (noeud instanceof AppuiDouble){
+                this.listAppuiDouble.getItems().add(noeud.toString());
+            }
+        }
+        for (Barre barre: treillis.getBarres()){
+            this.listBarre.getItems().add(barre.toString());
+        }
+    }
+    
+    public void viderListes(){
+        this.listNoeud.getItems().clear();
+        this.listAppuiSimple.getItems().clear();
+        this.listAppuiDouble.getItems().clear();
+        this.listBarre.getItems().clear();
     }
 
     /**

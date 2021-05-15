@@ -49,7 +49,7 @@ public class MenuCreation extends HBox{
     private PanneauNoeuds panneauNoeuds;
     private DelimiterTerrain delimite;
     
-    public MenuCreation (MenuPrincipal menuPrincipal) throws FileNotFoundException{
+    public MenuCreation (MenuPrincipal menuPrincipal) {
         
         //Création des éléments
         this.menuPrincipal = menuPrincipal;
@@ -63,7 +63,6 @@ public class MenuCreation extends HBox{
         this.creeSegTerrain = new Button ("Nouveau"); 
        
         this.typeBarre = new ChoiceBox (); 
-//        BarreDefault(this.menuPrincipal.getI().getTreillis());
         if (!this.menuPrincipal.getI().getTreillis().getTypeBarre().isEmpty()){
             for (TypeBarre TB: this.menuPrincipal.getI().getTreillis().getTypeBarre()){
                 typeBarre.getItems().add(TB.getNom());
@@ -82,7 +81,7 @@ public class MenuCreation extends HBox{
         this.selection = new BoutonImage("Ressources/mouseCursor.png", 16, 24); 
         this.suppression = new BoutonImage("Ressources/delete.png", 24, 24);
         suppression.setDisable(true);
-        HBox hbSelect = new HBox (10, selection, getSuppression()); 
+        HBox hbSelect = new HBox (10, selection, suppression); 
         VBox outils = new VBox (15, hbSelect, couleur);
         hbSelect.setAlignment(Pos.TOP_CENTER);
         
@@ -93,17 +92,17 @@ public class MenuCreation extends HBox{
         this.panneauNoeuds = new PanneauNoeuds(this);
         
         //Mise en place
-          VBox actionTerrain = new VBox (10, this.getDelimiterTerrain(), this.getGenererTerrain());
+          VBox actionTerrain = new VBox (10, this.delimiterTerrain, this.genererTerrain);
           VBox.setMargin(this.delimiterTerrain, new Insets (0,0,0,15));
           VBox.setMargin(this.genererTerrain, new Insets (0,0,0,19));
-          SousMenuPpl pTerrain = new SousMenuPpl(new Label ("Points Terrain"), this.getCreePTerrain(), this.getActPTerrain(), 5, 5, 10, 5, 55, 5, 10, 5, 20, false);   //espace entre ssTitre, marge T haut, marge T doite, marge T bas, marge T gauche, marge ST haut, ...
+          SousMenuPpl pTerrain = new SousMenuPpl(new Label ("Points Terrain"), this.creePTerrain, this.actPTerrain, 5, 5, 10, 5, 55, 5, 10, 5, 20, false);   //espace entre ssTitre, marge T haut, marge T doite, marge T bas, marge T gauche, marge ST haut, ...
           Label terr = new Label ("Terrain"); terr.setId("titre");
           SousMenuPpl terrain = new SousMenuPpl (terr, pTerrain, actionTerrain, 0, 10, 0, 5, 175, 5, 0, 0, 0, true);
           
           //SousMenuPpl noeuds = new SousMenuPpl(new Label("Noeuds"), this.getCreeNoeud(), this.getSupNoeud(), 5, 5, 10, 5, 60, 5, 10, 5, 10, false);
           SousMenuPpl barres = new SousMenuPpl(new Label ("Barres"), this.creeBarre, this.typeBarre, 5, -10, 10, 15, 60, 0, -10, 5, 10, false);
           Label treill = new Label ("Treillis"); treill.setId("titre");
-          SousMenuPpl treillis = new SousMenuPpl (treill, getPanneauNoeuds(), barres, 0, 10, 0, 5, 290, 0, 0, 0, 0, true); 
+          SousMenuPpl treillis = new SousMenuPpl (treill, panneauNoeuds, barres, 0, 10, 0, 5, 290, 0, 0, 0, 0, true); 
           
  
           

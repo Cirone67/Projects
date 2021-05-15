@@ -15,15 +15,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws FileNotFoundException {
-      
-//        BorderPane bp = new BorderPane();
-//        bp.setTop(choix);
-          
-//        Scene scene = new Scene(I, 500, 400, true);
-//        //scene.getStylesheets().add(getClass().getResource("Apparence.css").toExternalForm());
-//        URL url = this.getClass().getResource("Apparence.css");
-//        System.out.println(url);
+    public void start(Stage stage){
 
         Interface I = new Interface (stage);
         Scene scene = new Scene (I, 1000, 500);
@@ -34,18 +26,6 @@ public class App extends Application {
         Image img = new Image(inp);        
         stage.getIcons().add(img);
         stage.show();
-    
-
-//        Button b = new Button("test");
-//        Pane pane = new Pane (b);
-//        Scene scene = new Scene(pane);
-//        System.out.println(getClass().getResource("App.java"));
-//        String path = new File("Apparence.css").getPath();
-//        System.out.println(path);
-     //   scene.getStylesheets().add(getClass().getResource("Apparence.css").toExternalForm());    //C:\Users\Guillaume R\Documents\NetBeansProjects\Projects\src\main\java\Interface\Apparence.css
-//        scene.getStylesheets().add(path);                               .toString()
-//        stage.setScene(scene);
-//        stage.show();
         
     }  
 

@@ -19,6 +19,13 @@ import javafx.scene.layout.VBox;
 public class MenuPrincipal extends VBox{
 
     /**
+     * @return the menuEdition
+     */
+    public MenuEdition getMenuEdition() {
+        return menuEdition;
+    }
+
+    /**
      * @return the menuGestion
      */
     public MenuGestion getMenuGestion() {
@@ -37,7 +44,7 @@ public class MenuPrincipal extends VBox{
     private int etat;
 
     
-    public MenuPrincipal (Interface I) throws FileNotFoundException{
+    public MenuPrincipal (Interface I) {
         
         this.I = I;
         this.menuCreation = new MenuCreation(this);

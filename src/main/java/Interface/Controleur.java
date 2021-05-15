@@ -19,6 +19,8 @@ import fr.insa.brenckle.projets.Matrice;
 import fr.insa.brenckle.projets.Noeud;
 import fr.insa.brenckle.projets.NoeudSimple;
 import fr.insa.brenckle.projets.Objet;
+import static fr.insa.brenckle.projets.Stockage.enregistrer;
+import static fr.insa.brenckle.projets.Stockage.telechargement;
 import fr.insa.brenckle.projets.Terrain;
 import fr.insa.brenckle.projets.TerrainPoints;
 import static fr.insa.brenckle.projets.TerrainPoints.CompletePoint;
@@ -32,14 +34,18 @@ import fr.insa.brenckle.projets.TerrainTriangle;
 import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
 import fr.insa.brenckle.projets.TypeBarre;
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -54,7 +60,7 @@ public class Controleur {
     private ArrayList<TerrainSegment> segments;
     private Noeud noeud1;
     
-    public Controleur(Interface vue){
+    public Controleur(Interface vue) {
         this.etat = 10;
         this.vue = vue;
         this.selection = new ArrayList<Objet>();
@@ -339,6 +345,47 @@ public class Controleur {
             }
             selection.clear();
             vue.getGraph().redraw();
+            this.etat = 10;
+        }
+        else if (this.etat == 110){  //Enregistrer Sous
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialFileName(this.vue.getMenuPrincipal().getMenuEdition().getFichier() + ".txt");
+            File file =  fileChooser.showSaveDialog(this.vue.getFenetre());
+            if (file != null){
+            this.vue.getMenuPrincipal().getMenuEdition().setFichier(file);
+            enregistrer(this.vue.getTreillis(), file.getName(), file); 
+            this.vue.getFenetre().setTitle(this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName());
+            this.vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(1);
+            }
+            this.etat = 10;
+        }   
+        else if (this.etat == 111){  //Enregistrer
+            enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
+            this.etat = 10;
+        }
+        else if (this.etat == 112){  //Télécharger
+            enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
+            FileChooser fileChooser = new FileChooser();
+            File file =  fileChooser.showOpenDialog(this.vue.getFenetre());
+            if (file != null){
+                this.vue.setTreillis(telechargement(file, file.getName()));
+                this.vue.getMenuPrincipal().getMenuGestion().viderListes();
+                this.vue.getMenuPrincipal().getMenuGestion().remplirListes(telechargement(file, file.getName()));
+            }
+            this.vue.getGraph().redraw();
+            this.etat = 10;  
+        }
+        else if (this.etat == 113){  //Nouveau
+            Stage stage = new Stage();
+            Interface I = new Interface (stage);
+            Scene scene = new Scene (I, 1000, 500);
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("Ressources/Apparence.css").toString());    
+            stage.setTitle("Treillis Meister");
+            InputStream inp = this.getClass().getResourceAsStream("Ressources/Bridge Logo2.png");
+            Image img = new Image(inp);        
+            stage.getIcons().add(img);
+            stage.show();            
             this.etat = 10;
         }
         else if (this.etat == 150){

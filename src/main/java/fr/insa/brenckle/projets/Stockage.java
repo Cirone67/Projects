@@ -28,11 +28,12 @@ public class Stockage {
     }
     
  //Méthode qui télécharge le treillis
-public static Treillis telechargement(String id){
+public static Treillis telechargement(File file, String id){
     String contenu[];
     Treillis treillis = new Treillis();
 try {
-    BufferedReader flux=new BufferedReader(new FileReader(id));
+    //BufferedReader flux=new BufferedReader(new FileReader(id));
+    BufferedReader flux=new BufferedReader(new FileReader(file));
 String lignelue;
    while((lignelue=flux.readLine())!=null){
     contenu = lignelue.split(";");
@@ -81,11 +82,12 @@ System.out.println("Erreur :\n"+err);}
 return treillis;
 }
 
-public static void enregistrer(Treillis treillis, String id){
+public static void enregistrer(Treillis treillis, String id, File f){
 try
 {
     
-BufferedWriter curseur=new BufferedWriter(new FileWriter(id,false));//"Treillis"+nbr+".txt" et false pour écraser
+//BufferedWriter curseur = new BufferedWriter(new FileWriter(id,false));//"Treillis"+nbr+".txt" et false pour écraser
+BufferedWriter curseur = new BufferedWriter(new FileWriter(f, false));
 //La zone constructible
 curseur.write("ZoneConstructible;"+treillis.getTXmin()+";"+treillis.getTXmax()+";"+treillis.getTYmin()+";"+treillis.getTYmax());
 curseur.newLine();
@@ -97,8 +99,8 @@ curseur.write(treillis.getTerrainTriangles().get(i).getidT()+";");
 
 
 curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC1().getA().getPx(),treillis.getTerrainTriangles().get(i).getC1().getA().getPy())+";");
-curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC1().getB().getPx(),treillis.getTerrainTriangles().get(i).getC1().getB().getPy())+";");
-curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC2().getB().getPx(),treillis.getTerrainTriangles().get(i).getC1().getB().getPy())+"");
+curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC2().getA().getPx(),treillis.getTerrainTriangles().get(i).getC2().getA().getPy())+";");
+curseur.write(recoordonnee(treillis.getTerrainTriangles().get(i).getC3().getA().getPx(),treillis.getTerrainTriangles().get(i).getC3().getA().getPy())+"");
 
 
 

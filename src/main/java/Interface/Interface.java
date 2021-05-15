@@ -18,19 +18,7 @@ import javafx.stage.Stage;
  */
 public class Interface extends BorderPane{
 
-    /**
-     * @param terrain the terrain to set
-     */
-    public void setTerrain(Terrain terrain) {
-        this.terrain = terrain;
-    }
 
-    /**
-     * @return the terrain
-     */
-    public Terrain getTerrain() {
-        return terrain;
-    }
     
     private Stage fenetre;
     private MenuPrincipal menuPrincipal;
@@ -39,7 +27,7 @@ public class Interface extends BorderPane{
     private Controleur controleur;
     private Terrain terrain;
     
-    public Interface (Stage stage) throws FileNotFoundException{
+    public Interface (Stage stage){
         
         this.treillis = new Treillis();
         BarreDefault(this.treillis);
@@ -61,7 +49,19 @@ public class Interface extends BorderPane{
         
            
     }
+    /**
+     * @param terrain the terrain to set
+     */
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
 
+    /**
+     * @return the terrain
+     */
+    public Terrain getTerrain() {
+        return terrain;
+    }
     /**
      * @return the treillis
      */
@@ -95,6 +95,13 @@ public class Interface extends BorderPane{
      */
     public NeuCanvas getGraph() {
         return graph;
+    }
+
+    /**
+     * @param treillis the treillis to set
+     */
+    public void setTreillis(Treillis treillis) {
+        this.treillis = treillis;
     }
 
     
