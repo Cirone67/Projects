@@ -6,12 +6,8 @@
 package fr.insa.brenckle.projets;
 
 import static fr.insa.brenckle.projets.Objet.couleurSelection;
-import java.io.File;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;

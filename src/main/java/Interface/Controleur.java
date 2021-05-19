@@ -34,6 +34,7 @@ import fr.insa.brenckle.projets.TerrainTriangle;
 import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
 import fr.insa.brenckle.projets.TypeBarre;
+import static fr.insa.brenckle.projets.TypeBarre.BarreDefault;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -360,22 +361,33 @@ public class Controleur {
             this.etat = 10;
         }   
         else if (this.etat == 111){  //Enregistrer
-            enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
+            if (vue.getMenuPrincipal().getMenuEdition().getFichier() != null){
+                enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
+            } else {
+                this.changeEtat(110);
+            }
             this.etat = 10;
         }
-        else if (this.etat == 112){  //Télécharger
+        else if (this.etat == 112){  //Télécharger  //problème avec les types de barres
             enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
             FileChooser fileChooser = new FileChooser();
             File file =  fileChooser.showOpenDialog(this.vue.getFenetre());
             if (file != null){
-                this.vue.setTreillis(telechargement(file, file.getName()));
+                //BarreDefault(this.vue.getTreillis());
+                Treillis neuTreillis = telechargement(file, file.getName());
+                //Double prix = PrixTreillis(neuTreillis.getBarres());
+                this.vue.setTreillis(neuTreillis);
                 this.vue.getMenuPrincipal().getMenuGestion().viderListes();
-                this.vue.getMenuPrincipal().getMenuGestion().remplirListes(telechargement(file, file.getName()));
+                this.vue.getMenuPrincipal().getMenuGestion().remplirListes(neuTreillis);
+                //System.out.println(neuTreillis.getBarres().get(1).getType().getNom());
+                //this.vue.getMenuPrincipal().getMenuGestion().getPrix().setText(Double.toString(prix) + " €"); 
+                this.vue.getMenuPrincipal().getMenuEdition().setFichier(file);
+                
             }
             this.vue.getGraph().redraw();
             this.etat = 10;  
         }
-        else if (this.etat == 113){  //Nouveau
+        else if (this.etat == 113){  //Nouveau fichier
             Stage stage = new Stage();
             Interface I = new Interface (stage);
             Scene scene = new Scene (I, 1000, 500);
@@ -447,6 +459,7 @@ public class Controleur {
         }
         
         else if (this.etat == 51){
+            selection.clear();
             double posX = t.getX();
             double posY = t.getY();
             Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
@@ -462,16 +475,18 @@ public class Controleur {
             double posX = t.getX();
             double posY = t.getY();
             Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
-            System.out.println(noeudSelect.toString());
             
             if (noeudSelect != null){
                 int i =0; int k=0;
-                while (k==0){
-                    if (this.vue.getMenuPrincipal().getMenuCreation().getTypeBarre().getValue().equals(this.vue.getTreillis().getTypeBarre().get(i).getNom())){  //problème avec lisTypeBarre (outofbounds lenght 0)
+                while (k==0){   
+                    if (this.vue.getMenuPrincipal().getMenuCreation().getTypeBarre().getValue().equals(this.vue.getMenuPrincipal().getMenuCreation().getInventaireTypeBarres().get(i))){  
+                        k=1;
+                    } else if (i == this.vue.getMenuPrincipal().getMenuCreation().getInventaireTypeBarres().size()){
                         k=1;
                     }
                     i=i+1;
                 }
+                System.out.println("i = "+(i-1));
                 TypeBarre type = this.vue.getTreillis().getTypeBarre().get(i-1);
                 Barre neuBarre = new Barre(type, this.noeud1, noeudSelect);
                 Boolean b = neuBarre.RestrictionL();

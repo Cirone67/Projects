@@ -6,6 +6,7 @@
 package Interface;
 
 import fr.insa.brenckle.projets.TypeBarre;
+import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -32,6 +33,7 @@ public class MenuCreation extends HBox{
     private Button creeSegTerrain;
     
     private ChoiceBox typeBarre;
+    private ArrayList<String> inventaireTypeBarres;        
     private Button actPTerrain;
     
     private Button genererTerrain;
@@ -57,19 +59,22 @@ public class MenuCreation extends HBox{
         this.creeBarre = new Button ("Nouveau"); 
         this.creePTerrain = new Button ("Nouveau"); 
         this.creeSegTerrain = new Button ("Nouveau"); 
+        
+        this.inventaireTypeBarres = new ArrayList<String>();
        
         this.typeBarre = new ChoiceBox (); 
         if (!this.menuPrincipal.getI().getTreillis().getTypeBarre().isEmpty()){
             for (TypeBarre TB: this.menuPrincipal.getI().getTreillis().getTypeBarre()){
                 typeBarre.getItems().add(TB.getNom());
+                inventaireTypeBarres.add(TB.getCategorie() - 1, TB.getNom());
             }
         }
         typeBarre.getSelectionModel().selectFirst(); 
         
         
-        //this.supBarre = new Button ("Supprimer"); this.supBarre.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        
         this.actPTerrain = new Button ("Réinitialiser"); 
-        //this.supSegTerrain = new Button ("Supprimer"); this.supSegTerrain.setStyle("-fx-background-color: #ccc; -fx-text-color: #111; -fx-border-color: #e2e2e2; -fx-border-width: 2; -fx-padding: 3 10 3 10; -fx-font-size: 9pt");
+        
         
         this.reinitialiser = new Button ("Réinitialiser");
         
@@ -267,6 +272,13 @@ public class MenuCreation extends HBox{
      */
     public Button getReinitialiser() {
         return reinitialiser;
+    }
+
+    /**
+     * @return the inventaireTypeBarres
+     */
+    public ArrayList<String> getInventaireTypeBarres() {
+        return inventaireTypeBarres;
     }
     
 }

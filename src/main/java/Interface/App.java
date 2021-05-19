@@ -1,10 +1,11 @@
 package Interface;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -26,6 +27,25 @@ public class App extends Application {
         Image img = new Image(inp);        
         stage.getIcons().add(img);
         stage.show();
+        
+        stage.setOnCloseRequest((t) -> {
+            if (I.getMenuPrincipal().getMenuEdition().getFichier() != null){
+                t.consume();
+                Alert confirmer = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmer.setTitle("Attention");
+                confirmer.setHeaderText("Le projet n'est pas enregistré,\n" + "voulez vous l'enregistrer?");
+                Optional<ButtonType> select = confirmer.showAndWait();
+                if (select.get() == ButtonType.OK){
+                   I.getControleur().changeEtat(110);
+                   stage.close();
+                } else if (select.get() == ButtonType.CANCEL){
+                    stage.close(); 
+                }                
+            } 
+            else {
+                I.getControleur().changeEtat(111);
+            }           
+        });
         
     }  
 

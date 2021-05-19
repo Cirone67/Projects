@@ -49,8 +49,8 @@ String lignelue;
               treillis.ajoute(terrainTriangles);    
        }
        if(contenu[0].equals("TypeBarre")){
-              TypeBarre compteurTypeBarre   = new TypeBarre( Integer.valueOf(contenu[1])+getNbrTypeBarre(),Double.parseDouble(contenu[2]),Double.parseDouble(contenu[3]),Double.parseDouble(contenu[4]),Double.parseDouble(contenu[5]),Double.parseDouble(contenu[6]));  
-              treillis.ajoute(compteurTypeBarre);
+              TypeBarre compteurTypeBarre   = new TypeBarre( Integer.valueOf(contenu[1]),Double.parseDouble(contenu[2]),Double.parseDouble(contenu[3]),Double.parseDouble(contenu[4]),Double.parseDouble(contenu[5]),Double.parseDouble(contenu[6]));  
+              treillis.ajoute(compteurTypeBarre);                                      //+getNbrTypeBarre()
        }
               if(contenu[0].equals("AppuiSimple")){
                Appui compteurAppui   = new AppuiSimple( Integer.valueOf(contenu[1]),Integer.valueOf(contenu[2]),Integer.valueOf(contenu[3]),Double.parseDouble(contenu[4]),treillis.getTerrainTriangles());  

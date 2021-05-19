@@ -103,7 +103,7 @@ public class SaisiePointTerrain extends Stage{
             TerrainPoints pT = new TerrainPoints(Double.parseDouble(this.tabs.getText()),Double.parseDouble(this.tord.getText()));
             Boolean b = verifiePT(this.menuCreation.getMenuPrincipal().getI().getTerrain(), pT);
             
-            Terrain zoneDessin = new Terrain (0, this.menuCreation.getMenuPrincipal().getI().getGraph().getCanvas().getHeight(), 0, this.menuCreation.getMenuPrincipal().getI().getGraph().getCanvas().getWidth());
+            Terrain zoneDessin = new Terrain (0, this.menuCreation.getMenuPrincipal().getI().getGraph().getCanvas().getWidth(), 0, this.menuCreation.getMenuPrincipal().getI().getGraph().getCanvas().getHeight());
             Boolean dansZone = verifiePT(zoneDessin, pT);
             
             if ((b==true)&&(dansZone==true)){
