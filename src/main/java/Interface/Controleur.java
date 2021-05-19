@@ -373,14 +373,12 @@ public class Controleur {
             FileChooser fileChooser = new FileChooser();
             File file =  fileChooser.showOpenDialog(this.vue.getFenetre());
             if (file != null){
-                //BarreDefault(this.vue.getTreillis());
                 Treillis neuTreillis = telechargement(file, file.getName());
-                //Double prix = PrixTreillis(neuTreillis.getBarres());
+                Double prix = PrixTreillis(neuTreillis.getBarres());
                 this.vue.setTreillis(neuTreillis);
                 this.vue.getMenuPrincipal().getMenuGestion().viderListes();
                 this.vue.getMenuPrincipal().getMenuGestion().remplirListes(neuTreillis);
-                //System.out.println(neuTreillis.getBarres().get(1).getType().getNom());
-                //this.vue.getMenuPrincipal().getMenuGestion().getPrix().setText(Double.toString(prix) + " €"); 
+                this.vue.getMenuPrincipal().getMenuGestion().getPrix().setText(Double.toString(prix) + " €"); 
                 this.vue.getMenuPrincipal().getMenuEdition().setFichier(file);
                 
             }
