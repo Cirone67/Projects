@@ -96,7 +96,7 @@ public class TerrainPoints extends Objet{
         return P;
     }
    
-    //completer la liste de point en vue des segments si necessaire(fermer le terrain pour former un polygone spéciale)
+    //completer la liste de point en vue des segments si necessaire
     public static ArrayList<TerrainPoints> CompletePoint(ArrayList<TerrainPoints> P, boolean verifie){
         int i;
         double yminPT, xminPT, xmaxPT;
@@ -118,12 +118,12 @@ public class TerrainPoints extends Objet{
         TerrainPoints PTa;
         TerrainPoints PTb;
         if((P.get(nbr-1).getPy()==P.get(0).getPy())&&(yminPT==P.get(nbr-1).getPy())){ 
-            }else{
+        }else{
                 if(P.get(nbr-1).getPy()!= yminPT){
                 PTa= new TerrainPoints(P.get(nbr-1).getPx(),yminPT);
                 P.add(PTa);
                 nbr=P.size();
-                if((verifie==false)&&(P.get(nbr-1).getPx()==P.get(0).getPx())){
+                if(verifie==false){
                     P.remove(nbr-1);
                     nbr=P.size();
                 }
@@ -132,14 +132,14 @@ public class TerrainPoints extends Objet{
                 PTb = new TerrainPoints(P.get(0).getPx(),yminPT);
                 P.add(0,PTb);
                 nbr=P.size();
-                if((verifie == false)&&(P.get(0).getPx()!=P.get(nbr-1).getPx())){   
-                }else if(verifie==false){
+                if(verifie == false){   
                     P.remove(0);
                     nbr=P.size();
                 }
-                }
             }
-            return P;
+           
+        }
+        return P;
     }
     
     //verifie la forme saisie 
