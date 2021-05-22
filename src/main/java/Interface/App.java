@@ -28,22 +28,29 @@ public class App extends Application {
         stage.getIcons().add(img);
         stage.show();
         
-        stage.setOnCloseRequest((t) -> {
-            if (I.getMenuPrincipal().getMenuEdition().getFichier() != null){
+        stage.setOnCloseRequest((t) -> {  //A FAIRE bouton annuler
+            if (I.getMenuPrincipal().getMenuEdition().getEtatSauvegarde() != 1){
                 t.consume();
                 Alert confirmer = new Alert(Alert.AlertType.CONFIRMATION);
+                ButtonType enregistrer = new ButtonType("Enregistrer");
+                ButtonType enregistrerSous = new ButtonType("Enregistrer sous");
+                ButtonType ignorer = new ButtonType("Ignorer");
                 confirmer.setTitle("Attention");
-                confirmer.setHeaderText("Le projet n'est pas enregistré,\n" + "voulez vous l'enregistrer?");
+                confirmer.setHeaderText("Enregistrer vos modifications?");
+                confirmer.getButtonTypes().clear();
+                confirmer.getButtonTypes().addAll(enregistrer, enregistrerSous, ignorer);
                 Optional<ButtonType> select = confirmer.showAndWait();
-                if (select.get() == ButtonType.OK){
+                
+                if (select.get() == enregistrerSous){
                    I.getControleur().changeEtat(110);
                    stage.close();
-                } else if (select.get() == ButtonType.CANCEL){
-                    stage.close(); 
+                } else if (select.get() == enregistrer){
+                   I.getControleur().changeEtat(111);
+                   stage.close(); 
+                }
+                else if (select.get() == ignorer){
+                   stage.close(); 
                 }                
-            } 
-            else {
-                I.getControleur().changeEtat(111);
             }           
         });
         

@@ -34,7 +34,6 @@ import fr.insa.brenckle.projets.TerrainTriangle;
 import static fr.insa.brenckle.projets.TerrainTriangle.Creationtriangle;
 import fr.insa.brenckle.projets.Treillis;
 import fr.insa.brenckle.projets.TypeBarre;
-import static fr.insa.brenckle.projets.TypeBarre.BarreDefault;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -92,6 +91,7 @@ public class Controleur {
                 TP.draw(context);
             }
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().close();
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
         else if (this.etat == 30){
@@ -122,6 +122,7 @@ public class Controleur {
                 }
             }
             this.vue.getGraph().redraw();
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         } 
         else if (this.etat == 40){
@@ -140,6 +141,7 @@ public class Controleur {
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     absNoeud.clear();
                     ordNoeud.clear();
+                    vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
                 } 
             }
             else if ((etatPanneau == 1)){
@@ -153,6 +155,7 @@ public class Controleur {
                     this.vue.getMenuPrincipal().getMenuGestion().getListAppuiSimple().getItems().add(ap.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
+                    vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
                 } 
                 else if ((!coeffLambda.getText().trim().isBlank()) && (TSselect != null) && (this.vue.getMenuPrincipal().getMenuCreation().getPanneauNoeuds().getChoixNoeud().getValue().toString().equals("Appui double"))){
                     ArrayList<TerrainTriangle> listTT = this.vue.getMenuPrincipal().getI().getTreillis().getTerrainTriangles();
@@ -161,6 +164,7 @@ public class Controleur {
                     this.vue.getMenuPrincipal().getMenuGestion().getListAppuiDouble().getItems().add(ad.toString());
                     this.vue.getMenuPrincipal().getI().getGraph().redraw();
                     coeffLambda.clear();
+                    vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
                 }  
                 
                 System.out.println(TSselect.toString());
@@ -179,6 +183,7 @@ public class Controleur {
                vue.getTreillis().getCharge().add(charge);
             }
             vue.getGraph().redraw();
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
         else if (this.etat == 61){
@@ -187,6 +192,7 @@ public class Controleur {
                     b.setCouleur(Color.BLACK);
             }
             vue.getGraph().redraw();
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
         else if (this.etat == 71){   //selection avec le menu gestion (états 71 à 74)
@@ -302,6 +308,7 @@ public class Controleur {
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
             this.segments.clear();
             this.vue.getGraph().redraw();
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
         else if (this.etat == 101){ //sup barre ou noeud
@@ -324,6 +331,7 @@ public class Controleur {
             selection.clear();
             vue.getGraph().redraw();
             this.vue.getMenuPrincipal().getMenuCreation().getSuppression().setDisable(true);
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
         else if (this.etat == 102){  //réinitialisation du terrain
@@ -346,6 +354,7 @@ public class Controleur {
             }
             selection.clear();
             vue.getGraph().redraw();
+            vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
         else if (this.etat == 110){  //Enregistrer Sous
@@ -363,13 +372,14 @@ public class Controleur {
         else if (this.etat == 111){  //Enregistrer
             if (vue.getMenuPrincipal().getMenuEdition().getFichier() != null){
                 enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
+                this.vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(1);
             } else {
                 this.changeEtat(110);
             }
             this.etat = 10;
         }
         else if (this.etat == 112){  //Télécharger  //problème avec les types de barres
-            enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
+            //enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
             FileChooser fileChooser = new FileChooser();
             File file =  fileChooser.showOpenDialog(this.vue.getFenetre());
             if (file != null){
@@ -380,7 +390,7 @@ public class Controleur {
                 this.vue.getMenuPrincipal().getMenuGestion().remplirListes(neuTreillis);
                 this.vue.getMenuPrincipal().getMenuGestion().getPrix().setText(Double.toString(prix) + " €"); 
                 this.vue.getMenuPrincipal().getMenuEdition().setFichier(file);
-                
+                this.vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(1);
             }
             this.vue.getGraph().redraw();
             this.etat = 10;  
@@ -501,6 +511,7 @@ public class Controleur {
                     this.vue.getMenuPrincipal().getMenuGestion().getListBarre().getItems().add(neuBarre.toString());
                     this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
                     this.vue.getGraph().redraw();
+                    vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
                 }
                 this.etat = 51;
             }            

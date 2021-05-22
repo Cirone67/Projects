@@ -141,8 +141,10 @@ public class NeuCanvas extends Pane {
     }
     
     public void zoom(double zoomRatio, double posX, double posY){
-        canvas.setScaleX(canvas.getScaleX()*zoomRatio); 
-        canvas.setScaleY(canvas.getScaleY()*zoomRatio);  
+        double x = canvas.getScaleX();
+        double y = canvas.getScaleY();
+        canvas.setScaleX(x*zoomRatio); 
+        canvas.setScaleY(y*zoomRatio);  
         this.redraw();
     }
     

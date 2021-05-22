@@ -37,7 +37,7 @@ public class MenuEdition extends HBox{
         this.telecharger = new Button("Charger"); 
         this.nouveau = new Button ("Nouveau");
         
-        this.fichier = new File("TreillisMeister");
+        this.fichier = null;
         
         HBox menu = new HBox (20, getNouveau(), enregistrerSous, enregistrer, telecharger);
         HBox.setMargin(menu, new Insets (10,10,10,20));
@@ -48,12 +48,7 @@ public class MenuEdition extends HBox{
             this.menuPrincipal.getI().getControleur().changeEtat(110);
         });
         this.enregistrer.setOnAction((t) -> {
-            if (etatSauvegarde == 0){
-                this.menuPrincipal.getI().getControleur().changeEtat(110);
-            }
-            else {
-                this.menuPrincipal.getI().getControleur().changeEtat(111);
-            }
+            this.menuPrincipal.getI().getControleur().changeEtat(111);
         });
         this.telecharger.setOnAction((t) -> {
             this.menuPrincipal.getI().getControleur().changeEtat(112);
@@ -121,6 +116,13 @@ public class MenuEdition extends HBox{
      */
     public void setEtatSauvegarde(int etatSauvegarde) {
         this.etatSauvegarde = etatSauvegarde;
+    }
+
+    /**
+     * @return the etatSauvegarde
+     */
+    public int getEtatSauvegarde() {
+        return etatSauvegarde;
     }
 
     

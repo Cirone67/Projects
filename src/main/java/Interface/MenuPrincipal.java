@@ -51,7 +51,7 @@ public class MenuPrincipal extends VBox{
         this.menuGestion = new MenuGestion(this);
               
         this.edition = new Button ("Fichier"); this.edition.setId("boutonMenu");
-        this.creation = new Button ("Création"); this.creation.setId("boutonMenu");
+        this.creation = new Button ("Création"); this.creation.setId("boutonMenuSelect");
         this.gestion = new Button ("Gestion"); this.gestion.setId("boutonMenu");
         
           ToolBar menu = new ToolBar(this.edition, this.creation, this.gestion); 
@@ -66,10 +66,18 @@ public class MenuPrincipal extends VBox{
               if (etat==1){
                   this.getChildren().removeAll(menuCreation, sh);
                   this.getChildren().addAll(menuEdition, sh);
+                  
+                  this.edition.setId("boutonMenuSelect");
+                  this.creation.setId("boutonMenu");
+                  this.gestion.setId("boutonMenu");
                   etat = 0;
               } else if (etat == 2){
                   this.getChildren().removeAll(menuGestion, sh);
                   this.getChildren().addAll(menuEdition, sh);
+                  
+                  this.edition.setId("boutonMenuSelect");
+                  this.creation.setId("boutonMenu");
+                  this.gestion.setId("boutonMenu");
                   etat = 0;                  
               }
            });
@@ -78,10 +86,18 @@ public class MenuPrincipal extends VBox{
               if (etat == 0){
                   this.getChildren().removeAll(menuEdition, sh);
                   this.getChildren().addAll(menuCreation, sh);
+                  
+                  this.edition.setId("boutonMenu");
+                  this.creation.setId("boutonMenuSelect");
+                  this.gestion.setId("boutonMenu");
                   etat = 1;
               } else if (etat == 2){
                   this.getChildren().removeAll(menuGestion, sh);
                   this.getChildren().addAll(menuCreation, sh);
+                  
+                  this.edition.setId("boutonMenu");
+                  this.creation.setId("boutonMenuSelect");
+                  this.gestion.setId("boutonMenu");                  
                   etat = 1;                  
               }
           });
@@ -89,10 +105,18 @@ public class MenuPrincipal extends VBox{
               if (etat == 0){
                   this.getChildren().removeAll(menuEdition, sh);
                   this.getChildren().addAll(menuGestion, sh);
+                  
+                  this.edition.setId("boutonMenu");
+                  this.creation.setId("boutonMenu");
+                  this.gestion.setId("boutonMenuSelect");                  
                   etat = 2;                  
               } else if (etat == 1){
                   this.getChildren().removeAll(menuCreation, sh);
                   this.getChildren().addAll(menuGestion, sh);
+                  
+                  this.edition.setId("boutonMenu");
+                  this.creation.setId("boutonMenu");
+                  this.gestion.setId("boutonMenuSelect");                    
                   etat = 2;                  
               }
           });

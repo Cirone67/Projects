@@ -50,10 +50,14 @@ public class Charge extends Objet{
          gc.setStroke(this.getCouleur());
          int r = 10;
          double pi = Math.PI;
-         double x = this.n.getAbs();
+         
+         double x = this.n.getAbs();                       //création segment
          double y = this.n.getOrd();
          double x2 = x + Math.cos(this.angle)*this.norme;
          double y2 = y + Math.sin(this.angle)*this.norme;
+         
+         double x1flèche = (0.3*x + 0.7*x2); //A FAIRE flèche
+         
          double [] abs = new double [5]; double [] ord = new double [5];
          abs[0] = x; ord[0] = y;
          abs[1] = x2; ord[1] = y2;

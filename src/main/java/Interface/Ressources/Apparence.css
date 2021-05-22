@@ -8,19 +8,6 @@ and open the template in the editor.
     Author     : Guillaume R
 */
 
-/*.button{
-    button_background_color: #cccccc;
-    background_pressed_color: #999999;
-
-    border_hover_color: #7a7a7a;
-
-    text_color: #111;
-    default_button_text_color: white;
-
-    focus_ring_border_color: white;
-    border_hover_default_color: derive(accent_color, -40%);
-}*/
-
 
 .button {
     -fx-background-color: #ccc; 
@@ -33,6 +20,13 @@ and open the template in the editor.
 
 #boutonMenu{  
     -fx-padding: 3 30 3 30; 
+    -fx-border-width: (0,0,3,0);
+    -fx-font-size: 10pt
+}
+
+#boutonMenuSelect{
+    -fx-padding: 3 30 3 30;
+    -fx-border-color: #95bff5;
     -fx-font-size: 10pt
 }
 
