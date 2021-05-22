@@ -122,6 +122,8 @@ for(i=0;i<nbrTT;i++){
         ST.clear();
         TT.clear();
     }
+    
+    // main du terrain 
 //          double xmin, xmax, ymin, ymax;
 //          Terrain T;
 //          TerrainPoints PTtempo;

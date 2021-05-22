@@ -155,9 +155,9 @@ public class TerrainPoints extends Objet{
                 }
         }
         if(verifie==true){
-            System.out.println("Vous avez rentre une forme ''special''");
+//            System.out.println("Vous avez rentre une forme ''special''");
         }else{
-            System.out.println("Vous avez rentre une forme polygonale classique");
+//            System.out.println("Vous avez rentre une forme polygonale classique");
         }
             return verifie;
     }
