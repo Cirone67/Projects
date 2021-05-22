@@ -127,6 +127,7 @@ public class Calcul {
              }
              }
          }
+       System.out.println(systeme);
        //Partie Réaction du support :
        
            int j=treillis.getBarres().size();
@@ -145,9 +146,9 @@ public class Calcul {
                   systeme.setMij(i+1, j, Math.sin(anglNormal(((AppuiSimple)treillis.getNoeuds().get(t)).getTriangleAppui(),((AppuiSimple)treillis.getNoeuds().get(t)).getPremierPoint(), treillis.getTerrainTriangles())));
               j= j+1;  
               }
-              //systeme.String();
+              
            }
-        
+       System.out.println(systeme); 
        }
            //elimine les valeurs très petite négligeable lié aux arrondis
            for(int i=0; i <treillis.getNoeuds().size()*2;i++){
@@ -157,7 +158,9 @@ public class Calcul {
                    }
                }
            }
-    return systeme;   
+    System.out.println(systeme);
+    return systeme;
+   
    }
    
     // Méthode qui créée le vecteur de l'autre coté de l'égalité  
@@ -177,6 +180,7 @@ public class Calcul {
                    }
                }
            }  
+       System.out.println(vecteur);
        return vecteur;
    }
    

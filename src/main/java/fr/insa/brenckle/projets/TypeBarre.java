@@ -36,6 +36,7 @@ public TypeBarre(String nom, int categorie, double cout,double longmin , double 
  this.rescompression = rescompression;
  this.restension = restension;
  this.nom = nom;
+ nbrTypeBarre++;
 }
 
 public TypeBarre(int categorie, double cout, double longmin, double longmax, double restension, double rescompression){
