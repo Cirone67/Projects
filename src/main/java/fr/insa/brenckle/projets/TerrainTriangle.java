@@ -182,7 +182,7 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
                 }
         }
         //forme polygonale
-        if(verifie == false){
+        if((verifie == false)&&(nbrSTr!=0)){
             TTtempo = new TerrainTriangle (ST.get(0),ST.get(1),TerrainSegment.InvSegment(STr.get(0)));
             TT.add(TTtempo);
             j=0;
@@ -194,6 +194,9 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
             TTtempo = new TerrainTriangle(STr.get(nbrSTr-1),ST.get(nbrST-2),ST.get(nbrST-1));
             TT.add(TTtempo);
          
+    }else if((verifie ==false)&&(nbrSTr==0)){
+        TTtempo = new TerrainTriangle(ST.get(0),ST.get(1),ST.get(2));
+        TT.add(TTtempo);
     }
         System.out.println(TT);
         return TT;

@@ -142,13 +142,13 @@ public  class TerrainSegment extends Objet{
           //trie les segments rajouter dans l'ordre croissant de leur point A
           Collections.sort(STr , TerrainSegment.ComparatorA);
         }
-        if(verifie==false){
+        if((verifie==false)&&(nbrP!=3)){
             for(i=2;i<nbrP-1;i++){
                 STtempo = new TerrainSegment(P.get(0),P.get(i));
                 STr.add(STtempo);
             }
         }
-//        System.out.println(STr);
+        //System.out.println(STr);
         return STr;
     }
     
@@ -182,7 +182,7 @@ public  class TerrainSegment extends Objet{
         TerrainPoints C = ST2.getA();
         TerrainPoints D = ST2.getB();
         angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(D.getPy() - C.getPy(), D.getPx() - C.getPx()); 
-        System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);//*180/Math.PI pour passer en degré
+//        System.out.println("L'angle entre "+ST1+" et "+ST2+" est : "+angle);//*180/Math.PI pour passer en degré
         return angle;
     }
     
@@ -198,7 +198,7 @@ public  class TerrainSegment extends Objet{
     public static double anglepoint(TerrainPoints A, TerrainPoints B){
       double angle;
         angle =Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()) - Math.atan2(B.getPy() - A.getPy(), B.getPx() - A.getPx()); 
-        System.out.println("L'angle entre "+A+" et "+B+" est : "+angle);
+//        System.out.println("L'angle entre "+A+" et "+B+" est : "+angle);
         return angle;  
     }
     
