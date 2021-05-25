@@ -166,13 +166,18 @@ public class Calcul {
     // Méthode qui créée le vecteur de l'autre coté de l'égalité  
    public static Matrice vecteurCharge(Treillis treillis){
        Matrice vecteur = new Matrice(treillis.getNoeuds().size()*2,1);
+       double u=0;
+       double k=0;
        for(int t =0;t<treillis.getNoeuds().size();t++){
            int i=2*t;
            for(int j =0; j<treillis.getCharge().size(); j++){
             if(treillis.getNoeuds().get(t).getIdNoeud() == treillis.getCharge().get(j).getNoeud()){
-           vecteur.setMij(i, 0, -treillis.getCharge().get(j).getNorme()*Math.cos(treillis.getCharge().get(j).getAngle())); //angle par rapport à horizon
-           vecteur.setMij(i+1,0,-treillis.getCharge().get(j).getNorme()*Math.sin(treillis.getCharge().get(j).getAngle()));
+            u = u + treillis.getCharge().get(j).getNorme()*Math.cos(treillis.getCharge().get(j).getAngle());
+           k = k + treillis.getCharge().get(j).getNorme()*Math.sin(treillis.getCharge().get(j).getAngle());
            }
+           vecteur.setMij(i, 0,u);
+           vecteur.setMij(i+1,0,k);
+            
            }
          for(int a=0; a <treillis.getNoeuds().size()*2;a++){
                    if(vecteur.getMij(a, 0)<Math.pow(10, -5)&&vecteur.getMij(a, 0)>-Math.pow(10, -5)){
