@@ -172,8 +172,8 @@ public class Calcul {
            int i=2*t;
            for(int j =0; j<treillis.getCharge().size(); j++){
             if(treillis.getNoeuds().get(t).getIdNoeud() == treillis.getCharge().get(j).getNoeud()){
-            u = u + treillis.getCharge().get(j).getNorme()*Math.cos(treillis.getCharge().get(j).getAngle());
-           k = k + treillis.getCharge().get(j).getNorme()*Math.sin(treillis.getCharge().get(j).getAngle());
+            u = u - treillis.getCharge().get(j).getNorme()*Math.cos(treillis.getCharge().get(j).getAngle());
+           k = k - treillis.getCharge().get(j).getNorme()*Math.sin(treillis.getCharge().get(j).getAngle());
            }
            vecteur.setMij(i, 0,u);
            vecteur.setMij(i+1,0,k);
