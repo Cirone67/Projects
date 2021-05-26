@@ -40,8 +40,8 @@ public class AppuiDouble extends Appui{
             Image img2 = new Image(inp, 30, 24, false, false);
             gc.setImageSmoothing(true);        
             gc.drawImage(img2, this.getAbs()-25.5, y-23.5);
-//        gc.strokeOval(this.getAbs()-3*0.5, this.getOrd()-3, 3, 3);
-//        gc.fillOval(this.getAbs()-3*0.5, this.getOrd()-3, 3, 3); 
+        gc.strokeOval(this.getAbs()-3*0.5, y-3, 3, 3);
+        gc.fillOval(this.getAbs()-3*0.5, y-3, 3, 3); 
 
         
     }

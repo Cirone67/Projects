@@ -40,6 +40,8 @@ public class AppuiSimple extends Appui{
             Image img2 = new Image(inp, 24, 24, false, false); 
             gc.setImageSmoothing(true);
             gc.drawImage(img2, this.getAbs()-12, y-22.2);
+        gc.strokeOval(this.getAbs()-3*0.5, y-3, 3, 3);
+        gc.fillOval(this.getAbs()-3*0.5, y-3, 3, 3);     
     }
     
     public void drawSelection(GraphicsContext gc, double largeur){  
