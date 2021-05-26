@@ -39,9 +39,9 @@ public class AppuiDouble extends Appui{
             InputStream inp = this.getClass().getResourceAsStream("appuiDouble.png");
             Image img2 = new Image(inp, 30, 24, false, false);
             gc.setImageSmoothing(true);        
-            gc.drawImage(img2, this.getAbs()-25.5, y-23.5);
-        gc.strokeOval(this.getAbs()-3*0.5, y-3, 3, 3);
-        gc.fillOval(this.getAbs()-3*0.5, y-3, 3, 3); 
+            gc.drawImage(img2, this.getAbs()-15.0, y-0.5);
+//        gc.strokeOval(this.getAbs()-3*0.5, y-3, 3, 3);
+//        gc.fillOval(this.getAbs()-3*0.5, y-3, 3, 3); 
 
         
     }
