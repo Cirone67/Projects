@@ -56,7 +56,10 @@ public class Charge extends Objet{
          double x2 = x + Math.cos(this.angle)*this.norme;
          double y2 = y + Math.sin(this.angle)*this.norme;
          
-         double x1flèche = (0.3*x + 0.7*x2); //A FAIRE flèche
+         double xfleche = (0.3*x + 0.7*x2); //A FAIRE flèche
+         double yfleche = (0.3*x + 0.7*x2);
+         
+         
          
          double [] abs = new double [5]; double [] ord = new double [5];
          abs[0] = x; ord[0] = largeur - y;
