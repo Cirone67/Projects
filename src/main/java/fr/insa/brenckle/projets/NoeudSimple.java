@@ -34,19 +34,21 @@ public class NoeudSimple extends Noeud{
         return "("+this.abs+";"+this.ord+")";
     }
     
-    public void draw(GraphicsContext gc){  
+    public void draw(GraphicsContext gc, double largeur){  
         int r = 4;
+        double y = largeur - this.getOrd();
         gc.setLineWidth(1);
         gc.setStroke(this.getCouleur()); gc.setFill(this.getCouleur());
-        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
+        gc.strokeOval(this.getAbs()- r, y - r, r, r);
+        gc.fillOval(this.getAbs() - r, y - r, r, r);
     }
-    public void drawSelection(GraphicsContext gc){  
+    public void drawSelection(GraphicsContext gc, double largeur){  
         int r = 4;
+        double y = largeur - this.getOrd();
         gc.setLineWidth(1);
         gc.setStroke(couleurSelection); gc.setFill(couleurSelection);
-        gc.strokeOval(this.getAbs()- r, this.getOrd() - r, r, r);
-        gc.fillOval(this.getAbs() - r, this.getOrd() - r, r, r);
+        gc.strokeOval(this.getAbs()- r, y - r, r, r);
+        gc.fillOval(this.getAbs() - r, y - r, r, r);
     }    
        
     public double getAbs(){

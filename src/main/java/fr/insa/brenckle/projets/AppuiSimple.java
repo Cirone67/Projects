@@ -34,17 +34,18 @@ public class AppuiSimple extends Appui{
         super(idtriangleAppui, premierPoint, posSegment, terrainTriangle);
     }
     
-    public void draw(GraphicsContext gc){  
+    public void draw(GraphicsContext gc, double largeur){  
+            double y = largeur - this.getOrd();
             InputStream inp = this.getClass().getResourceAsStream("appuiSimple2.png");
             Image img2 = new Image(inp, 24, 24, false, false); 
             gc.setImageSmoothing(true);
-            gc.drawImage(img2, this.getAbs()-12, this.getOrd()-22.2);
+            gc.drawImage(img2, this.getAbs()-12, y-22.2);
     }
     
-    public void drawSelection(GraphicsContext gc){  
-        int r = 3;
+    public void drawSelection(GraphicsContext gc, double largeur){  
+        double y = largeur - this.getOrd();
         gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
-        gc.fillRect(this.getAbs()-12, this.getOrd()-22.2, 24, 24);
+        gc.fillRect(this.getAbs()-12, y-22.2, 24, 24);
     }    
     
 }

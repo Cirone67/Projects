@@ -85,8 +85,9 @@ public class NeuCanvas extends Pane {
             I.getControleur().clicDansInterface(t);
         });
         this.canvas.setOnMouseMoved((t) -> {
+            double y = canvas.getHeight() - t.getY();
             absSouris.setText("X:"+ Double.toString(Math.round(t.getX()*100)/100));
-            ordSouris.setText("Y:"+ Double.toString(Math.round(t.getY()*100)/100)); 
+            ordSouris.setText("Y:"+ Double.toString(Math.round(y*100)/100)); 
             I.getControleur().mouvementSouris(t);
         });
 
@@ -97,8 +98,9 @@ public class NeuCanvas extends Pane {
     }
     
     public void redraw(){
+        double largeur = canvas.getHeight();
         GraphicsContext context = this.getCanvas().getGraphicsContext2D();
-        canvas.setRotate(180);
+        //canvas.setRotate(180);
         Treillis modele = this.getI().getTreillis();
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
@@ -108,33 +110,31 @@ public class NeuCanvas extends Pane {
         
         ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.getI().getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP());
         for (TerrainPoints TP: listPT){   //redessine les premiers points
-                TP.draw(context);
+                TP.draw(context, largeur);
         }        
         
         for (int i = 0; i<modele.getTerrainTriangles().size(); i++){
-                
-            // modele.getTerrainTriangles().get(i).draw(context);
             
-                modele.getTerrainTriangles().get(i).getC1().getA().draw(context);  //dessine les points terrain
-                modele.getTerrainTriangles().get(i).getC1().getB().draw(context);
-                modele.getTerrainTriangles().get(i).getC2().getB().draw(context);
+                modele.getTerrainTriangles().get(i).getC1().getA().draw(context, largeur);  //dessine les points terrain
+                modele.getTerrainTriangles().get(i).getC1().getB().draw(context, largeur);
+                modele.getTerrainTriangles().get(i).getC2().getB().draw(context, largeur);
 
-                modele.getTerrainTriangles().get(i).getC1().draw(context);  //dessin les segments terrain
-                modele.getTerrainTriangles().get(i).getC2().draw(context); 
-                modele.getTerrainTriangles().get(i).getC3().draw(context);
+                modele.getTerrainTriangles().get(i).getC1().draw(context, largeur);  //dessin les segments terrain
+                modele.getTerrainTriangles().get(i).getC2().draw(context, largeur); 
+                modele.getTerrainTriangles().get(i).getC3().draw(context, largeur);
         }
         for (Barre b: modele.getBarres()){ //dessine les barres
-            b.draw(context);
+            b.draw(context, largeur);
         }
         for (Charge c: modele.getCharge()){
-            c.draw(context);
+            c.draw(context, largeur);
         }
         for (Noeud n: modele.getNoeuds()){ //dessine les noeuds
-            n.draw(context);
+            n.draw(context, largeur);
         }
         if(I.getControleur().getSelection().isEmpty() == false) {
             for (Objet obj:I.getControleur().getSelection()){
-            obj.drawSelection(context);
+            obj.drawSelection(context, canvas.getHeight());
         }
         }
 

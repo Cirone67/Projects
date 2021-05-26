@@ -208,17 +208,17 @@ public static ArrayList<TerrainTriangle> Creationtriangle (ArrayList<TerrainSegm
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        double [] x = new double [3]; 
-        double [] y = new double [3];
-        x[0] = this.getC1().getA().getPx(); y[0] = this.getC1().getA().getPy();
-        x[1] = this.getC2().getB().getPx(); y[1] = this.getC2().getB().getPy();
-        x[2] = this.getC2().getA().getPx(); y[1] = this.getC2().getA().getPy();
-        context.setFill(Color.AQUA.deriveColor(1, 1, 1, 0.2));
-        context.strokePolygon(x, y, 3);
-        context.fillPolygon(x, y, 3);
+    public void draw(GraphicsContext context, double largeur) {
+//        double [] x = new double [3]; 
+//        double [] y = new double [3];
+//        x[0] = this.getC1().getA().getPx(); y[0] = this.getC1().getA().getPy();
+//        x[1] = this.getC2().getB().getPx(); y[1] = this.getC2().getB().getPy();
+//        x[2] = this.getC2().getA().getPx(); y[1] = this.getC2().getA().getPy();
+//        context.setFill(Color.AQUA.deriveColor(1, 1, 1, 0.2));
+//        context.strokePolygon(x, y, 3);
+//        context.fillPolygon(x, y, 3);
     }
-    public void drawSelection(GraphicsContext context) {
+    public void drawSelection(GraphicsContext context, double largeur) {
         
     }
 }

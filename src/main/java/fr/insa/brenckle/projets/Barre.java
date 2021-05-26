@@ -141,16 +141,20 @@ public double angle(Barre Barre2){
     return (Math.acos(scalaire/(this.longueur()*Barre2.longueur()))%(Math.PI));  
 }
 
-    public void draw(GraphicsContext context){
+    public void draw(GraphicsContext context, double largeur){
+        double debutY = largeur - this.getDebut().getOrd();
+        double finY = largeur - this.getFin().getAbs();
         context.setStroke(this.getCouleur());
         context.setLineWidth(2);
         context.setLineCap(StrokeLineCap.ROUND);
-        context.strokeLine(this.getDebut().getAbs(), this.getDebut().getOrd(), this.getFin().getAbs(), this.getFin().getOrd());
+        context.strokeLine(this.getDebut().getAbs(), debutY, this.getFin().getAbs(), finY);
     }
-    public void drawSelection (GraphicsContext context){
+    public void drawSelection (GraphicsContext context, double largeur){
+        double debutY = largeur - this.getDebut().getOrd();
+        double finY = largeur - this.getFin().getAbs();        
         context.setStroke(couleurSelection);
         context.setLineWidth(2); context.setLineCap(StrokeLineCap.ROUND);
-        context.strokeLine(this.getDebut().getAbs(), this.getDebut().getOrd(), this.getFin().getAbs(), this.getFin().getOrd());
+        context.strokeLine(this.getDebut().getAbs(), debutY, this.getFin().getAbs(), finY);
     }
     
 /*

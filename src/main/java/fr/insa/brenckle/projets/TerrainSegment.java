@@ -202,17 +202,21 @@ public  class TerrainSegment extends Objet{
         return angle;  
     }
     
-    public void draw(GraphicsContext context){
+    public void draw(GraphicsContext context, double largeur){
+        double Ay = largeur - this.getA().getPy();
+        double By = largeur - this.getB().getPy();
         context.setStroke(this.getCouleur());
         context.setLineCap(StrokeLineCap.BUTT);
         context.setLineWidth(1);
-        context.strokeLine(this.getA().getPx(), this.getA().getPy(), this.getB().getPx(), this.getB().getPy());
+        context.strokeLine(this.getA().getPx(), Ay, this.getB().getPx(), By);
     }
-    public void drawSelection(GraphicsContext gc){
+    public void drawSelection(GraphicsContext gc, double largeur){
+        double Ay = largeur - this.getA().getPy();
+        double By = largeur - this.getB().getPy();        
         gc.setStroke(couleurSelection);
         gc.setLineCap(StrokeLineCap.BUTT);
         gc.setLineWidth(1);
-        gc.strokeLine(this.getA().getPx(), this.getA().getPy(), this.getB().getPx(), this.getB().getPy());
+        gc.strokeLine(this.getA().getPx(), Ay, this.getB().getPx(), By);
     }
 
     public double distancePoint(double abs, double ord) {

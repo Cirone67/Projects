@@ -36,9 +36,9 @@ public abstract class Objet{
         this.couleur = couleur;
     }
     
-    public abstract void draw(GraphicsContext context);
+    public abstract void draw(GraphicsContext context, double largeur);
     
-    public abstract void drawSelection(GraphicsContext context);
+    public abstract void drawSelection(GraphicsContext context, double largeur);
     
     public abstract double distancePoint(double abs, double ord);     
     

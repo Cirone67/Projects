@@ -88,13 +88,13 @@ public class Controleur {
             for (TerrainPoints TP: listPT){
                 GraphicsContext context = this.vue.getGraph().getGraphicsContext2D();
                 context.clearRect(0, 0, this.vue.getGraph().getCanvas().getWidth(), this.vue.getGraph().getCanvas().getWidth());
-                TP.draw(context);
+                TP.draw(context, vue.getGraph().getCanvas().getHeight());
             }
             this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().close();
             vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
         }
-        else if (this.etat == 30){
+        else if (this.etat == 30){ //génère terrain
             
             ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP()); //Points rentrés par l'utilisateur
             boolean b = verifieForme(listPT);
@@ -103,7 +103,7 @@ public class Controleur {
            
             ArrayList<TerrainSegment> listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, b)); //1ère liste de segments
             ArrayList<TerrainSegment> listSTr = new ArrayList<TerrainSegment>(creationSegmentTriangle(listPT, listPTr, b)); //2ème liste de segments pour trianguler
-     segments.addAll(listST); segments.addAll(listSTr);
+    // segments.addAll(listST); segments.addAll(listSTr);
             listSTr = Suppsegmendouble(listST, listSTr); //Supprime les doublons de segments
             
             ArrayList<TerrainTriangle> listTT = new ArrayList<TerrainTriangle>(Creationtriangle(listST, listSTr, b)); //Génère les triangles
@@ -378,10 +378,10 @@ public class Controleur {
             }
             this.etat = 10;
         }
-        else if (this.etat == 112){  //Télécharger  //problème avec les types de barres
+        else if (this.etat == 112){  //Télécharger  
             //enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
             FileChooser fileChooser = new FileChooser();
-            File file =  fileChooser.showOpenDialog(this.vue.getFenetre());
+            File file =  fileChooser.showOpenDialog(this.vue.getFenetre());           
             if (file != null){
                 Treillis neuTreillis = telechargement(file, file.getName());
                 Double prix = PrixTreillis(neuTreillis.getBarres());
@@ -442,8 +442,10 @@ public class Controleur {
      
     void clicDansInterface (MouseEvent t){
         if (this.etat == 10){    //sélection
+            double largeur = this.vue.getGraph().getCanvas().getHeight();
             double posX = t.getX();
-            double posY = t.getY();
+            double posY = largeur - t.getY();
+            System.out.println(posY);
             Objet objSelect = this.plusProche(posX, posY, 25);
             
             if (objSelect != null){
@@ -467,9 +469,10 @@ public class Controleur {
         }
         
         else if (this.etat == 51){
+            double largeur = this.vue.getGraph().getCanvas().getHeight();
             selection.clear();
             double posX = t.getX();
-            double posY = t.getY();
+            double posY = largeur - t.getY();
             Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
             
             if (noeudSelect != null){
@@ -480,8 +483,9 @@ public class Controleur {
             }
         }
         else if (this.etat == 52){
+            double largeur = this.vue.getGraph().getCanvas().getHeight();
             double posX = t.getX();
-            double posY = t.getY();
+            double posY = largeur - t.getY();
             Noeud noeudSelect = this.noeudPlusProche(posX, posY, 25);
             
             if (noeudSelect != null){
@@ -555,14 +559,15 @@ public class Controleur {
     
     public void mouvementSouris (MouseEvent t){
         if (this.etat == 52){
+            double largeur = this.vue.getGraph().getCanvas().getHeight();
             double posX = t.getX();
-            double posY = t.getY();
+            double posY = largeur - t.getY();
             TerrainPoints TP1 = new TerrainPoints (noeud1.getAbs(), noeud1.getOrd());
             TerrainPoints TP2 = new TerrainPoints (posX, posY);
             TerrainSegment ST = new TerrainSegment (TP1, TP2);
             this.vue.getGraph().getGraphicsContext2D().clearRect(0, 0, vue.getGraph().getCanvas().getWidth(), vue.getGraph().getCanvas().getHeight());
             this.vue.getGraph().redraw();
-            ST.draw(this.vue.getGraph().getGraphicsContext2D());
+            ST.draw(this.vue.getGraph().getGraphicsContext2D(), largeur);
         }
     }
     

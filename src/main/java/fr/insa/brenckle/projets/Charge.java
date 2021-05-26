@@ -46,7 +46,7 @@ public class Charge extends Objet{
        nbrCharge++;
    }
     
-     public void draw(GraphicsContext gc){
+     public void draw(GraphicsContext gc, double largeur){
          gc.setStroke(this.getCouleur());
          int r = 10;
          double pi = Math.PI;
@@ -59,8 +59,8 @@ public class Charge extends Objet{
          double x1flèche = (0.3*x + 0.7*x2); //A FAIRE flèche
          
          double [] abs = new double [5]; double [] ord = new double [5];
-         abs[0] = x; ord[0] = y;
-         abs[1] = x2; ord[1] = y2;
+         abs[0] = x; ord[0] = largeur - y;
+         abs[1] = x2; ord[1] = largeur - y2;
          abs[2] = x2 - r*Math.sin(pi/4); ord[2] = y2 - r*Math.sin(pi/4);
          abs[3] = abs[1]; ord[3] = ord[1];
          abs[4] = x2 - r*Math.sin(pi/4); ord[4] = y2 + r*Math.sin(pi/4);
@@ -68,7 +68,7 @@ public class Charge extends Objet{
          gc.strokePolyline(abs, ord, 5);
      }
      
-    public void drawSelection(GraphicsContext context) {
+    public void drawSelection(GraphicsContext context, double largeur) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

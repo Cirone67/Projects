@@ -218,19 +218,21 @@ public class TerrainPoints extends Objet{
         return ("("+this.Px+";"+this.Py+")");
     }    
     
-    public void draw(GraphicsContext gc){
+    public void draw(GraphicsContext gc, double largeur){
         int r = 3;
+        double y = largeur-this.getPy();
         gc.setLineWidth(1);
         gc.setFill(this.getCouleur()); gc.setStroke(this.getCouleur());
-        gc.fillOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
+        gc.fillOval(this.getPx()-r*0.5, y-r, r, r);
     }
     
-    public void drawSelection(GraphicsContext gc){
+    public void drawSelection(GraphicsContext gc, double largeur){
         int r = 3;
+        double y = largeur-this.getPy();
         gc.setLineWidth(1);
         gc.setFill(this.couleurSelection); gc.setStroke(couleurSelection);
         gc.strokeOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
-        gc.fillOval(this.getPx()-r*0.5, this.getPy()-r, r, r); 
+        gc.fillOval(this.getPx()-r*0.5, y-r, r, r); 
     }
 
     @Override
