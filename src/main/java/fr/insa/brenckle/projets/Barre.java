@@ -143,7 +143,7 @@ public double angle(Barre Barre2){
 
     public void draw(GraphicsContext context, double largeur){
         double debutY = largeur - this.getDebut().getOrd();
-        double finY = largeur - this.getFin().getAbs();
+        double finY = largeur - this.getFin().getOrd();
         context.setStroke(this.getCouleur());
         context.setLineWidth(2);
         context.setLineCap(StrokeLineCap.ROUND);
@@ -151,7 +151,7 @@ public double angle(Barre Barre2){
     }
     public void drawSelection (GraphicsContext context, double largeur){
         double debutY = largeur - this.getDebut().getOrd();
-        double finY = largeur - this.getFin().getAbs();        
+        double finY = largeur - this.getFin().getOrd();        
         context.setStroke(couleurSelection);
         context.setLineWidth(2); context.setLineCap(StrokeLineCap.ROUND);
         context.strokeLine(this.getDebut().getAbs(), debutY, this.getFin().getAbs(), finY);

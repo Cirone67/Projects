@@ -5,8 +5,10 @@
  */
 package fr.insa.brenckle.projets;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -49,24 +51,32 @@ public class Charge extends Objet{
      public void draw(GraphicsContext gc, double largeur){
          gc.setStroke(this.getCouleur());
          int r = 10;
+         double ar = 20;
+         int wid = 10;
          double pi = Math.PI;
          
-         double x = this.n.getAbs();                       //création segment
+         double x = this.n.getAbs();  //création segment flèche
          double y = this.n.getOrd();
          double x2 = x + Math.cos(this.angle)*this.norme;
          double y2 = y + Math.sin(this.angle)*this.norme;
          
-         double xfleche = (0.3*x + 0.7*x2); //A FAIRE flèche
-         double yfleche = (0.3*x + 0.7*x2);
+         double xmil = x2 + ar*((x2-x)/this.norme); //pointe 
+         double ymil = y2 + ar*((y2-y)/this.norme); 
+        
+         double x1fleche = xmil + wid*((-(y2-y))/this.norme);
+         double y1fleche = ymil + wid*((x2-x)/this.norme);
+         
+         double x2fleche = xmil - wid*((-(y2-y))/this.norme);
+         double y2fleche = ymil - wid*((x2-x)/this.norme);
          
          
          
          double [] abs = new double [5]; double [] ord = new double [5];
          abs[0] = x; ord[0] = largeur - y;
          abs[1] = x2; ord[1] = largeur - y2;
-         abs[2] = x2 - r*Math.sin(pi/4); ord[2] = y2 - r*Math.sin(pi/4);
+         abs[2] = x1fleche; ord[2] = largeur - y1fleche;
          abs[3] = abs[1]; ord[3] = ord[1];
-         abs[4] = x2 - r*Math.sin(pi/4); ord[4] = y2 + r*Math.sin(pi/4);
+         abs[4] = x2fleche; ord[4] = largeur - y2fleche;
          gc.setLineWidth(0.5);
          gc.strokePolyline(abs, ord, 5);
      }
