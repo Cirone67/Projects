@@ -95,19 +95,29 @@ public class Controleur {
             this.etat = 10;
         }
         else if (this.etat == 30){ //génère terrain
-            
+            ArrayList<TerrainPoints> listPTr;
+            ArrayList<TerrainSegment> listSTr;
+            ArrayList<TerrainSegment> listST;
+            ArrayList <TerrainTriangle> listTT;
             ArrayList<TerrainPoints> listPT = new ArrayList<TerrainPoints>(this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP()); //Points rentrés par l'utilisateur
+            if(listPT.size()>3){
             boolean b = verifieForme(listPT);
             listPT = CompletePoint(listPT, b);
-            ArrayList<TerrainPoints> listPTr = new ArrayList<TerrainPoints>(TrianglePoint(listPT, b)); //Points complétant ceux de l'utilisateur 
+            listPTr = new ArrayList<TerrainPoints>(TrianglePoint(listPT, b)); //Points complétant ceux de l'utilisateur 
            
-            ArrayList<TerrainSegment> listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, b)); //1ère liste de segments
-            ArrayList<TerrainSegment> listSTr = new ArrayList<TerrainSegment>(creationSegmentTriangle(listPT, listPTr, b)); //2ème liste de segments pour trianguler
+            listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, b)); //1ère liste de segments
+            listSTr = new ArrayList<TerrainSegment>(creationSegmentTriangle(listPT, listPTr, b)); //2ème liste de segments pour trianguler
     // segments.addAll(listST); segments.addAll(listSTr);
             listSTr = Suppsegmendouble(listST, listSTr); //Supprime les doublons de segments
-            
-            ArrayList<TerrainTriangle> listTT = new ArrayList<TerrainTriangle>(Creationtriangle(listST, listSTr, b)); //Génère les triangles
-            
+            listTT = new ArrayList<TerrainTriangle>(Creationtriangle(listST, listSTr, b)); //Génère les triangles
+            }else{
+                listPTr = new ArrayList<TerrainPoints>();
+                listTT = new ArrayList<TerrainTriangle>();
+                listST= TerrainSegment.creationSegment(listPT, listPTr ,false);
+                TerrainTriangle TTtempo;
+                TTtempo= new TerrainTriangle(listST.get(0),listST.get(1),listST.get(2));
+                listTT.add(TTtempo);
+            }
             this.vue.getTreillis().setTerrainTriangles(listTT);
             for (int i=0; i<this.vue.getTreillis().getNoeuds().size(); i++){
                 if ((vue.getTreillis().getNoeuds().get(i) instanceof AppuiSimple) || (vue.getTreillis().getNoeuds().get(i) instanceof AppuiDouble)){
