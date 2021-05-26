@@ -107,7 +107,6 @@ public class Controleur {
            
             listST = new ArrayList<TerrainSegment>(creationSegment(listPT, listPTr, b)); //1ère liste de segments
             listSTr = new ArrayList<TerrainSegment>(creationSegmentTriangle(listPT, listPTr, b)); //2ème liste de segments pour trianguler
-    // segments.addAll(listST); segments.addAll(listSTr);
             listSTr = Suppsegmendouble(listST, listSTr); //Supprime les doublons de segments
             listTT = new ArrayList<TerrainTriangle>(Creationtriangle(listST, listSTr, b)); //Génère les triangles
             }else{
@@ -131,6 +130,7 @@ public class Controleur {
                     vue.getTreillis().getNoeuds().remove(i);
                 }
             }
+            this.vue.getGraph().changeCouleurTerrain(Color.web("#2d4fbd"));
             this.vue.getGraph().redraw();
             vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(0);
             this.etat = 10;
@@ -389,7 +389,6 @@ public class Controleur {
             this.etat = 10;
         }
         else if (this.etat == 112){  //Télécharger  
-            //enregistrer(this.vue.getTreillis(), this.vue.getMenuPrincipal().getMenuEdition().getFichier().getName(), this.vue.getMenuPrincipal().getMenuEdition().getFichier());
             FileChooser fileChooser = new FileChooser();
             File file =  fileChooser.showOpenDialog(this.vue.getFenetre());           
             if (file != null){
@@ -401,6 +400,7 @@ public class Controleur {
                 this.vue.getMenuPrincipal().getMenuGestion().getPrix().setText(Double.toString(prix) + " €"); 
                 this.vue.getMenuPrincipal().getMenuEdition().setFichier(file);
                 this.vue.getMenuPrincipal().getMenuEdition().setEtatSauvegarde(1);
+                this.vue.getMenuPrincipal().getMenuCreation().getSaisiePointTerrain().getP().clear();
             }
             this.vue.getGraph().redraw();
             this.etat = 10;  
@@ -425,11 +425,26 @@ public class Controleur {
             int i = 0;
             for (Barre b: vue.getTreillis().getBarres()){
                 double res = resultat.getMij(i, 0);
-                if (res<0){
-                    b.setCouleur(Color.RED);
-                } else{
-                    b.setCouleur(Color.GREEN);
+                if ((res<0) &&(Math.abs(res)<b.getType().getRescompression())){   //compression
+                    b.setCouleur(Color.RED);   
+                } 
+                else if ((res<0) &&(Math.abs(res)>b.getType().getRescompression())){
+                    b.setCouleur(Color.YELLOW);
                 }
+                
+                else if ((res>0) && (res<b.getType().getRestension())){  //tension
+                    b.setCouleur(Color.GREEN);
+
+                }
+                
+                else if ((res>0) && (res>b.getType().getRestension())){
+                    b.setCouleur(Color.YELLOW);
+                }
+                
+                else if (res==0){
+                    b.setCouleur(Color.BLACK);
+                }
+                
                 i=i+1;
             }
             this.vue.getGraph().redraw();

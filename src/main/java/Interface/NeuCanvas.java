@@ -123,6 +123,7 @@ public class NeuCanvas extends Pane {
                 modele.getTerrainTriangles().get(i).getC2().draw(context, largeur); 
                 modele.getTerrainTriangles().get(i).getC3().draw(context, largeur);
         }
+        
         for (Barre b: modele.getBarres()){ //dessine les barres
             b.draw(context, largeur);
         }
@@ -146,6 +147,20 @@ public class NeuCanvas extends Pane {
         canvas.setScaleX(x*zoomRatio); 
         canvas.setScaleY(y*zoomRatio);  
         this.redraw();
+    }
+    
+    public void changeCouleurTerrain(Color couleur){ 
+        Treillis modele = this.I.getTreillis();
+                for (int i = 0; i<modele.getTerrainTriangles().size(); i++){
+            
+                modele.getTerrainTriangles().get(i).getC1().getA().setCouleur(couleur);  
+                modele.getTerrainTriangles().get(i).getC1().getB().setCouleur(couleur);
+                modele.getTerrainTriangles().get(i).getC2().getB().setCouleur(couleur);
+
+                modele.getTerrainTriangles().get(i).getC1().setCouleur(couleur);  
+                modele.getTerrainTriangles().get(i).getC2().setCouleur(couleur); 
+                modele.getTerrainTriangles().get(i).getC3().setCouleur(couleur);
+        }
     }
     
     

@@ -35,10 +35,11 @@ public class App extends Application {
                 ButtonType enregistrer = new ButtonType("Enregistrer");
                 ButtonType enregistrerSous = new ButtonType("Enregistrer sous");
                 ButtonType ignorer = new ButtonType("Ignorer");
+                ButtonType annuler = new ButtonType("Annuler");
                 confirmer.setTitle("Attention");
                 confirmer.setHeaderText("Enregistrer vos modifications?");
                 confirmer.getButtonTypes().clear();
-                confirmer.getButtonTypes().addAll(enregistrer, enregistrerSous, ignorer);
+                confirmer.getButtonTypes().addAll(enregistrer, enregistrerSous, annuler, ignorer);
                 Optional<ButtonType> select = confirmer.showAndWait();
                 
                 if (select.get() == enregistrerSous){
@@ -50,7 +51,9 @@ public class App extends Application {
                 }
                 else if (select.get() == ignorer){
                    stage.close(); 
-                }                
+                } else if (select.get() == annuler){
+                    
+                }              
             }           
         });
         

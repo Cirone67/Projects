@@ -60,8 +60,8 @@ public class Charge extends Objet{
          double x2 = x + Math.cos(this.angle)*this.norme;
          double y2 = y + Math.sin(this.angle)*this.norme;
          
-         double xmil = x2 + ar*((x2-x)/this.norme); //pointe 
-         double ymil = y2 + ar*((y2-y)/this.norme); 
+         double xmil = x2 + ar*(-(x2-x)/this.norme); //pointe 
+         double ymil = y2 + ar*(-(y2-y)/this.norme); 
         
          double x1fleche = xmil + wid*((-(y2-y))/this.norme);
          double y1fleche = ymil + wid*((x2-x)/this.norme);
