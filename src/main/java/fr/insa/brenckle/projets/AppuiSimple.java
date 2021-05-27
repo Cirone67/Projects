@@ -47,7 +47,7 @@ public class AppuiSimple extends Appui{
     public void drawSelection(GraphicsContext gc, double largeur){  
         double y = largeur - this.getOrd();
         gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
-        gc.fillRect(this.getAbs()-12, y-22.2, 24, 24);
+        gc.fillRect(this.getAbs()-13, y-0.5, 24, 24);
     }    
     
 }

@@ -119,7 +119,7 @@ public class NeuCanvas extends Pane {
                 modele.getTerrainTriangles().get(i).getC1().getB().draw(context, largeur);
                 modele.getTerrainTriangles().get(i).getC2().getB().draw(context, largeur);
 
-                modele.getTerrainTriangles().get(i).getC1().draw(context, largeur);  //dessin les segments terrain
+                modele.getTerrainTriangles().get(i).getC1().draw(context, largeur);  //dessine les segments terrain
                 modele.getTerrainTriangles().get(i).getC2().draw(context, largeur); 
                 modele.getTerrainTriangles().get(i).getC3().draw(context, largeur);
         }

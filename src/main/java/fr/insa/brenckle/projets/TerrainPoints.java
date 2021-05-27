@@ -231,8 +231,8 @@ public class TerrainPoints extends Objet{
         double y = largeur-this.getPy();
         gc.setLineWidth(1);
         gc.setFill(this.couleurSelection); gc.setStroke(couleurSelection);
-        gc.strokeOval(this.getPx()-r*0.5, this.getPy()-r, r, r);
-        gc.fillOval(this.getPx()-r*0.5, y-r, r, r); 
+        gc.strokeOval(this.getPx()-r*0.5, this.getPy()-r*0.5, r, r);
+        gc.fillOval(this.getPx()-r*0.5, y-r*0.5, r, r); 
     }
 
     @Override

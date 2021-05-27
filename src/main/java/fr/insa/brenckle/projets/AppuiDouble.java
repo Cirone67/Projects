@@ -48,7 +48,7 @@ public class AppuiDouble extends Appui{
     public void drawSelection(GraphicsContext gc, double largeur){
         double y = largeur - this.getOrd();
         gc.setStroke(couleurSelection); gc.setFill(Color.web("#2ba7ef", 0.4));
-        gc.fillRect(this.getAbs()-25.5, y-23.5, 30, 24);
+        gc.fillRect(this.getAbs()-15.0, y-0.5, 30, 24);
     }    
     
 }
